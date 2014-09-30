@@ -4,8 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.offonb.constants.Constants;
-import com.offonb.exceptions.ServerException;
+import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.exceptions.ServerException;
 
 import android.app.ProgressDialog;
 import android.content.Context;

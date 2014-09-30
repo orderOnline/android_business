@@ -3,14 +3,12 @@ package com.invsol.getfoody.net;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.offonb.R;
-import com.offonb.constants.Constants;
-import com.offonb.controllers.AppEventsController;
-import com.offonb.defines.NetworkEvents;
-import com.offonb.exceptions.ApplicationException;
-import com.offonb.models.ConnectionModel;
-import com.offonb.models.LocalModel;
-import com.offonb.models.UserModel;
+import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.exceptions.ApplicationException;
+import com.invsol.getfoody.models.ConnectionModel;
+import com.invsol.getfoody.models.LocalModel;
+import com.invsol.getfoody.models.UserModel;
 
 import android.app.Activity;
 import android.os.Handler;

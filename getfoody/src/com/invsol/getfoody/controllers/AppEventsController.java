@@ -1,5 +1,9 @@
 package com.invsol.getfoody.controllers;
 
+import com.invsol.getfoody.defines.NetworkEvents;
+import com.invsol.getfoody.models.ModelFacade;
+import com.invsol.getfoody.net.NetworkResponseHandler;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
