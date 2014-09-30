@@ -1,5 +1,6 @@
 package com.invsol.getfoody.view;
 
+import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 
@@ -19,7 +20,6 @@ public class SplashActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -28,17 +28,22 @@ public class SplashActivity extends FragmentActivity{
 
 		setContentView(R.layout.activity_splash);
 		
-		SharedPreferences sharedPref = getSharedPreferences(
+		/*SharedPreferences sharedPref = getSharedPreferences(
 				Constants.DATABASE_PREF_NAME, MODE_PRIVATE);
 		accessToken = sharedPref.getString(Constants.TEXT_ACCESSTOKEN,
 				Constants.TEXT_DATABASE_ACCESS_VALUE_DEFAULT);
-		AppEventsController.getInstance().getModelFacade().getUserModel().setAccessToken(accessToken);
+		AppEventsController.getInstance().getModelFacade().getUserModel().setAccessToken(accessToken);*/
 		
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				if( accessToken.equals(Constants.TEXT_DATABASE_ACCESS_VALUE_DEFAULT) ){
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(SplashActivity.this,
+						LoginActivity.class);
+				SplashActivity.this.startActivity(screenChangeIntent);
+				SplashActivity.this.finish();
+				/*if( accessToken.equals(Constants.TEXT_DATABASE_ACCESS_VALUE_DEFAULT) ){
 					Intent screenChangeIntent = null;
 					screenChangeIntent = new Intent(SplashActivity.this,
 							LoginActivity.class);
@@ -50,7 +55,7 @@ public class SplashActivity extends FragmentActivity{
 							HomeActivity.class);
 					SplashActivity.this.startActivity(screenChangeIntent);
 					SplashActivity.this.finish();
-				}
+				}*/
 				
 			}
 		}, SPLASH_TIMER);

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edittext_username"
+        style="@style/commonEditTextStyle"
+        android:drawableRight="@drawable/ic_content_email"
+        android:ems="10"
+        android:hint="@string/text_watermark_email"
+        android:inputType="textEmailAddress" >
+
+    <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edittext_password"
+        style="@style/commonEditTextStyle"
+        android:drawableRight="@drawable/ic_device_access_accounts"
+        android:ems="10"
+        android:hint="@string/text_watermark_password"
+        android:inputType="textPassword" >
+
+    </EditText>
+
+    <CheckBox
+        android:id="@+id/checkbox_rememberme"
+        android:text="@string/text_login_rememberme"
+        style="@style/commonH3TextViewStyle"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/items_vertical_margin"
+            android:layout_marginTop="@dimen/items_vertical_margin" >
+    
+    <TextView
+        android:id="@+id/btn_login"
+        style="@style/commonButttonStyle"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:text="@string/text_button_signin" />
+    
+    <TextView
+        android:id="@+id/btn_forgotpassword"
+        style="@style/commonButttonStyle"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:text="@string/text_login_forgotpwd" />
+
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/btn_register"
+            style="@style/commonButttonStyle"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/items_vertical_margin"
+            android:clickable="true"
+            android:text="@string/text_login_register" />
+    
+    </LinearLayout>
+
+</ScrollView>

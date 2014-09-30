@@ -1,6 +1,6 @@
-package com.offonb.view;
+package com.invsol.getfoody.view;
 
-import com.offonb.R;
+import com.invsol.getfoody.R;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

@@ -73,16 +73,11 @@ public class NetworkResponseHandler {
 					LocalModel localModel = AppEventsController
 							.getInstance().getModelFacade()
 							.getLocalModel();
-					try {
-						if( response.length() > 0 ){
-							localModel.setBrands(response);
-						}else{
-							connmodel.setConnectionStatus(ConnectionModel.ERROR);
-							connmodel.setConnectionErrorMessage("No Data Found.");
-						}
-					} catch (ApplicationException appEx) {
-						// TODO Auto-generated catch block
-						appEx.printStackTrace();
+					if( response.length() > 0 ){
+						//localModel.setBrands(response);
+					}else{
+						connmodel.setConnectionStatus(ConnectionModel.ERROR);
+						connmodel.setConnectionErrorMessage("No Data Found.");
 					}
 					connmodel.notifyView("Brands");
 				}
@@ -114,16 +109,11 @@ public class NetworkResponseHandler {
 					LocalModel localModel = AppEventsController
 							.getInstance().getModelFacade()
 							.getLocalModel();
-					try {
-						if( response.length() > 0 ){
-							localModel.setCategories(response);
-						}else{
-							connmodel.setConnectionStatus(ConnectionModel.ERROR);
-							connmodel.setConnectionErrorMessage("No Data Found.");
-						}
-					} catch (ApplicationException appEx) {
-						// TODO Auto-generated catch block
-						appEx.printStackTrace();
+					if( response.length() > 0 ){
+						//localModel.setCategories(response);
+					}else{
+						connmodel.setConnectionStatus(ConnectionModel.ERROR);
+						connmodel.setConnectionErrorMessage("No Data Found.");
 					}
 					connmodel.notifyView("Categories");
 				}

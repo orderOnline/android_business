@@ -3,6 +3,7 @@ package com.invsol.getfoody.view;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.defines.NetworkEvents;
@@ -61,7 +62,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 							null,
 							null,
 							getResources().getDrawable(
-									R.drawable.ic_device_access_accounts_valid),
+									R.drawable.ic_right),
 							null);
 					isPasswordValid = true;
 				} else if (text != null && text.length() < 6) {
@@ -69,7 +70,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 							null,
 							null,
 							getResources().getDrawable(
-									R.drawable.ic_device_access_accounts_error),
+									R.drawable.ic_cross),
 							null);
 					isPasswordValid = false;
 				} else {
@@ -94,7 +95,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 									null,
 									null,
 									getResources().getDrawable(
-											R.drawable.ic_content_email_valid),
+											R.drawable.ic_right),
 									null);
 							isEmailValid = true;
 						} else if (text != null && !matcher.matches()) {
@@ -102,7 +103,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 									null,
 									null,
 									getResources().getDrawable(
-											R.drawable.ic_content_email_error),
+											R.drawable.ic_cross),
 									null);
 							isEmailValid = false;
 						} else {
@@ -248,7 +249,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 			builder.setTitle(getResources().getString(R.string.error));
 			builder.setMessage(connModel.getConnectionErrorMessage());
 			builder.setCancelable(false);
-			builder.setPositiveButAQ1ton(getResources().getString(R.string.OK),
+			builder.setPositiveButton(getResources().getString(R.string.OK),
 					new DialogInterface.OnClickListener() {
 
 						@Override
