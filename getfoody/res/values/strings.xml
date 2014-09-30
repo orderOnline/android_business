@@ -39,7 +39,7 @@
     <string name="text_login_forgotpwd_details">An email with instructions to reset password has been sent to your registered email address. Please follow the instructions in email to reset your password.</string>
     
     <!-- Signup Specific Strings -->
-    <string name="text_signup_storedetails">Store Details</string>
+    <string name="text_signup_restaurantdetails">Restaurant Details</string>
     <string name="text_signup_addbrands"><u>ADD BRANDS</u></string>
     <string name="text_signup_addcategories"><u>ADD CATEGORIES</u></string>
     <string name="text_signup_storecontactdetails">Contact Details</string>
@@ -51,10 +51,10 @@
     
     <!-- Home Specific Strings -->
     <string-array name="home_tabs_array">
-        <item>Info</item>
-        <item>History</item>
-        <item>Collections</item>
-        <item>Reviews</item>
+        <item>Recent</item>
+        <item>Accepted</item>
+        <item>Dispatched</item>
+        <item>Declined</item>
     </string-array>
     <string name="text_home_edit_menu">Edit</string>
     <string name="text_home_postoffer_menu">Post Offer</string>

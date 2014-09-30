@@ -235,11 +235,11 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 					editor.commit();
 				}
 				connModel.unregisterView(this);
-				/*Intent screenChangeIntent = null;
+				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LoginActivity.this,
 						HomeActivity.class);
 				LoginActivity.this.startActivity(screenChangeIntent);
-				LoginActivity.this.finish();*/
+				LoginActivity.this.finish();
 			}
 		}
 			break;

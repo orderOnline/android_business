@@ -9,99 +9,8 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
     
-    <TextView
-            android:id="@+id/textview_business_details"
-            style="@style/commonH1TextViewStyle"
-            android:text="@string/text_signup_storedetails" />
-    
     <EditText
-        android:id="@+id/edittext_name"
-        style="@style/commonEditTextStyle"
-        android:ems="10"
-        android:hint="@string/text_watermark_storename"
-        android:inputType="textPersonName">
-
-    <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/edittext_address"
-        style="@style/commonEditTextStyle"
-         android:hint="@string/text_watermark_storeaddress"
-        android:ems="10"
-        android:inputType="textPostalAddress" />
-    
-    <EditText
-        android:id="@+id/edittext_country"
-        style="@style/commonEditTextStyle"
-        android:ems="10"
-        android:hint="@string/text_watermark_storecountry"
-        android:inputType="textPersonName">
-    </EditText>
-    
-    <EditText
-        android:id="@+id/edittext_state"
-        style="@style/commonEditTextStyle"
-        android:ems="10"
-        android:hint="@string/text_watermark_storestate"
-        android:inputType="textPersonName">
-    </EditText>
-    
-    <EditText
-        android:id="@+id/edittext_city"
-        style="@style/commonEditTextStyle"
-        android:ems="10"
-        android:hint="@string/text_watermark_storecity"
-        android:inputType="textPersonName">
-    </EditText>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
-
-        <TextView
-            android:id="@+id/link_add_brands"
-            style="@style/commonH1TextViewStyle"
-            android:layout_width="wrap_content"
-            android:clickable="true"
-            android:text="@string/text_signup_addbrands" />
-
-        <TextView
-            android:id="@+id/link_add_categories"
-            style="@style/commonH1TextViewStyle"
-            android:layout_width="wrap_content"
-            android:clickable="true"
-            android:text="@string/text_signup_addcategories" />
-
-    </LinearLayout>
-    
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="@dimen/items_vertical_margin"
-        android:layout_marginLeft="@dimen/items_horizontal_margin"
-        android:layout_marginRight="@dimen/items_horizontal_margin"
-        android:layout_marginTop="@dimen/items_vertical_margin"
-        android:background="#d8d9d8" />
-
-    <TextView
-            android:id="@+id/textview_businesscontact_details"
-            style="@style/commonH1TextViewStyle"
-            android:text="@string/text_signup_storecontactdetails" />
-    
-    <EditText
-        android:id="@+id/edittext_contactname"
-        style="@style/commonEditTextStyle"
-        android:drawableRight="@drawable/ic_social_person"
-        android:ems="10"
-        android:hint="@string/text_watermark_name"
-        android:inputType="textPersonName" >
-
-    </EditText>
-    
-    <EditText
-        android:id="@+id/edittext_email"
+        android:id="@+id/edittext_register_email"
         style="@style/commonEditTextStyle"
         android:drawableRight="@drawable/ic_content_email"
         android:ems="10"
@@ -111,12 +20,22 @@
     </EditText>
     
     <EditText
-        android:id="@+id/edittext_contactno"
+        android:id="@+id/edittext_register_contactno"
         style="@style/commonEditTextStyle"
         android:drawableRight="@drawable/ic_device_access_call"
         android:ems="10"
         android:hint="@string/text_watermark_phonenumber"
         android:inputType="phone" >
+
+    </EditText>
+    
+    <EditText
+        android:id="@+id/edittext_register_password"
+        style="@style/commonEditTextStyle"
+        android:drawableRight="@drawable/ic_device_access_accounts"
+        android:ems="10"
+        android:hint="@string/text_watermark_password"
+        android:inputType="textPassword" >
 
     </EditText>
     
