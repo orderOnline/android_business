@@ -495,6 +495,7 @@ int id showTitle 0x7f050006
 int id split_action_bar 0x7f05001e
 int id submit_area 0x7f050039
 int id tabMode 0x7f050002
+int id textView1 0x7f050050
 int id textview_appname 0x7f05004d
 int id textview_forgotpwd_details 0x7f05003c
 int id textview_version 0x7f05004f
@@ -535,7 +536,11 @@ int layout activity_resetpwd 0x7f03001b
 int layout activity_signup 0x7f03001c
 int layout activity_splash 0x7f03001d
 int layout apptheme_tab_indicator_holo 0x7f03001e
-int layout support_simple_spinner_dropdown_item 0x7f03001f
+int layout fragment_declinedorders 0x7f03001f
+int layout fragment_dispatchedorders 0x7f030020
+int layout fragment_ongoingorders 0x7f030021
+int layout fragment_recentorders 0x7f030022
+int layout support_simple_spinner_dropdown_item 0x7f030023
 int string OK 0x7f0a0013
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002
