@@ -25,15 +25,6 @@
     <color name="button_normal_border">#dd4b39</color>
     <color name="button_pressed_border">#dd4b39</color>
     <color name="button_disabled_border">#F5C9C4</color>
-    <!-- <color name="button_normal_text">#dd4b39</color>
-    <color name="button_pressed_text">#FFFFFF</color>
-    <color name="button_disabled_text">#D8D9D8</color>
-    <color name="button_normal_background">#FFFFFF</color>
-    <color name="button_pressed_background">#dd4b39</color>
-    <color name="button_disabled_background">#FFFFFF</color>
-    <color name="button_normal_border">#dd4b39</color>
-    <color name="button_pressed_border">#FFFFFF</color>
-    <color name="button_disabled_border">#D8D9D8</color> -->
     
     <!-- Color used for H1 TextView -->
     <color name="h1_textview">#dd4b39</color>
