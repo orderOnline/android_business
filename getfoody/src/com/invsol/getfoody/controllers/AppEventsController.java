@@ -76,7 +76,7 @@ public class AppEventsController {
 	 */
 	private void fireEvents(int eventId, Bundle eventData, View view) {
 		switch (eventId) {
-		case NetworkEvents.EVENT_ID_AUTHORIZE_STORE: {
+		case NetworkEvents.EVENT_ID_AUTHORIZE_BUSINESS: {
 			try {
 				modelFacade.getRemoteModel().registerStore(eventData,
 						NetworkResponseHandler.REGISTERSTORE_HANDLER, view);
@@ -86,7 +86,7 @@ public class AppEventsController {
 		}
 
 			break;
-		case NetworkEvents.EVENT_ID_AUTHENTICATE_STORE: {
+		case NetworkEvents.EVENT_ID_AUTHENTICATE_BUSINESS: {
 			Log.d(TAG, "Creating Bundle");
 			try {
 				modelFacade.getRemoteModel().authenticateStore(eventData,

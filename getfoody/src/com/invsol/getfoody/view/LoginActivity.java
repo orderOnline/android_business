@@ -219,7 +219,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				eventData.putString(Constants.TEXT_CLIENT_ID, Constants.OAUTH_CLIENT_ID);
 				eventData.putString(Constants.TEXT_CLIENT_SECRET, Constants.OAUTH_CLIENT_SECRET);
 				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_AUTHENTICATE_STORE, eventData, view);
+						NetworkEvents.EVENT_ID_AUTHENTICATE_BUSINESS, eventData, view);
 			}
 		}
 	}
