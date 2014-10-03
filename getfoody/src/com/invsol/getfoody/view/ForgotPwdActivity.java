@@ -12,5 +12,4 @@ public class ForgotPwdActivity extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgotpwd);
 	}
-
 }

@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_color"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_color" >
 
-    <TextView
-        android:id="@+id/textview_forgotpwd_details"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/items_horizontal_margin"
-        android:layout_marginRight="@dimen/items_horizontal_margin"
-        android:layout_marginTop="@dimen/items_vertical_margin"
-        android:text="@string/text_login_forgotpwd_details"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/heading_text_color"
-        android:typeface="sans" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textview_forgotpwd_details"
+            style="@style/commonH1TextViewStyle"
+            android:text="@string/text_login_forgotpwd_details" />
+
+        <EditText
+            android:id="@+id/edittext_forgotpwd_contactno"
+            style="@style/commonEditTextStyle"
+            android:drawableRight="@drawable/ic_device_access_call"
+            android:ems="10"
+            android:hint="@string/text_watermark_regphonenumber"
+            android:inputType="phone"
+            android:maxLength="10" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/btn_forgot_pwd_submit"
+            style="@style/commonButttonStyle"
+            android:text="@string/text_button_submit" />
+    </LinearLayout>
+
+</ScrollView>

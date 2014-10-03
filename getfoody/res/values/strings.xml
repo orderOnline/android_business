@@ -25,6 +25,7 @@
     <string name="text_watermark_storecity"><i>city*</i></string>
     <string name="text_watermark_storestate"><i>state*</i></string>
     <string name="text_watermark_storecountry"><i>country*</i></string>
+    <string name="text_watermark_regphonenumber"><i>registered phonenumber*</i></string>
     
     <!-- Action Button Specific Strings -->
     <string name="text_button_signin">Sign In</string>
@@ -38,7 +39,8 @@
     <string name="text_login_forgotpwd">Forgot Password</string>
     <string name="text_login_register">New user? Register here</string>
     <string name="text_login_empty_credentials">Please enter valid credentials and try again.</string>
-    <string name="text_login_forgotpwd_details">An email with instructions to reset password has been sent to your registered email address. Please follow the instructions in email to reset your password.</string>
+    <string name="text_login_forgotpwd_details">We will send you a text message with a code to help you reset your password.</string>
+    <string name="text_forgotpwd_fill_text">Please enter your registered phone number.</string>
     
     <!-- Signup Specific Strings -->
     <string name="text_signup_restaurantdetails">Restaurant Details</string>
