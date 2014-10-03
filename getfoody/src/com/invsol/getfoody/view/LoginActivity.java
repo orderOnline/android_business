@@ -1,16 +1,5 @@
 package com.invsol.getfoody.view;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.invsol.getfoody.R;
-import com.invsol.getfoody.constants.Constants;
-import com.invsol.getfoody.controllers.AppEventsController;
-import com.invsol.getfoody.defines.NetworkEvents;
-import com.invsol.getfoody.listeners.ActivityUpdateListener;
-import com.invsol.getfoody.models.ConnectionModel;
-import com.invsol.getfoody.utils.TextValidator;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,23 +20,29 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.invsol.getfoody.R;
+import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.defines.NetworkEvents;
+import com.invsol.getfoody.listeners.ActivityUpdateListener;
+import com.invsol.getfoody.models.ConnectionModel;
+import com.invsol.getfoody.utils.TextValidator;
+
 public class LoginActivity extends ActionBarActivity implements ActivityUpdateListener{
 	
 	private TextView btn_signin;
-	private String username, password;
+	private String phonenumber, password;
 	private boolean keepMeLoggedInBool;
 	private ConnectionModel connModel;
-	private EditText editText_username, editText_password;
-	private boolean isEmailValid, isPasswordValid;
-	String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private EditText editText_phoneno, editText_password;
+	private boolean isPhoneNumberValid, isPasswordValid;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
-		editText_username = (EditText) findViewById(R.id.edittext_username);
+		editText_phoneno = (EditText) findViewById(R.id.edittext_contactno);
 		editText_password = (EditText) findViewById(R.id.edittext_password);
 		editText_password.setTypeface(Typeface.SANS_SERIF);
 		editText_password
@@ -84,35 +79,33 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 			}
 		});
 
-		editText_username
-				.addTextChangedListener(new TextValidator(editText_username) {
+		editText_phoneno
+				.addTextChangedListener(new TextValidator(editText_phoneno) {
 					@Override
 					public void validate(TextView textView, String text) {
-						Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-						Matcher matcher = pattern.matcher(text);
-						if (text != null && matcher.matches()) {
+						if (text != null && text.length() == 10) {
 							textView.setCompoundDrawablesWithIntrinsicBounds(
 									null,
 									null,
 									getResources().getDrawable(
 											R.drawable.ic_right),
 									null);
-							isEmailValid = true;
-						} else if (text != null && !matcher.matches()) {
+							isPhoneNumberValid = true;
+						} else if (text != null && (text.length() < 10 || text.length() > 10)) {
 							textView.setCompoundDrawablesWithIntrinsicBounds(
 									null,
 									null,
 									getResources().getDrawable(
 											R.drawable.ic_cross),
 									null);
-							isEmailValid = false;
+							isPhoneNumberValid = false;
 						} else {
 							textView.setCompoundDrawablesWithIntrinsicBounds(
 									null,
 									null,
 									getResources().getDrawable(
-											R.drawable.ic_content_email), null);
-							isEmailValid = false;
+											R.drawable.ic_device_access_call), null);
+							isPhoneNumberValid = false;
 						}
 					}
 				});
@@ -197,20 +190,37 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 	}
 	
 	private void requestConnection(View view) {
-		username = editText_username.getText()
+		phonenumber = editText_phoneno.getText()
 				.toString();
 		password = editText_password.getText()
 				.toString();
+		if( (phonenumber == null || phonenumber.equals("")) || ( password == null || password.equals("")) ){
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					LoginActivity.this);
+			builder.setTitle(getResources().getString(R.string.info));
+			builder.setMessage(getResources().getString(R.string.text_login_empty_credentials));
+			//builder.setCancelable(false);
+			builder.setPositiveButton(getResources().getString(R.string.OK),
+					new DialogInterface.OnClickListener() {
 
-		if (isEmailValid && isPasswordValid) {
-			Bundle eventData = new Bundle();
-			eventData.putString(Constants.TEXT_GRANT_TYPE, Constants.TEXT_PASSWORD);
-			eventData.putString(Constants.TEXT_USERNAME, username);
-			eventData.putString(Constants.TEXT_PASSWORD, password);
-			eventData.putString(Constants.TEXT_CLIENT_ID, Constants.OAUTH_CLIENT_ID);
-			eventData.putString(Constants.TEXT_CLIENT_SECRET, Constants.OAUTH_CLIENT_SECRET);
-			AppEventsController.getInstance().handleEvent(
-					NetworkEvents.EVENT_ID_AUTHENTICATE_STORE, eventData, view);
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+						}
+					});
+			AlertDialog alertDialog = builder.create();
+			alertDialog.show();
+		}else{
+			if (isPhoneNumberValid && isPasswordValid) {
+				Bundle eventData = new Bundle();
+				eventData.putString(Constants.TEXT_GRANT_TYPE, Constants.TEXT_PASSWORD);
+				eventData.putString(Constants.TEXT_USERNAME, phonenumber);
+				eventData.putString(Constants.TEXT_PASSWORD, password);
+				eventData.putString(Constants.TEXT_CLIENT_ID, Constants.OAUTH_CLIENT_ID);
+				eventData.putString(Constants.TEXT_CLIENT_SECRET, Constants.OAUTH_CLIENT_SECRET);
+				AppEventsController.getInstance().handleEvent(
+						NetworkEvents.EVENT_ID_AUTHENTICATE_STORE, eventData, view);
+			}
 		}
 	}
 

@@ -10,16 +10,6 @@
     android:orientation="vertical">
     
     <EditText
-        android:id="@+id/edittext_register_email"
-        style="@style/commonEditTextStyle"
-        android:drawableRight="@drawable/ic_content_email"
-        android:ems="10"
-        android:hint="@string/text_watermark_email"
-        android:inputType="textEmailAddress" >
-
-    </EditText>
-    
-    <EditText
         android:id="@+id/edittext_register_contactno"
         style="@style/commonEditTextStyle"
         android:drawableRight="@drawable/ic_device_access_call"

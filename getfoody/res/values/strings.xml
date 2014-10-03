@@ -5,6 +5,7 @@
     <string name="cd_img">image</string>
     <string name="text_dummytext">Dummy text</string>
     <string name="error">Error</string>
+    <string name="info">Info</string>
     <string name="success">Success</string>
     <string name="OK">OK</string>
     
@@ -36,6 +37,7 @@
     <string name="text_login_rememberme">Remember me</string>
     <string name="text_login_forgotpwd">Forgot Password</string>
     <string name="text_login_register">New user? Register here</string>
+    <string name="text_login_empty_credentials">Please enter valid credentials and try again.</string>
     <string name="text_login_forgotpwd_details">An email with instructions to reset password has been sent to your registered email address. Please follow the instructions in email to reset your password.</string>
     
     <!-- Signup Specific Strings -->
