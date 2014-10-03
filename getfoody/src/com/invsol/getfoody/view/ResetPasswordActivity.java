@@ -135,11 +135,7 @@ public class ResetPasswordActivity extends ActionBarActivity{
 
 					@Override
 					public void onClick(View view) {
-						Intent screenChangeIntent = null;
-						screenChangeIntent = new Intent(ResetPasswordActivity.this,
-								LoginActivity.class);
 						ResetPasswordActivity.this.finish();
-						ResetPasswordActivity.this.startActivity(screenChangeIntent);
 					}
 				});
 	}

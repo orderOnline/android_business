@@ -159,11 +159,6 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				LoginActivity.this.startActivity(screenChangeIntent);
 			}
 		});
-		
-		if( !AppEventsController.getInstance().getModelFacade().getLocalModel().isRetrievedMastedFilterData() ){
-			AppEventsController.getInstance().handleEvent(NetworkEvents.EVENT_ID_GET_BRANDS,
-				 null, textview_createaccount);
-		}
 	}
 	
 	@Override
