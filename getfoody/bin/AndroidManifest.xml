@@ -41,6 +41,13 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".view.LoginActivity" />
         </activity>
+        <activity android:name=".view.ResetPasswordActivity"
+            android:label="@string/text_title_reset_pwd"
+            android:parentActivityName=".view.LoginActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".view.LoginActivity" />
+        </activity>
         <activity android:name=".view.HomeActivity"></activity>
     </application>
 

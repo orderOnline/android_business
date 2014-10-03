@@ -13,9 +13,9 @@
         android:id="@+id/edittext_contactno"
         style="@style/commonEditTextStyle"
         android:drawableRight="@drawable/ic_device_access_call"
-        android:ems="10"
         android:hint="@string/text_watermark_phonenumber"
-        android:inputType="phone" >
+        android:inputType="phone"
+        android:maxLength="10" >
 
     </EditText>
 

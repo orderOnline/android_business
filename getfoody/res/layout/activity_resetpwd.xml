@@ -10,27 +10,35 @@
     android:orientation="vertical">
     
     <EditText
-        android:id="@+id/edittext_register_contactno"
+        android:id="@+id/edittext_reset_otpcode"
         style="@style/commonEditTextStyle"
-        android:drawableRight="@drawable/ic_device_access_call"
-        android:hint="@string/text_watermark_phonenumber"
+        android:drawableRight="@drawable/ic_device_access_accounts"
+        android:hint="@string/text_watermark_otpcode"
         android:inputType="phone"
-        android:maxLength="10" >
+        android:maxLength="6" >
 
     </EditText>
     
     <EditText
-        android:id="@+id/edittext_register_password"
+        android:id="@+id/edittext_reset_password_newpwd"
         style="@style/commonEditTextStyle"
         android:drawableRight="@drawable/ic_device_access_accounts"
-        android:ems="10"
-        android:hint="@string/text_watermark_password"
+        android:hint="@string/text_watermark_newpassword"
+        android:inputType="textPassword" >
+
+    </EditText>
+    
+    <EditText
+        android:id="@+id/edittext_reset_password_confirmpwd"
+        style="@style/commonEditTextStyle"
+        android:drawableRight="@drawable/ic_device_access_accounts"
+        android:hint="@string/text_watermark_confirmpassword"
         android:inputType="textPassword" >
 
     </EditText>
     
     <TextView
-        android:id="@+id/btn_submit"
+        android:id="@+id/btn_resetpwd_submit"
         style="@style/commonButttonStyle"
         android:text="@string/text_button_submit"/>
     

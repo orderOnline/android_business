@@ -91,7 +91,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 											R.drawable.ic_right),
 									null);
 							isPhoneNumberValid = true;
-						} else if (text != null && (text.length() < 10 || text.length() > 10)) {
+						} else if (text != null && text.length() < 10) {
 							textView.setCompoundDrawablesWithIntrinsicBounds(
 									null,
 									null,
