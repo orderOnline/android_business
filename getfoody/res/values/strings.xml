@@ -59,6 +59,11 @@
     <string name="text_storedetails_useremail">Email</string>
     <string name="text_storedetails_usercontact">Contact</string>
     
+    <!-- Menu Items Specific Strings -->
+    <string name="text_menuitems_nocategoriesadded">No categories added.</string>
+    <string name="text_menuitems_addcategory">ADD CATEGORY</string>
+    <string name="text_menuitems_additem">ADD ITEM</string>
+    
     <!-- Home Specific Strings -->
     <string-array name="home_tabs_array">
         <item>Recent</item>
@@ -68,6 +73,13 @@
     </string-array>
     <string name="text_home_profile_menu">Profile</string>
     <string name="text_home_main_menu">Menu</string>
+    
+    <!-- Profile Specific Strings -->
+    <string-array name="profile_tabs_array">
+        <item>Details</item>
+        <item>Reviews</item>
+    </string-array>
+    <string name="text_profile_edit_menu">Edit</string>
     
     <!-- Add Brands Specific Strings -->
     <string name="text_addbrand_add">Add</string>
