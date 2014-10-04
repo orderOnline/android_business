@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Ab" parent="@style/Theme.AppCompat.Light">
+    <style name="Theme.Ab" parent="@style/AppTheme">
         <item name="actionBarItemBackground">@drawable/selectable_background_ab</item>
         <item name="popupMenuStyle">@style/PopupMenu.Ab</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Ab</item>
