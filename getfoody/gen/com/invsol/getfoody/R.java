@@ -1322,9 +1322,11 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050023;
         public static final int action_bar_title=0x7f050022;
         public static final int action_context_bar=0x7f05001d;
+        public static final int action_menu=0x7f050052;
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
+        public static final int action_profile=0x7f050051;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1461,6 +1463,9 @@ containing a value of this type.
         public static final int fragment_recentorders=0x7f030024;
         public static final int support_simple_spinner_dropdown_item=0x7f030025;
     }
+    public static final class menu {
+        public static final int activity_menu_home=0x7f0d0000;
+    }
     public static final class string {
         public static final int OK=0x7f0a0013;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1510,74 +1515,76 @@ containing a value of this type.
         public static final int success=0x7f0a0012;
         /**  Add Brands Specific Strings 
          */
-        public static final int text_addbrand_add=0x7f0a0038;
-        public static final int text_addbrand_brands=0x7f0a003b;
-        public static final int text_addbrand_cancel=0x7f0a003a;
-        public static final int text_addbrand_done=0x7f0a0039;
-        public static final int text_addcategories_add=0x7f0a003d;
-        public static final int text_addcategories_cancel=0x7f0a003e;
-        public static final int text_addcategories_category=0x7f0a003f;
+        public static final int text_addbrand_add=0x7f0a003a;
+        public static final int text_addbrand_brands=0x7f0a003d;
+        public static final int text_addbrand_cancel=0x7f0a003c;
+        public static final int text_addbrand_done=0x7f0a003b;
+        public static final int text_addcategories_add=0x7f0a003f;
+        public static final int text_addcategories_cancel=0x7f0a0040;
+        public static final int text_addcategories_category=0x7f0a0041;
         /**  Add Categories Specific Strings 
          */
-        public static final int text_addcategories_done=0x7f0a003c;
+        public static final int text_addcategories_done=0x7f0a003e;
         /**  Action Button Specific Strings 
          */
-        public static final int text_button_signin=0x7f0a0026;
-        public static final int text_button_submit=0x7f0a0027;
+        public static final int text_button_signin=0x7f0a0028;
+        public static final int text_button_submit=0x7f0a0029;
         public static final int text_dummytext=0x7f0a000f;
-        public static final int text_forgotpwd_fill_text=0x7f0a002e;
-        public static final int text_home_edit_menu=0x7f0a0036;
-        public static final int text_home_postoffer_menu=0x7f0a0037;
-        public static final int text_login_empty_credentials=0x7f0a002c;
-        public static final int text_login_forgotpwd=0x7f0a002a;
-        public static final int text_login_forgotpwd_details=0x7f0a002d;
-        public static final int text_login_register=0x7f0a002b;
+        public static final int text_forgotpwd_fill_text=0x7f0a0030;
+        public static final int text_home_main_menu=0x7f0a0039;
+        public static final int text_home_profile_menu=0x7f0a0038;
+        public static final int text_login_empty_credentials=0x7f0a002e;
+        public static final int text_login_forgotpwd=0x7f0a002c;
+        public static final int text_login_forgotpwd_details=0x7f0a002f;
+        public static final int text_login_register=0x7f0a002d;
         /**  Login Specific Strings 
          */
-        public static final int text_login_rememberme=0x7f0a0029;
-        public static final int text_postoffer_addbrands=0x7f0a0046;
-        public static final int text_postoffer_addcategories=0x7f0a0047;
-        public static final int text_postoffer_discount=0x7f0a0045;
-        public static final int text_postoffer_end_date=0x7f0a0044;
-        public static final int text_postoffer_offer_description=0x7f0a0042;
+        public static final int text_login_rememberme=0x7f0a002b;
+        public static final int text_postoffer_addbrands=0x7f0a0048;
+        public static final int text_postoffer_addcategories=0x7f0a0049;
+        public static final int text_postoffer_discount=0x7f0a0047;
+        public static final int text_postoffer_end_date=0x7f0a0046;
+        public static final int text_postoffer_offer_description=0x7f0a0044;
         /**  Post Offer Specific Strings 
          */
-        public static final int text_postoffer_post=0x7f0a0040;
-        public static final int text_postoffer_start_date=0x7f0a0043;
-        public static final int text_postoffer_upload_image=0x7f0a0041;
-        public static final int text_signup_addbrands=0x7f0a0030;
-        public static final int text_signup_addcategories=0x7f0a0031;
+        public static final int text_postoffer_post=0x7f0a0042;
+        public static final int text_postoffer_start_date=0x7f0a0045;
+        public static final int text_postoffer_upload_image=0x7f0a0043;
+        public static final int text_signup_addbrands=0x7f0a0032;
+        public static final int text_signup_addcategories=0x7f0a0033;
         /**  Signup Specific Strings 
          */
-        public static final int text_signup_restaurantdetails=0x7f0a002f;
-        public static final int text_signup_storecontactdetails=0x7f0a0032;
+        public static final int text_signup_restaurantdetails=0x7f0a0031;
+        public static final int text_signup_storecontactdetails=0x7f0a0034;
         /**  Splash Specific Strings 
          */
-        public static final int text_splash_version=0x7f0a0028;
-        public static final int text_storedetails_usercontact=0x7f0a0035;
-        public static final int text_storedetails_useremail=0x7f0a0034;
+        public static final int text_splash_version=0x7f0a002a;
+        public static final int text_storedetails_usercontact=0x7f0a0037;
+        public static final int text_storedetails_useremail=0x7f0a0036;
         /**  Store Details Specific Strings 
          */
-        public static final int text_storedetails_username=0x7f0a0033;
+        public static final int text_storedetails_username=0x7f0a0035;
         public static final int text_title_forgot_pwd=0x7f0a0017;
+        public static final int text_title_menu=0x7f0a0019;
         public static final int text_title_post_offer=0x7f0a0016;
+        public static final int text_title_profile=0x7f0a001a;
         public static final int text_title_register=0x7f0a0015;
         public static final int text_title_reset_pwd=0x7f0a0018;
-        public static final int text_watermark_confirmpassword=0x7f0a0025;
-        public static final int text_watermark_email=0x7f0a001a;
+        public static final int text_watermark_confirmpassword=0x7f0a0027;
+        public static final int text_watermark_email=0x7f0a001c;
         /**  Watermark Specific Strings 
          */
-        public static final int text_watermark_name=0x7f0a0019;
-        public static final int text_watermark_newpassword=0x7f0a0024;
-        public static final int text_watermark_otpcode=0x7f0a0023;
-        public static final int text_watermark_password=0x7f0a001b;
-        public static final int text_watermark_phonenumber=0x7f0a001c;
-        public static final int text_watermark_regphonenumber=0x7f0a0022;
-        public static final int text_watermark_storeaddress=0x7f0a001e;
-        public static final int text_watermark_storecity=0x7f0a001f;
-        public static final int text_watermark_storecountry=0x7f0a0021;
-        public static final int text_watermark_storename=0x7f0a001d;
-        public static final int text_watermark_storestate=0x7f0a0020;
+        public static final int text_watermark_name=0x7f0a001b;
+        public static final int text_watermark_newpassword=0x7f0a0026;
+        public static final int text_watermark_otpcode=0x7f0a0025;
+        public static final int text_watermark_password=0x7f0a001d;
+        public static final int text_watermark_phonenumber=0x7f0a001e;
+        public static final int text_watermark_regphonenumber=0x7f0a0024;
+        public static final int text_watermark_storeaddress=0x7f0a0020;
+        public static final int text_watermark_storecity=0x7f0a0021;
+        public static final int text_watermark_storecountry=0x7f0a0023;
+        public static final int text_watermark_storename=0x7f0a001f;
+        public static final int text_watermark_storestate=0x7f0a0022;
         /**  Title Specific Strings 
          */
         public static final int title_signin=0x7f0a0014;

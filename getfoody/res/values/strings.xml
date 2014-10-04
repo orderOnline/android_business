@@ -15,6 +15,8 @@
     <string name="text_title_post_offer">Post Offer</string>
     <string name="text_title_forgot_pwd">Forgot Password</string>
     <string name="text_title_reset_pwd">Reset Password</string>
+    <string name="text_title_menu">Menu</string>
+    <string name="text_title_profile">Profile</string>
     
     <!-- Watermark Specific Strings -->
     <string name="text_watermark_name"><i>name*</i></string>
@@ -64,8 +66,8 @@
         <item>Dispatched</item>
         <item>Declined</item>
     </string-array>
-    <string name="text_home_edit_menu">Edit</string>
-    <string name="text_home_postoffer_menu">Post Offer</string>
+    <string name="text_home_profile_menu">Profile</string>
+    <string name="text_home_main_menu">Menu</string>
     
     <!-- Add Brands Specific Strings -->
     <string name="text_addbrand_add">Add</string>

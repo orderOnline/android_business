@@ -49,6 +49,20 @@
             android:value=".view.LoginActivity" />
         </activity>
         <activity android:name=".view.HomeActivity"></activity>
+        <activity android:name=".view.MenuActivity"
+            android:label="@string/text_title_menu"
+            android:parentActivityName=".view.HomeActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".view.HomeActivity" />
+        </activity>
+        <activity android:name=".view.ProfileActivity"
+            android:label="@string/text_title_menu"
+            android:parentActivityName=".view.HomeActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".view.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

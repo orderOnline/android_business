@@ -103,6 +103,44 @@ public class HomeActivity extends ActionBarActivity implements
 	}
 	
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_menu_home, menu);
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d("Search View", "Inside Options Selected");
+		// The action bar home/up action should open or close the drawer.
+		// ActionBarDrawerToggle will take care of this.
+		if (super.onOptionsItemSelected(item)) {
+			return true;
+		}
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+		case R.id.action_profile: {
+			Intent screenChangeIntent = null;
+			screenChangeIntent = new Intent(HomeActivity.this,
+					ProfileActivity.class);
+			HomeActivity.this.startActivity(screenChangeIntent);
+			return true;
+		}
+		case R.id.action_menu: {
+			Intent screenChangeIntent = null;
+			screenChangeIntent = new Intent(HomeActivity.this,
+					MenuActivity.class);
+			HomeActivity.this.startActivity(screenChangeIntent);
+			return true;
+		}
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	
+	@Override
 	public void updateActivity(String tag) {
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
