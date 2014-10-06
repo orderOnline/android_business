@@ -67,8 +67,6 @@
 		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
 		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
 		<item name="android:gravity">center_vertical</item>
-		<item name="android:paddingLeft">@dimen/items_horizontal_padding</item>
-		<item name="android:paddingRight">@dimen/items_horizontal_padding</item>
 		<item name="android:textColor">@color/h1_textview_value</item>
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/h1_heading_font_size</item>
