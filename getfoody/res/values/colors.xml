@@ -34,6 +34,7 @@
     
     <!-- Color used for Action button -->
     <color name="action_button_text">#FFFFFF</color>
+    <color name="action_title_text">#FFFFFF</color>
     
     <!-- Color used for ListView Items Footer Text -->
     <color name="listview_footer_textview">#FFFFFF</color>

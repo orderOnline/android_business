@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<!--
+     File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -29,8 +30,6 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_ab</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_ab</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ab</item>
-        
-        
     </style>
 
     <style name="ActionBar.Solid.Ab" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
@@ -38,17 +37,22 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_ab</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_ab</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Ab</item>
+        <item name="android:titleTextStyle">@style/TitleBarTextColor</item>
     </style>
 
     <style name="ActionBar.Transparent.Ab" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@drawable/ab_transparent_ab</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Ab</item>
     </style>
-    
+
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
     <style name="Theme.Ab.Widget" parent="@style/Theme.AppCompat">
         <item name="android:popupMenuStyle">@style/PopupMenu.Ab</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Ab</item>
+    </style>
+
+    <style name="TitleBarTextColor" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/action_title_text</item>
     </style>
 
 </resources>

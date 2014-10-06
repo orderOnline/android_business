@@ -29,7 +29,6 @@
         <item name="actionModeBackground">@drawable/cab_background_top_ab</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_ab</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Ab</item>
-
         
     </style>
 
@@ -38,6 +37,7 @@
         <item name="backgroundStacked">@drawable/ab_stacked_solid_ab</item>
         <item name="backgroundSplit">@drawable/ab_bottom_solid_ab</item>
         <item name="progressBarStyle">@style/ProgressBar.Ab</item>
+        <item name="titleTextStyle">@style/TitleBarTextColor</item>
     </style>
 
     <style name="ActionBar.Transparent.Ab" parent="@style/Widget.AppCompat.Light.ActionBar">
@@ -75,6 +75,10 @@
     <style name="Theme.Ab.Widget" parent="@style/Theme.AppCompat">
         <item name="popupMenuStyle">@style/PopupMenu.Ab</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Ab</item>
+    </style>
+    
+    <style name="TitleBarTextColor" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/action_title_text</item>
     </style>
 
 </resources>
