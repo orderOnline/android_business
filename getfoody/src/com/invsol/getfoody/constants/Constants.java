@@ -21,6 +21,11 @@ public class Constants {
 	    public static final String TEXT_DATABASE_ACCESS_VALUE_DEFAULT = "DatabaseKeyDoesNotExist";
 	    //--------------------------------------------------------------------
 	    
+	    /**
+	     * GCM Requirements
+	     */
+	    public static final String GCM_SENDER_ID = "244460346317";
+	    
 	    //Google Spreadsheets Details
 	    public static final String GOOGLE_ACCOUNT_USERNAME = "rachnakhokhar@gmail.com";
 	    public static final String GOOGLE_ACCOUNT_PASSWORD = "rach18febprash";
