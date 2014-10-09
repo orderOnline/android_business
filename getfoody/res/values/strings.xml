@@ -102,5 +102,7 @@
 	<string name="text_postoffer_discount"><i>discount*</i></string>
 	<string name="text_postoffer_addbrands"><u>ADD BRANDS</u></string>
     <string name="text_postoffer_addcategories"><u>ADD CATEGORIES</u></string>
+    
+    <string name="error_no_network_connection">Please check your network services.</string>
 
 </resources>

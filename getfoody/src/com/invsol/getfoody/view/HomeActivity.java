@@ -75,11 +75,6 @@ public class HomeActivity extends ActionBarActivity implements
 			}
 		});
 
-		if (!AppEventsController.getInstance().getModelFacade().getLocalModel()
-				.isRetrievedMastedFilterData()) {
-			AppEventsController.getInstance().handleEvent(
-					NetworkEvents.EVENT_ID_GET_BRANDS, null, viewPager);
-		}
 	}
 
 	@Override
@@ -145,12 +140,7 @@ public class HomeActivity extends ActionBarActivity implements
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
-			if (tag.equals("Brands")) {
-				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_GET_CATEGORIES, null, viewPager);
-			} else if (tag.equals("Categories")) {
-
-			}
+			
 		}
 			break;
 		case ConnectionModel.ERROR: {

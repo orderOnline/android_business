@@ -125,7 +125,7 @@ public class ConnectivityHandler {
 			conn.setReadTimeout(15000 /* milliseconds */);
 			conn.setConnectTimeout(15000 /* milliseconds */);
 			conn.setRequestMethod(requestMethod);
-			//conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setDoInput(true);
 			conn.setDoOutput(true);
 			conn.setFixedLengthStreamingMode(requestData.getBytes().length);

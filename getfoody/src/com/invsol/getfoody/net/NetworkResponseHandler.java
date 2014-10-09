@@ -19,12 +19,10 @@ import android.widget.TextView;
 public class NetworkResponseHandler {
 	public static final String TAG = "Network Response Handler";
 
-	public static final Handler AUTHENTICATESTORE_HANDLER = authenticateStoreHandler();
-	public static final Handler REGISTERSTORE_HANDLER = registerStoreHandler();
-	public static final Handler BRANDS_HANDLER = brandsHandler();
-	public static final Handler CATEGORIES_HANDLER = categoriesHandler();
+	public static final Handler AUTHENTICATEUSER_HANDLER = authenticateUserHandler();
+	public static final Handler REGISTERUSER_HANDLER = registerUserHandler();
 	
-	private static Handler authenticateStoreHandler() {
+	private static Handler authenticateUserHandler() {
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -60,79 +58,7 @@ public class NetworkResponseHandler {
 		};
 	}
 	
-	private static Handler brandsHandler() {
-		return new Handler() {
-			@Override
-			public void handleMessage(Message msg) {
-				ConnectionModel connmodel = AppEventsController.getInstance()
-						.getModelFacade().getConnModel();
-				switch (msg.what) {
-				case Constants.SUCCESSFUL_RESPONSE: {
-					JSONArray response = (JSONArray)msg.obj; 
-					Log.d("response==", response.toString());
-					LocalModel localModel = AppEventsController
-							.getInstance().getModelFacade()
-							.getLocalModel();
-					if( response.length() > 0 ){
-						//localModel.setBrands(response);
-					}else{
-						connmodel.setConnectionStatus(ConnectionModel.ERROR);
-						connmodel.setConnectionErrorMessage("No Data Found.");
-					}
-					connmodel.notifyView("Brands");
-				}
-					break;
-				case Constants.EXCEPTION: {
-					Exception exceptionObj = (Exception) msg.obj;
-					Log.d(TAG, "exception:" + exceptionObj.getMessage());
-					connmodel.setConnectionStatus(ConnectionModel.ERROR);
-					connmodel.setConnectionErrorMessage(exceptionObj.getMessage());
-					connmodel.notifyView("Error");
-				}
-					break;
-				}
-			}
-
-		};
-	}
-	
-	private static Handler categoriesHandler() {
-		return new Handler() {
-			@Override
-			public void handleMessage(Message msg) {
-				ConnectionModel connmodel = AppEventsController.getInstance()
-						.getModelFacade().getConnModel();
-				switch (msg.what) {
-				case Constants.SUCCESSFUL_RESPONSE: {
-					JSONArray response = (JSONArray)msg.obj; 
-					Log.d("response==", response.toString());
-					LocalModel localModel = AppEventsController
-							.getInstance().getModelFacade()
-							.getLocalModel();
-					if( response.length() > 0 ){
-						//localModel.setCategories(response);
-					}else{
-						connmodel.setConnectionStatus(ConnectionModel.ERROR);
-						connmodel.setConnectionErrorMessage("No Data Found.");
-					}
-					connmodel.notifyView("Categories");
-				}
-					break;
-				case Constants.EXCEPTION: {
-					Exception exceptionObj = (Exception) msg.obj;
-					Log.d(TAG, "exception:" + exceptionObj.getMessage());
-					connmodel.setConnectionStatus(ConnectionModel.ERROR);
-					connmodel.setConnectionErrorMessage(exceptionObj.getMessage());
-					connmodel.notifyView("Error");
-				}
-					break;
-				}
-			}
-
-		};
-	}
-	
-	private static Handler registerStoreHandler() {
+	private static Handler registerUserHandler() {
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {

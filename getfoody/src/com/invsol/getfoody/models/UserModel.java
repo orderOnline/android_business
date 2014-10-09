@@ -32,16 +32,6 @@ public class UserModel {
 	}
 	
 	public void setAuthenticationDetails(JSONObject loginData) throws ApplicationException {
-		try {
-			accessToken = loginData.getString(Constants.TEXT_ACCESSTOKEN)
-					.trim();
-			token_type = loginData.getString(Constants.TEXT_TOKEN_TYPE)
-					.trim();
-			expires_in = loginData.getString(Constants.TEXT_EXPIRES_IN)
-					.trim();
-		} catch (JSONException e) {
-			throw new ApplicationException(
-					Constants.ERROR_READING_DATA_FROM_SERVER_PROBLEM);
-		}
+		
 	}
 }

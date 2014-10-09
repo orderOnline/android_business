@@ -208,13 +208,10 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		}else{
 			if (isPhoneNumberValid && isPasswordValid) {
 				Bundle eventData = new Bundle();
-				eventData.putString(Constants.TEXT_GRANT_TYPE, Constants.TEXT_PASSWORD);
-				eventData.putString(Constants.TEXT_USERNAME, phonenumber);
-				eventData.putString(Constants.TEXT_PASSWORD, password);
-				eventData.putString(Constants.TEXT_CLIENT_ID, Constants.OAUTH_CLIENT_ID);
-				eventData.putString(Constants.TEXT_CLIENT_SECRET, Constants.OAUTH_CLIENT_SECRET);
+				eventData.putString(Constants.JSON_PHONENUMBER, phonenumber);
+				eventData.putString(Constants.JSON_PASSWORD, password);
 				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_AUTHENTICATE_BUSINESS, eventData, view);
+						NetworkEvents.EVENT_ID_AUTHENTICATE, eventData, view);
 			}
 		}
 	}
@@ -224,28 +221,6 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
-			if(tag.equals("Brands")){
-				AppEventsController.getInstance().handleEvent(NetworkEvents.EVENT_ID_GET_CATEGORIES,
-						 null, btn_signin);
-			}else if(tag.equals("Categories")){
-				
-			}else if(tag.equals("Login")){
-				if (keepMeLoggedInBool) {
-					SharedPreferences sharedPref = getSharedPreferences(
-							Constants.DATABASE_PREF_NAME, MODE_PRIVATE);
-					SharedPreferences.Editor editor = sharedPref.edit();
-					editor.putString(Constants.TEXT_ACCESSTOKEN, AppEventsController
-							.getInstance().getModelFacade().getUserModel()
-							.getAccessToken());
-					editor.commit();
-				}
-				connModel.unregisterView(this);
-				Intent screenChangeIntent = null;
-				screenChangeIntent = new Intent(LoginActivity.this,
-						HomeActivity.class);
-				LoginActivity.this.startActivity(screenChangeIntent);
-				LoginActivity.this.finish();
-			}
 		}
 			break;
 		case ConnectionModel.ERROR: {

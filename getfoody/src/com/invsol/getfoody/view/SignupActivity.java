@@ -1,5 +1,8 @@
 package com.invsol.getfoody.view;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -150,7 +153,7 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 					SignupActivity.this);
 			builder.setTitle(getResources().getString(R.string.info));
 			builder.setMessage(getResources().getString(R.string.text_login_empty_credentials));
-			//builder.setCancelable(false);
+			builder.setCancelable(false);
 			builder.setPositiveButton(getResources().getString(R.string.OK),
 					new DialogInterface.OnClickListener() {
 
@@ -164,10 +167,17 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 		}else{
 			if (isPhoneNumberValid && isPasswordValid) {
 				Bundle eventData = new Bundle();
-				eventData.putString(Constants.TEXT_USERNAME, phonenumber);
-				eventData.putString(Constants.TEXT_PASSWORD, password);
+				JSONObject postData = new JSONObject();
+				try {
+					postData.put(Constants.JSON_PHONENUMBER, phonenumber);
+					postData.put(Constants.JSON_PASSWORD, password);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_AUTHORIZE_BUSINESS, eventData, view);
+						NetworkEvents.EVENT_ID_AUTHORIZE, eventData, view);
 			}
 		}
 	}

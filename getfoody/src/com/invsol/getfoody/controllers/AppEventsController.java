@@ -76,45 +76,25 @@ public class AppEventsController {
 	 */
 	private void fireEvents(int eventId, Bundle eventData, View view) {
 		switch (eventId) {
-		case NetworkEvents.EVENT_ID_AUTHORIZE_BUSINESS: {
+		case NetworkEvents.EVENT_ID_AUTHORIZE: {
 			try {
-				modelFacade.getRemoteModel().registerStore(eventData,
-						NetworkResponseHandler.REGISTERSTORE_HANDLER, view);
+				modelFacade.getRemoteModel().registerUser(eventData,
+						NetworkResponseHandler.REGISTERUSER_HANDLER, view);
 			} catch (Exception ex) {
 				Log.d("Application Exception:", ex.getMessage());
 			}
 		}
 
 			break;
-		case NetworkEvents.EVENT_ID_AUTHENTICATE_BUSINESS: {
+		case NetworkEvents.EVENT_ID_AUTHENTICATE: {
 			Log.d(TAG, "Creating Bundle");
 			try {
-				modelFacade.getRemoteModel().authenticateStore(eventData,
-						NetworkResponseHandler.AUTHENTICATESTORE_HANDLER, view);
+				modelFacade.getRemoteModel().authenticateUser(eventData,
+						NetworkResponseHandler.AUTHENTICATEUSER_HANDLER, view);
 			} catch (Exception ex) {
 				Log.d("Application Exception:", ex.getMessage());
 			}
 		}
-			break;
-		case NetworkEvents.EVENT_ID_GET_BRANDS: {
-			try {
-				modelFacade.getRemoteModel().getBrands(eventData,
-						NetworkResponseHandler.BRANDS_HANDLER, view);
-			} catch (Exception ex) {
-				Log.d("Application Exception:", ex.getMessage());
-			}
-		}
-
-			break;
-		case NetworkEvents.EVENT_ID_GET_CATEGORIES: {
-			try {
-				modelFacade.getRemoteModel().getCategories(eventData,
-						NetworkResponseHandler.CATEGORIES_HANDLER, view);
-			} catch (Exception ex) {
-				Log.d("Application Exception:", ex.getMessage());
-			}
-		}
-
 			break;
 		}
 	}
