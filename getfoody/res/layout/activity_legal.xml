@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:id="@+id/textview_restaurant_details"
+            style="@style/H1TextViewStyle"
+            android:text="@string/text_legaldetails" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/items_horizontal_margin"
+            android:layout_marginRight="@dimen/items_horizontal_margin"
+            android:background="#d8d9d8" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textview_legal_1"
+                    style="@style/H2TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/items_vertical_margin"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_largedummytext" />
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    style="@style/CheckboxStyle" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textview_legal_2"
+                    style="@style/H2TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="@dimen/items_vertical_margin"
+                    android:layout_weight="1"
+                    android:text="@string/text_largedummytext" />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    style="@style/CheckboxStyle" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textview_legal_3"
+                    style="@style/H2TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="@dimen/items_vertical_margin"
+                    android:layout_weight="1"
+                    android:text="@string/text_largedummytext" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    style="@style/CheckboxStyle" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textview_legal_4"
+                    style="@style/H2TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="@dimen/items_vertical_margin"
+                    android:layout_weight="1"
+                    android:text="@string/text_largedummytext" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    style="@style/CheckboxStyle" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/btn_next"
+            style="@style/commonButttonStyle"
+            android:text="@string/text_button_next" />
+    </LinearLayout>
+
+</ScrollView>
