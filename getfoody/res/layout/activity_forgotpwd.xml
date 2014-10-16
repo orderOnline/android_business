@@ -12,12 +12,12 @@
 
         <TextView
             android:id="@+id/textview_forgotpwd_details"
-            style="@style/commonH1TextViewStyle"
+            style="@style/H1TextViewStyle"
             android:text="@string/text_login_forgotpwd_details" />
 
         <EditText
             android:id="@+id/edittext_forgotpwd_contactno"
-            style="@style/commonEditTextStyle"
+            style="@style/H1EditTextStyle"
             android:drawableRight="@drawable/ic_device_access_call"
             android:ems="10"
             android:hint="@string/text_watermark_regphonenumber"

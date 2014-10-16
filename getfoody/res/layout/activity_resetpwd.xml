@@ -11,7 +11,7 @@
     
     <EditText
         android:id="@+id/edittext_reset_otpcode"
-        style="@style/commonEditTextStyle"
+        style="@style/H1EditTextStyle"
         android:drawableRight="@drawable/ic_device_access_accounts"
         android:hint="@string/text_watermark_otpcode"
         android:inputType="phone"
@@ -21,7 +21,7 @@
     
     <EditText
         android:id="@+id/edittext_reset_password_newpwd"
-        style="@style/commonEditTextStyle"
+        style="@style/H1EditTextStyle"
         android:drawableRight="@drawable/ic_device_access_accounts"
         android:hint="@string/text_watermark_newpassword"
         android:inputType="textPassword" >
@@ -30,7 +30,7 @@
     
     <EditText
         android:id="@+id/edittext_reset_password_confirmpwd"
-        style="@style/commonEditTextStyle"
+        style="@style/H1EditTextStyle"
         android:drawableRight="@drawable/ic_device_access_accounts"
         android:hint="@string/text_watermark_confirmpassword"
         android:inputType="textPassword" >

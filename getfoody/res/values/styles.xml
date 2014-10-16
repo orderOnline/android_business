@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -46,20 +46,6 @@
 		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
 	</style>
 	
-    <style name="commonH1TextViewStyle">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
-		<item name="android:gravity">center_vertical</item>
-		<item name="android:paddingLeft">@dimen/items_horizontal_padding</item>
-		<item name="android:paddingRight">@dimen/items_horizontal_padding</item>
-		<item name="android:textColor">@color/h1_textview</item>
-		<item name="android:typeface">sans</item>
-		<item name="android:textSize">@dimen/h1_heading_font_size</item>
-	</style>
-	
     <style name="commonH1TextViewValueStyle">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -91,23 +77,6 @@
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/h3_heading_font_size</item>
 		<item name="android:drawablePadding">@dimen/h3_drawable_text_padding</item>
-	</style>
-	
-    <style name="commonButttonStyle">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
-		<item name="android:gravity">center_vertical|center_horizontal</item>
-		<item name="android:paddingLeft">@dimen/items_horizontal_padding</item>
-		<item name="android:paddingRight">@dimen/items_horizontal_padding</item>
-		<item name="android:paddingTop">@dimen/items_vertical_padding</item>
-		<item name="android:paddingBottom">@dimen/items_vertical_padding</item>
-		<item name="android:textColor">@drawable/button_text_custom</item>
-		<item name="android:typeface">sans</item>
-		<item name="android:textSize">@dimen/button_font_size</item>
-		<item name="android:background">@drawable/button_custom</item>
 	</style>
 	
     <style name="commonActionButtonStyle">
@@ -151,6 +120,8 @@
 		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
 		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
 		<item name="android:layout_marginBottom">@dimen/items_vertical_margin</item>
+		<item name="android:paddingLeft">@dimen/items_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/items_horizontal_padding</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:textColor">@color/offerdetailsh2_textview</item>
 		<item name="android:typeface">sans</item>
@@ -182,4 +153,92 @@
 		<item name="android:textSize">@dimen/reviews_h2_font_size</item>
 		<item name="android:drawablePadding">@dimen/h3_drawable_text_padding</item>
 	</style>
+	
+	
+    <!-- Final Styles -->
+    <style name="H1EditTextStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
+		<item name="android:textColor">@color/h1_edittext_color</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
+	</style>
+	
+    <style name="H2EditTextStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_h2horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_h2horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
+		<item name="android:textColor">@color/h2_edittext_color</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
+	</style>
+	
+    <style name="commonButttonStyle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_button_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_button_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_button_vertical_margin</item>
+		<item name="android:gravity">center_vertical|fill_vertical|center_horizontal|fill_horizontal</item>
+		<item name="android:paddingLeft">@dimen/items_button_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/items_button_horizontal_padding</item>
+		<item name="android:paddingTop">@dimen/items_button_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/items_button_vertical_padding</item>
+		<item name="android:textColor">@drawable/button_text_custom</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/button_font_size</item>
+		<item name="android:background">@drawable/button_custom</item>
+	</style>
+	
+    <style name="H1TextViewStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingLeft">@dimen/items_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/items_horizontal_padding</item>
+		<item name="android:textColor">@color/h1_textview</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/h1_heading_font_size</item>
+	</style>
+	
+    <style name="H2TextViewStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_h2textview_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_h2textview_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_h2vertical_margin</item>>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textColor">@color/h2_textview</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:textSize">@dimen/h2_heading_font_size</item>
+	</style>
+	
+    <style name="SpinnerStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/spinner_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/spinner_horizontal_margin</item>
+		<item name="android:textColor">@color/spinner_textview</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:textSize">@dimen/spinner_font_size</item>
+	</style>
+	
+    <style name="CheckboxStyle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/checkbox_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/checkbox_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/checkbox_vertical_margin</item>>
+	</style>
+	
 </resources>

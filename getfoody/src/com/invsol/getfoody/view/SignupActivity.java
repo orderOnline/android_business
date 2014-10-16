@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -115,7 +116,11 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 
 			@Override
 			public void onClick(View view) {
-				requestConnection(view);
+				//requestConnection(view);
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(SignupActivity.this,
+						FillRestaurantDetailsActivity.class);
+				SignupActivity.this.startActivity(screenChangeIntent);
 			}
 		});
 	}
