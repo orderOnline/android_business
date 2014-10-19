@@ -35,7 +35,7 @@
 
     <style name="ButtonBarButton" />
     
-    <style name="commonEditTextStyle">
+    <!-- <style name="commonEditTextStyle">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
@@ -44,9 +44,9 @@
 		<item name="android:textColor">@color/heading_text_color</item>
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
-	</style>
+	</style> -->
 	
-    <style name="commonH1TextViewValueStyle">
+    <!-- <style name="commonH1TextViewValueStyle">
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
@@ -56,7 +56,7 @@
 		<item name="android:textColor">@color/h1_textview_value</item>
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/h1_heading_font_size</item>
-	</style>
+	</style> -->
 	
     <style name="commonH2TextViewStyle">
 		<item name="android:layout_height">wrap_content</item>

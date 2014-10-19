@@ -88,6 +88,7 @@
     </string-array>
     
     <!-- Menu Items Specific Strings -->
+    <string name="text_menudetails">Menu Details</string>
     <string name="text_menuitems_addcategory">ADD CATEGORY</string>
     <string name="text_menuitems_additem">ADD ITEM</string>
     
