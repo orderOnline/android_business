@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/btn_submit"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:text="@string/text_button_submit" />
 
         <LinearLayout
@@ -69,7 +69,7 @@
             
             <TextView
                 android:id="@+id/btn_validateotp"
-                style="@style/commonButttonStyle"
+                style="@style/ButtonStyle"
                 android:text="@string/text_button_validate" />
             
         </LinearLayout>

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/textview_legal_1"
+                    android:id="@+id/textview_cuisine"
                     style="@style/H2TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="@dimen/items_vertical_margin"
@@ -42,7 +42,7 @@
                     android:text="@string/text_largedummytext" />
 
                 <CheckBox
-                    android:id="@+id/checkBox1"
+                    android:id="@+id/checkbox_cuisine"
                     style="@style/CheckboxStyle" />
             </TableRow>
 
@@ -106,7 +106,7 @@
 
         <TextView
             android:id="@+id/btn_next"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:text="@string/text_button_next" />
     </LinearLayout>
 

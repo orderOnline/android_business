@@ -50,4 +50,8 @@
     <dimen name="checkbox_horizontal_margin">8dp</dimen>
     <dimen name="checkbox_vertical_margin">14dp</dimen>
     
+    <dimen name="alphabet_horizontal_margin">4dp</dimen>
+    <dimen name="alphabet_vertical_margin">4dp</dimen>
+    <dimen name="alphabet_vertical_padding">10dp</dimen>
+    
 </resources>

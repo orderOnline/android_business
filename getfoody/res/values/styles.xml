@@ -178,7 +178,7 @@
 		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
 	</style>
 	
-    <style name="commonButttonStyle">
+    <style name="ButtonStyle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginLeft">@dimen/items_button_horizontal_margin</item>
@@ -239,6 +239,23 @@
 		<item name="android:layout_marginLeft">@dimen/checkbox_horizontal_margin</item>
 		<item name="android:layout_marginRight">@dimen/checkbox_horizontal_margin</item>
 		<item name="android:layout_marginTop">@dimen/checkbox_vertical_margin</item>>
+	</style>
+	
+    <style name="HorizontalAlphabetListStyle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">1</item>
+		<item name="android:layout_marginLeft">@dimen/alphabet_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/alphabet_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/alphabet_vertical_margin</item>
+		<item name="android:layout_marginBottom">@dimen/alphabet_vertical_margin</item>
+		<item name="android:paddingTop">@dimen/alphabet_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/alphabet_vertical_padding</item>
+		<item name="android:gravity">center_vertical|center_horizontal</item>
+		<item name="android:background">@drawable/alphabet_custom</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/h2_heading_font_size</item>
+		<item name="android:textColor">@drawable/alphabet_text_custom</item>
 	</style>
 	
 </resources>

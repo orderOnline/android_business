@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/textview_cuisine"
+        style="@style/H2TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_marginBottom="@dimen/items_vertical_margin"
+        android:layout_marginRight="0dp"
+        android:layout_weight="1"
+        android:text="@string/text_dummytext" />
+
+    <CheckBox
+        android:id="@+id/checkbox_cuisine"
+        style="@style/CheckboxStyle" />
+
+</LinearLayout>

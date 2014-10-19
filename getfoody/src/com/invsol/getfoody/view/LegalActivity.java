@@ -24,7 +24,7 @@ public class LegalActivity extends ActionBarActivity{
 			public void onClick(View view) {
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LegalActivity.this,
-						FillFormDetailsActivity.class);
+						CuisinesActivity.class);
 				LegalActivity.this.startActivity(screenChangeIntent);
 			}
 		});

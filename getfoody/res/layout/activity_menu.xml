@@ -20,13 +20,13 @@
         
         <TextView
             android:id="@+id/btn_addcategory"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:text="@string/text_menuitems_addcategory" 
             android:layout_weight="1"/>
         
         <TextView
             android:id="@+id/btn_addmenuitem"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:text="@string/text_menuitems_additem" 
             android:layout_weight="1"/>
     </LinearLayout>

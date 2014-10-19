@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal" >
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textview_restaurant_details"
@@ -37,27 +37,100 @@
         </EditText>
 
         <EditText
+            android:id="@+id/edittext_profile_phonenumber"
+            style="@style/H2EditTextStyle"
+            android:hint="@string/text_watermark_phonenumber"
+            android:inputType="phone" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/edittext_profile_email"
+            style="@style/H2EditTextStyle"
+            android:hint="@string/text_watermark_email"
+            android:inputType="textEmailAddress" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/edittext_profile_service_starttime"
+            style="@style/H2EditTextStyle"
+            android:hint="@string/text_watermark_service_start_time"
+            android:inputType="time" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/edittext_profile_service_endtime"
+            style="@style/H2EditTextStyle"
+            android:hint="@string/text_watermark_service_close_time"
+            android:inputType="time" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/textview_profile_closedon"
+            style="@style/H2TextViewStyle"
+            android:text="@string/text_editprofile_closedon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/items_h2textview_horizontal_margin"
+            android:layout_marginRight="@dimen/items_h2textview_horizontal_margin">
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_mon"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_monday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_tue"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_tuesday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_wed"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_wednesday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_thur"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_thursday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_fri"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_friday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_sat"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_saturday" />
+
+            <TextView
+                android:id="@+id/textview_profile_alphabet_sun"
+                style="@style/HorizontalAlphabetListStyle"
+                android:clickable="true"
+                android:text="@string/text_editprofile_alphabet_sunday" />
+        </LinearLayout>
+
+        <EditText
             android:id="@+id/edittext_profile_address"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_address"
             android:inputType="text" >
         </EditText>
-        
+
         <EditText
             android:id="@+id/edittext_profile_pincode"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_pincode"
             android:inputType="text" >
         </EditText>
-
-        <TextView
-            android:id="@+id/textview_profile_selectcountry"
-            style="@style/H2TextViewStyle"
-            android:text="@string/text_editprofile_country" />
-
-        <Spinner
-            android:id="@+id/spinner_profile_country"
-            style="@style/SpinnerStyle" />
 
         <TextView
             android:id="@+id/textview_profile_selectstate"
@@ -76,27 +149,12 @@
         <Spinner
             android:id="@+id/spinner_profile_city"
             style="@style/SpinnerStyle" />
-        
-        <EditText
-            android:id="@+id/edittext_profile_phonenumber"
-            style="@style/H2EditTextStyle"
-            android:hint="@string/text_watermark_phonenumber"
-            android:inputType="phone">
-        </EditText>
-        
-    	<EditText
-            android:id="@+id/edittext_profile_email"
-            style="@style/H2EditTextStyle"
-            android:hint="@string/text_watermark_email"
-            android:inputType="textEmailAddress">
-        </EditText>
-        
+
         <TextView
             android:id="@+id/btn_next"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
             android:text="@string/text_button_next" />
-
     </LinearLayout>
 
 </ScrollView>

@@ -42,25 +42,21 @@
 
             <TextView
                 android:id="@+id/btn_login"
-                style="@style/commonButttonStyle"
+                style="@style/ButtonStyle"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:text="@string/text_button_signin" />
 
             <TextView
                 android:id="@+id/btn_forgotpassword"
-                style="@style/commonButttonStyle"
+                style="@style/ButtonStyle"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:text="@string/text_button_forgotpwd" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/btn_register"
-            style="@style/commonButttonStyle"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/items_vertical_margin"
-            android:clickable="true"
             android:text="@string/text_button_register" />
     </LinearLayout>
 
