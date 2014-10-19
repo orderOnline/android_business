@@ -78,6 +78,9 @@
     <!-- Legal Specific Strings -->
     <string name="text_legaldetails">Legal Details</string>
     
+    <!-- Cuisines Specific Strings -->
+    <string name="text_cuisinesdetails">Cusinies Details</string>
+    
     <!-- FillForm Specific Strings -->
     <string-array name="fillform_tabs_array">
         <item>Cuisines</item>

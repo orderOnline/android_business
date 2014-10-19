@@ -3,8 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:orientation="vertical"
-    android:gravity="center_horizontal" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textview_cuisines_details"
+        style="@style/H1TextViewStyle"
+        android:text="@string/text_cuisinesdetails" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/items_horizontal_margin"
+        android:layout_marginRight="@dimen/items_horizontal_margin"
+        android:background="#d8d9d8" />
 
     <ListView
         android:id="@+id/listview_cuisines"
@@ -12,7 +24,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:drawSelectorOnTop="true" >
-
     </ListView>
 
     <TextView

@@ -58,7 +58,7 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".view.FillRestaurantDetailsActivity" />
         </activity>
-        <activity android:name=".view.FillFormDetailsActivity"
+        <activity android:name=".view.CuisinesActivity"
             android:label="@string/text_title_register"
             android:parentActivityName=".view.LegalActivity">
             <meta-data

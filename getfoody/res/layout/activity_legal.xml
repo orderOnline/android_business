@@ -12,7 +12,7 @@
         android:gravity="center_horizontal" >
 
         <TextView
-            android:id="@+id/textview_restaurant_details"
+            android:id="@+id/textview_legal_details"
             style="@style/H1TextViewStyle"
             android:text="@string/text_legaldetails" />
 
