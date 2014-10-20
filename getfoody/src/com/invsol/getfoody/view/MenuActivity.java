@@ -5,11 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.MenuExpandableListAdapter;
+import com.invsol.getfoody.dialogs.AddCategoryDialog;
+import com.invsol.getfoody.dialogs.AddMenuDialog;
 
 public class MenuActivity extends ActionBarActivity {
 
@@ -35,6 +41,28 @@ public class MenuActivity extends ActionBarActivity {
 
 		// setting list adapter
 		expListView.setAdapter(exlistAdapter);
+		
+		TextView btn_addcategory = (TextView)findViewById(R.id.btn_addcategory);
+		btn_addcategory.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				// Create an instance of the dialog fragment and show it
+		        DialogFragment dialog = new AddCategoryDialog();
+		        dialog.show(getSupportFragmentManager(), "AddCategoryDialogFragment");
+			}
+		});
+		
+		TextView btn_addmenuitem = (TextView)findViewById(R.id.btn_addmenuitem);
+		btn_addmenuitem.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view) {
+				// Create an instance of the dialog fragment and show it
+		        DialogFragment dialog = new AddMenuDialog();
+		        dialog.show(getSupportFragmentManager(), "AddMenuDialogFragment");
+			}
+		});
 	}
 	
 	/*

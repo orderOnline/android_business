@@ -34,6 +34,9 @@
     <string name="text_watermark_email"><i>email*</i></string>
     <string name="text_watermark_service_start_time"><i>service start time*</i></string>
     <string name="text_watermark_service_close_time"><i>service close time*</i></string>
+    <string name="text_watermark_category_name"><i>category name*</i></string>
+    <string name="text_watermark_item_name"><i>item name*</i></string>
+    <string name="text_watermark_item_price"><i>price*</i></string>
     
     
     <!-- Action Button Specific Strings -->
@@ -87,10 +90,22 @@
         <item>Menu</item>
     </string-array>
     
-    <!-- Menu Items Specific Strings -->
+    <!-- Menu Specific Strings -->
     <string name="text_menudetails">Menu Details</string>
     <string name="text_menuitems_addcategory">ADD CATEGORY</string>
     <string name="text_menuitems_additem">ADD ITEM</string>
+    
+    <!-- Add Categories Specific Strings -->
+    <string name="text_addcategories_add">Add</string>
+	<string name="text_addcategories_cancel">Cancel</string>
+	<string name="text_addcategories_categorydetails">Categories Details</string>
+	
+	<!-- Add MenuItem Specific Strings -->
+    <string name="text_addmenuitems_add">Add</string>
+	<string name="text_addmenuitems_cancel">Cancel</string>
+	<string name="text_addmenuitems_menuitemdetails">MenuItem Details</string>
+	<string name="text_addmenuitems_veg">veg</string>
+	<string name="text_addmenuitems_nonveg">non-veg</string>
     
     <!-- Home Specific Strings -->
     <string-array name="home_tabs_array">
@@ -108,29 +123,6 @@
         <item>Reviews</item>
     </string-array>
     <string name="text_profile_edit_menu">Edit</string>
-    
-    
-    <!-- Add Brands Specific Strings -->
-    <string name="text_addbrand_add">Add</string>
-    <string name="text_addbrand_done">Done</string>
-	<string name="text_addbrand_cancel">Cancel</string>
-	<string name="text_addbrand_brands">Brands</string>
-	
-	<!-- Add Categories Specific Strings -->
-	<string name="text_addcategories_done">Done</string>
-    <string name="text_addcategories_add">Add</string>
-	<string name="text_addcategories_cancel">Cancel</string>
-	<string name="text_addcategories_category">Categories</string>
-	
-	<!-- Post Offer Specific Strings -->
-	<string name="text_postoffer_post">Post</string>
-	<string name="text_postoffer_upload_image">tap to upload image</string>
-	<string name="text_postoffer_offer_description"><i>description*</i></string>
-	<string name="text_postoffer_start_date"><i>start date*</i></string>
-	<string name="text_postoffer_end_date"><i>end date*</i></string>
-	<string name="text_postoffer_discount"><i>discount*</i></string>
-	<string name="text_postoffer_addbrands"><u>ADD BRANDS</u></string>
-    <string name="text_postoffer_addcategories"><u>ADD CATEGORIES</u></string>
     
     <string name="error_no_network_connection">Please check your network services.</string>
 

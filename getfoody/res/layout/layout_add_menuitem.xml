@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textview_menuitem_details"
+        style="@style/H1TextViewStyle"
+        android:text="@string/text_addmenuitems_menuitemdetails" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/items_horizontal_margin"
+        android:layout_marginRight="@dimen/items_horizontal_margin"
+        android:background="#d8d9d8" />
+
+    <EditText
+        android:id="@+id/edittext_itemname"
+        style="@style/H1EditTextStyle"
+        android:hint="@string/text_watermark_item_name"
+        android:inputType="text" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/edittext_itemprice"
+        style="@style/H1EditTextStyle"
+        android:hint="@string/text_watermark_item_price"
+        android:inputType="numberDecimal" >
+    </EditText>
+
+<RadioGroup
+    android:id="@+id/radiogroup_type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <RadioButton
+        android:id="@+id/radio_veg"
+        style="@style/RadioButtonStyle"
+        android:checked="true"
+        android:text="@string/text_addmenuitems_veg"/>
+
+    <RadioButton
+        android:id="@+id/radio_nonveg"
+        style="@style/RadioButtonStyle"
+        android:text="@string/text_addmenuitems_nonveg" />
+</RadioGroup>
+
+</LinearLayout>

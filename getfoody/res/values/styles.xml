@@ -237,4 +237,15 @@
 		<item name="android:textColor">@drawable/alphabet_text_custom</item>
 	</style>
 	
+    <style name="RadioButtonStyle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
+		<item name="android:textColor">@color/radiobutton_text</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/radiobutton_font_size</item>
+	</style>
+	
 </resources>

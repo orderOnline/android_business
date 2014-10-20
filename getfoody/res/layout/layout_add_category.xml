@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textview_categories_details"
+        style="@style/H1TextViewStyle"
+        android:text="@string/text_addcategories_categorydetails" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/items_horizontal_margin"
+        android:layout_marginRight="@dimen/items_horizontal_margin"
+        android:background="#d8d9d8" />
+
+    <EditText
+        android:id="@+id/edittext_add_category"
+        style="@style/H1EditTextStyle"
+        android:hint="@string/text_watermark_category_name"
+        android:inputType="text" >
+    </EditText>
+
+</LinearLayout>

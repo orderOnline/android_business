@@ -60,5 +60,7 @@
     <color name="alphabet_pressed_background">#FFFFFF</color>
     <color name="alphabet_normal_border">#7F7F7F</color>
     <color name="alphabet_pressed_border">#dd4b39</color>
+    
+    <color name="radiobutton_text">#6E6E6E</color>
 
 </resources>
