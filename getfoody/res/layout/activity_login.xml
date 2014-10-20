@@ -30,7 +30,7 @@
 
         <CheckBox
             android:id="@+id/checkbox_rememberme"
-            style="@style/commonH3TextViewStyle"
+            style="@style/H3TextViewStyle"
             android:text="@string/text_login_rememberme" />
 
         <LinearLayout

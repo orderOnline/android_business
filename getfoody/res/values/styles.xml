@@ -34,17 +34,6 @@
     </style>
 
     <style name="ButtonBarButton" />
-    
-    <!-- <style name="commonEditTextStyle">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
-		<item name="android:textColor">@color/heading_text_color</item>
-		<item name="android:typeface">sans</item>
-		<item name="android:textSize">@dimen/edit_textbox_font_size</item>
-	</style> -->
 	
     <!-- <style name="commonH1TextViewValueStyle">
 		<item name="android:layout_width">match_parent</item>
@@ -57,28 +46,6 @@
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/h1_heading_font_size</item>
 	</style> -->
-	
-    <style name="commonH2TextViewStyle">
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:layout_marginTop">@dimen/items_vertical_margin</item>
-		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
-		<item name="android:textColor">@color/h2_textview</item>
-		<item name="android:typeface">sans</item>
-		<item name="android:textSize">@dimen/h2_heading_font_size</item>
-	</style>
-	
-    <style name="commonH3TextViewStyle">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:gravity">center_vertical</item>
-		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
-		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
-		<item name="android:textColor">@color/h3_textview</item>
-		<item name="android:typeface">sans</item>
-		<item name="android:textSize">@dimen/h3_heading_font_size</item>
-		<item name="android:drawablePadding">@dimen/h3_drawable_text_padding</item>
-	</style>
-	
     <style name="commonActionButtonStyle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
@@ -184,7 +151,7 @@
 		<item name="android:layout_marginLeft">@dimen/items_button_horizontal_margin</item>
 		<item name="android:layout_marginRight">@dimen/items_button_horizontal_margin</item>
 		<item name="android:layout_marginTop">@dimen/items_button_vertical_margin</item>
-		<item name="android:gravity">center_vertical|fill_vertical|center_horizontal|fill_horizontal</item>
+		<item name="android:gravity">center_vertical|center_horizontal</item>
 		<item name="android:paddingLeft">@dimen/items_button_horizontal_padding</item>
 		<item name="android:paddingRight">@dimen/items_button_horizontal_padding</item>
 		<item name="android:paddingTop">@dimen/items_button_vertical_padding</item>
@@ -220,6 +187,18 @@
 		<item name="android:typeface">sans</item>
 		<item name="android:textStyle">italic</item>
 		<item name="android:textSize">@dimen/h2_heading_font_size</item>
+	</style>
+	
+    <style name="H3TextViewStyle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">@dimen/items_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/items_horizontal_margin</item>
+		<item name="android:textColor">@color/h3_textview</item>
+		<item name="android:typeface">sans</item>
+		<item name="android:textSize">@dimen/h3_heading_font_size</item>
+		<item name="android:drawablePadding">@dimen/h3_drawable_text_padding</item>
 	</style>
 	
     <style name="SpinnerStyle">
