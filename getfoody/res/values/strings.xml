@@ -17,6 +17,7 @@
     <string name="text_title_register">Register</string>
     <string name="text_title_forgot_pwd">Forgot Password</string>
     <string name="text_title_reset_pwd">Reset Password</string>
+    <string name="text_title_new_order">New Order</string>
     
     <string name="text_title_menu">Menu</string>
     <string name="text_title_profile">Profile</string>
@@ -46,6 +47,8 @@
     <string name="text_button_submit">Submit</string>
     <string name="text_button_validate">Validate</string>
     <string name="text_button_next">Next</string>
+    <string name="text_button_accept_order">Accept</string>
+    <string name="text_button_reject_order">Reject</string>
     
     <!-- Splash Specific Strings -->
     <string name="text_splash_version">Version </string>
@@ -123,6 +126,12 @@
         <item>Reviews</item>
     </string-array>
     <string name="text_profile_edit_menu">Edit</string>
+    
+    <!-- Order Specific Strings -->
+    <string name="text_orderdetails">Order Details</string>
+    <string name="text_customerdetails">Customer Details</string>
+    <string name="text_bill_amount"><b>Bill Amount</b></string>
+    
     
     <string name="error_no_network_connection">Please check your network services.</string>
 

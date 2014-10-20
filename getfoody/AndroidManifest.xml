@@ -94,6 +94,13 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".view.HomeActivity" />
         </activity>
+        <activity android:name=".view.OrdersActivity"
+            android:label="@string/text_title_new_order"
+            android:parentActivityName=".view.HomeActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".view.HomeActivity" />
+        </activity>
         
         <receiver
             android:name=".gcm.GCMBroadcastReceiver"

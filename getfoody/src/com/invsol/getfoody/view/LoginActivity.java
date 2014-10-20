@@ -123,7 +123,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 			}
 		});
 
-		CheckBox keepMeLoggedIn = (CheckBox) findViewById(R.id.checkbox_rememberme);
+		CheckBox keepMeLoggedIn = (CheckBox) findViewById(R.id.layout_neworder);
 		keepMeLoggedIn
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -221,6 +221,10 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
+			Intent screenChangeIntent = null;
+			screenChangeIntent = new Intent(LoginActivity.this,
+					OrdersActivity.class);
+			LoginActivity.this.startActivity(screenChangeIntent);
 		}
 			break;
 		case ConnectionModel.ERROR: {

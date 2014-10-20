@@ -29,7 +29,7 @@
         </EditText>
 
         <CheckBox
-            android:id="@+id/checkbox_rememberme"
+            android:id="@+id/layout_neworder"
             style="@style/H3TextViewStyle"
             android:text="@string/text_login_rememberme" />
 
