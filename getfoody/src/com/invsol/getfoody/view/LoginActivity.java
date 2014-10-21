@@ -119,7 +119,11 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 
 			@Override
 			public void onClick(View view) {
-				requestConnection(view);
+				//requestConnection(view);Log.d("LoginActivity", "Inside onConnection");
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(LoginActivity.this,
+						HomeActivity.class);
+				LoginActivity.this.startActivity(screenChangeIntent);
 			}
 		});
 
@@ -223,7 +227,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 			Log.d("LoginActivity", "Inside onConnection");
 			Intent screenChangeIntent = null;
 			screenChangeIntent = new Intent(LoginActivity.this,
-					OrdersActivity.class);
+					HomeActivity.class);
 			LoginActivity.this.startActivity(screenChangeIntent);
 		}
 			break;

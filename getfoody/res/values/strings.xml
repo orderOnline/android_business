@@ -18,6 +18,7 @@
     <string name="text_title_forgot_pwd">Forgot Password</string>
     <string name="text_title_reset_pwd">Reset Password</string>
     <string name="text_title_new_order">New Order</string>
+    <string name="text_title_orders">Orders</string>
     
     <string name="text_title_menu">Menu</string>
     <string name="text_title_profile">Profile</string>
@@ -111,12 +112,14 @@
 	<string name="text_addmenuitems_nonveg">non-veg</string>
     
     <!-- Home Specific Strings -->
-    <string-array name="home_tabs_array">
-        <item>Recent</item>
-        <item>Accepted</item>
-        <item>Dispatched</item>
-        <item>Declined</item>
+    <string-array name="drawer_items_array">
+        <item>Feedback</item>
+        <item>Terms</item>
+        <item>About</item>
+        <item>Logout</item>
     </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string name="text_home_profile_menu">Profile</string>
     <string name="text_home_main_menu">Menu</string>
     

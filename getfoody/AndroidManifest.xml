@@ -79,7 +79,8 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".view.LoginActivity" />
         </activity>
-        <activity android:name=".view.HomeActivity"></activity>
+        <activity android:name=".view.HomeActivity"
+            android:label="@string/text_title_orders"></activity>
         <activity android:name=".view.MenuActivity"
             android:label="@string/text_title_menu"
             android:parentActivityName=".view.HomeActivity">

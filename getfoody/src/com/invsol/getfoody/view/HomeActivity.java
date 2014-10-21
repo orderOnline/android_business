@@ -1,100 +1,81 @@
 package com.invsol.getfoody.view;
 
 import android.content.Intent;
-import android.content.res.Resources;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.Tab;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.invsol.getfoody.R;
-import com.invsol.getfoody.adapters.HomePagerAdapter;
 import com.invsol.getfoody.controllers.AppEventsController;
-import com.invsol.getfoody.defines.NetworkEvents;
 import com.invsol.getfoody.listeners.ActivityUpdateListener;
 import com.invsol.getfoody.models.ConnectionModel;
 
-public class HomeActivity extends ActionBarActivity implements
-		ActionBar.TabListener, ActivityUpdateListener {
+public class HomeActivity extends ActionBarActivity implements ActivityUpdateListener {
 
-	private ViewPager viewPager;
-	private ActionBar actionBar;
-	private HomePagerAdapter mAdapter;
 	private ConnectionModel connModel;
+	private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+
+    private String[] mDrawerTitles;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		// Initilization
-		viewPager = (ViewPager) findViewById(R.id.pager);
-		actionBar = getSupportActionBar();
-		mAdapter = new HomePagerAdapter(getSupportFragmentManager());
-
-		viewPager.setAdapter(mAdapter);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
 		connModel = AppEventsController.getInstance().getModelFacade()
 				.getConnModel();
 		connModel.registerView(this);
+		
+		mDrawerTitles = getResources().getStringArray(R.array.drawer_items_array);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-		Resources itemTexts = getResources();
-		String[] tabs = itemTexts.getStringArray(R.array.home_tabs_array);
+        // set a custom shadow that overlays the main content when the drawer opens
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        // set up the drawer's list view with items and click listener
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, mDrawerTitles));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-		// Adding Tabs
-		for (String tab_name : tabs) {
-			actionBar.addTab(actionBar.newTab().setText(tab_name)
-					.setTabListener(this));
-		}
+        // enable ActionBar app icon to behave as action to toggle nav drawer
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
-		/**
-		 * on swiping the viewpager make respective tab selected
-		 * */
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        // ActionBarDrawerToggle ties together the the proper interactions
+        // between the sliding drawer and the action bar app icon
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.drawable.ic_navigation_drawer,  /* nav drawer image to replace 'Up' caret */
+                R.string.drawer_open,  /* "open drawer" description for accessibility */
+                R.string.drawer_close  /* "close drawer" description for accessibility */
+                ) {
+            public void onDrawerClosed(View view) {
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
 
-			@Override
-			public void onPageSelected(int position) {
-				// on changing the page
-				// make respected tab selected
-				actionBar.setSelectedNavigationItem(position);
-			}
+            public void onDrawerOpened(View drawerView) {
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
-		});
-
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
-		// on tab selected
-		// show respected fragment view
-		viewPager.setCurrentItem(tab.getPosition());
-
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
-
+        if (savedInstanceState == null) {
+            selectItem(0);
+        }
 	}
 	
 	@Override
@@ -104,13 +85,23 @@ public class HomeActivity extends ActionBarActivity implements
 
 		return super.onCreateOptionsMenu(menu);
 	}
+	
+	/* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        //menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Log.d("Search View", "Inside Options Selected");
 		// The action bar home/up action should open or close the drawer.
 		// ActionBarDrawerToggle will take care of this.
-		if (super.onOptionsItemSelected(item)) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
 		// Handle presses on the action bar items
@@ -133,7 +124,49 @@ public class HomeActivity extends ActionBarActivity implements
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	/* The click listner for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
 
+    private void selectItem(int position) {
+        /*// update the main content by replacing fragments
+        Fragment fragment = new PlanetFragment();
+        Bundle args = new Bundle();
+        args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+        fragment.setArguments(args);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();*/
+
+        // update selected item and title, then close the drawer
+        mDrawerList.setItemChecked(position, true);
+        //setTitle(mPlanetTitles[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    /**
+     * When using the ActionBarDrawerToggle, you must call it during
+     * onPostCreate() and onConfigurationChanged()...
+     */
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 	
 	@Override
 	public void updateActivity(String tag) {
