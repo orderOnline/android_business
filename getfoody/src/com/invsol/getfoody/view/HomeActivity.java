@@ -13,13 +13,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.invsol.getfoody.R;
+import com.invsol.getfoody.adapters.CuisinesAdapter;
 import com.invsol.getfoody.adapters.DrawerAdapter;
+import com.invsol.getfoody.adapters.NewOrdersAdapter;
 import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.dataobjects.CuisinesItems;
+import com.invsol.getfoody.dataobjects.NewOrderItems;
 import com.invsol.getfoody.listeners.ActivityUpdateListener;
 import com.invsol.getfoody.models.ConnectionModel;
 
@@ -56,8 +63,6 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        /*mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mDrawerTitles));*/
         mDrawerList.setAdapter(new DrawerAdapter(this, R.layout.activity_home, mDrawerTitles, mDrawerIcons));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -87,6 +92,22 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         if (savedInstanceState == null) {
             selectItem(0);
         }
+        
+        
+        //List of Orders
+        ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
+        NewOrderItems[] orderDataItems = new NewOrderItems[4];
+		for (int i = 0; i < 4; i++) {
+			orderDataItems[i] = new NewOrderItems();
+			orderDataItems[i].setCustomer_address("Sector-22, Dwarka, New-Delhi");
+			orderDataItems[i].setCustomer_phoneNumber("0987654321");
+			orderDataItems[i].setOrder_status("Pending");
+			orderDataItems[i].setOrder_acceptancetimer("10:34");
+		}
+
+		NewOrdersAdapter adapter = new NewOrdersAdapter(
+				this, R.layout.activity_home, orderDataItems);
+		list_newOrders.setAdapter(adapter);
 	}
 	
 	@Override

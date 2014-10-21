@@ -31,7 +31,6 @@
     <color name="h1_textview">#dd4b39</color>
     <color name="h2_textview">#6E6E6E</color>
     <color name="h3_textview">#6E6E6E</color>
-    <color name="h1_textview_value">#000000</color>
     
     <!-- Color used for Action button -->
     <color name="action_button_text">#FFFFFF</color>
@@ -62,5 +61,7 @@
     <color name="alphabet_pressed_border">#dd4b39</color>
     
     <color name="radiobutton_text">#6E6E6E</color>
+    
+    <color name="h1_textview_value">#7E7E7E</color>
 
 </resources>

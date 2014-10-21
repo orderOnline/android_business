@@ -5,10 +5,21 @@
 
     <!-- The main content view -->
 
-    <FrameLayout
+
+    <!--
+         <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    -->
+
+    <ListView
+        android:id="@+id/listview_orders"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background_color"
+        android:drawSelectorOnTop="true" >
+    </ListView>
     <!-- The navigation drawer -->
 
     <ListView
