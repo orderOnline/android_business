@@ -2,6 +2,7 @@ package com.invsol.getfoody.view;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.invsol.getfoody.R;
+import com.invsol.getfoody.adapters.DrawerAdapter;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.listeners.ActivityUpdateListener;
 import com.invsol.getfoody.models.ConnectionModel;
@@ -29,6 +31,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
     private ActionBarDrawerToggle mDrawerToggle;
 
     private String[] mDrawerTitles;
+    private int[] mDrawerIcons;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +43,22 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 		connModel.registerView(this);
 		
 		mDrawerTitles = getResources().getStringArray(R.array.drawer_items_array);
+		//mDrawerIcons = getResources().getIntArray(R.array.drawer_icons_array);
+		TypedArray imgs = getResources().obtainTypedArray(R.array.drawer_icons_array);
+		mDrawerIcons = new int[imgs.length()];
+		//get resourceid by index
+		for (int j = 0; j < imgs.length(); j++) {
+			mDrawerIcons[j] = imgs.getResourceId(j, -1);
+		}
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mDrawerTitles));
+        /*mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, mDrawerTitles));*/
+        mDrawerList.setAdapter(new DrawerAdapter(this, R.layout.activity_home, mDrawerTitles, mDrawerIcons));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer

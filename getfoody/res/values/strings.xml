@@ -118,6 +118,12 @@
         <item>About</item>
         <item>Logout</item>
     </string-array>
+    <string-array name="drawer_icons_array">
+        <item>@drawable/drawer_about</item>
+        <item>@drawable/drawer_about</item>
+        <item>@drawable/drawer_about</item>
+        <item>@drawable/drawer_about</item>
+    </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="text_home_profile_menu">Profile</string>
