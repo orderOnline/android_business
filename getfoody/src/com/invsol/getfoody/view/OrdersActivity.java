@@ -23,7 +23,7 @@ public class OrdersActivity extends ActionBarActivity{
 		
 		OrderItems[] orderDataItems = new OrderItems[2];
 		for (int i = 0; i < 2; i++) {
-			orderDataItems[i] = new OrderItems("dummy text", "2");
+			orderDataItems[i] = new OrderItems("dummy text", "X2");
 		}
 		
 		

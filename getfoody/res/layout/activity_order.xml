@@ -59,7 +59,7 @@
 
         <LinearLayout
             android:id="@id/layout_neworder"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
@@ -82,7 +82,9 @@
                 style="@style/H1TextViewStyle"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:text="200.00" />
+                android:text="200.00"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <LinearLayout
