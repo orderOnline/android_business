@@ -157,6 +157,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 
 			@Override
 			public void onClick(View view) {
+				connModel.unregisterAllView();
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LoginActivity.this,
 						SignupActivity.class);
@@ -215,7 +216,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				eventData.putString(Constants.JSON_PHONENUMBER, phonenumber);
 				eventData.putString(Constants.JSON_PASSWORD, password);
 				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_AUTHENTICATE, eventData, view);
+						NetworkEvents.EVENT_ID_LOGIN, eventData, view);
 			}
 		}
 	}

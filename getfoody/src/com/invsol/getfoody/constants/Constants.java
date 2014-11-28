@@ -3,9 +3,9 @@ package com.invsol.getfoody.constants;
 public class Constants {
 	
 	// Required URLs
-		public static final String BASE_URL = "http://10.0.2.2:8080/api.invsol.com/";
-		public static final String URL_POST_AUTHORIZE_REQUEST = "authorize/business.json";
-		public static final String URL_POST_AUTHENTICATE_REQUEST = "authenticate/business.json";
+		public static final String BASE_URL = "http://www.medoco.in/";
+		public static final String URL_POST_REGISTER_REQUEST = "register/business.json";
+		public static final String URL_POST_LOGIN_REQUEST = "login/business.json";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -30,5 +30,9 @@ public class Constants {
 		public static final String JSON_POST_DATA = "jsonpostdata";
 		public static final String JSON_PHONENUMBER = "phonenumber";
 		public static final String JSON_PASSWORD = "password";
+		public static final String JSON_GCM_KEY = "gcm_key";
+		public static final String JSON_RESTAURANT_ID = "restaurant_id";
+		public static final String JSON_RESPONSE = "response";
+		public static final String JSON_RESULT = "result";
 		// ----------------------------------------------------------------------------------
 }

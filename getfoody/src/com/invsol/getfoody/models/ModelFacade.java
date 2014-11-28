@@ -9,6 +9,8 @@ public class ModelFacade {
 	private ConnectionModel connModel;
 	private LocalModel localModel;
 	private UserModel userModel;
+	
+	private RestaurantModel resModel;
 	// ---------------------------------------------------------------------------------
 
 	/**
@@ -20,6 +22,7 @@ public class ModelFacade {
 		connModel = new ConnectionModel();
 		localModel = new LocalModel();
 		userModel = new UserModel();
+		resModel = new RestaurantModel();
 	}
 
 	// ---------------------------------------------------------------------------------
@@ -43,6 +46,10 @@ public class ModelFacade {
 
 	public UserModel getUserModel() {
 		return userModel;
+	}
+
+	public RestaurantModel getResModel() {
+		return resModel;
 	}
 	
 	

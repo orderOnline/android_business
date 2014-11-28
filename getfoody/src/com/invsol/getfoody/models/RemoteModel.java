@@ -60,7 +60,7 @@ public class RemoteModel {
 		if(connHandler.isOnline())
 		{
 			HttpParams httpParams = new HttpParams();
-			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_AUTHORIZE_REQUEST);
+			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_REGISTER_REQUEST);
 			httpParams.setRequestMethod(HttpParams.HTTP_POST);
 			
 			//String requestData = CommonUtils.createPostdata(params);

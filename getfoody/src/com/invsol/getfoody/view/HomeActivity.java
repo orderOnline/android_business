@@ -67,8 +67,8 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
@@ -96,8 +96,8 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         
         //List of Orders
         ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
-        NewOrderItems[] orderDataItems = new NewOrderItems[4];
-		for (int i = 0; i < 4; i++) {
+        NewOrderItems[] orderDataItems = new NewOrderItems[10];
+		for (int i = 0; i < 10; i++) {
 			orderDataItems[i] = new NewOrderItems();
 			orderDataItems[i].setCustomer_address("Sector-22, Dwarka, New-Delhi");
 			orderDataItems[i].setCustomer_phoneNumber("0987654321");

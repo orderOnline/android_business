@@ -4,18 +4,24 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsMessage;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.invsol.getfoody.R;
@@ -33,11 +39,18 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 	private ConnectionModel connModel;
 	private EditText editText_phoneno, editText_password;
 	private boolean isPhoneNumberValid, isPasswordValid;
+	private BroadcastReceiver smsReceiver;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signup);
+		
+		LinearLayout validateOtpLayout = (LinearLayout)findViewById(R.id.linearlayout_validateotp);
+		for ( int i = 0; i < validateOtpLayout.getChildCount();  i++ ){
+		    View view = validateOtpLayout.getChildAt(i);
+		    view.setEnabled(false);
+		}
 		
 		editText_phoneno = (EditText) findViewById(R.id.edittext_register_contactno);
 		editText_password = (EditText) findViewById(R.id.edittext_register_password);
@@ -116,13 +129,49 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 
 			@Override
 			public void onClick(View view) {
-				//requestConnection(view);
-				Intent screenChangeIntent = null;
+				requestConnection(view);
+				/*Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(SignupActivity.this,
 						FillRestaurantDetailsActivity.class);
-				SignupActivity.this.startActivity(screenChangeIntent);
+				SignupActivity.this.startActivity(screenChangeIntent);*/
 			}
 		});
+		
+		IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+		
+		smsReceiver = new BroadcastReceiver() {
+			 
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				// Get SMS map from Intent
+		        Bundle extras = intent.getExtras();
+		        
+		        //String messages = "";
+		        String otpCode = "";
+		        if ( extras != null )
+		        {
+		        	SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
+		            for (int i = 0; i < messages.length; i++) {
+		                SmsMessage message = messages[i];
+		                String body = message.getMessageBody().toString();
+		                Log.d("sms recvd", "sms got=="+body);
+		                int indexOfColon = body.indexOf(":");
+		                otpCode = body.substring(indexOfColon+1, body.length());
+		            }
+		            LinearLayout validateOtpLayout = (LinearLayout)findViewById(R.id.linearlayout_validateotp);
+		    		for ( int i = 0; i < validateOtpLayout.getChildCount();  i++ ){
+		    		    View view = validateOtpLayout.getChildAt(i);
+		    		    view.setEnabled(true);
+		    		}
+		    		
+		    		EditText otpTextBox = (EditText) findViewById(R.id.edittext_singup_otp);
+		    		otpTextBox.setText(otpCode);
+		        }
+ 
+			}
+		};
+		//registering our receiver
+		this.registerReceiver(smsReceiver, intentFilter);
 	}
 	
 	@Override
@@ -174,21 +223,29 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 				Bundle eventData = new Bundle();
 				JSONObject postData = new JSONObject();
 				try {
-					postData.put(Constants.JSON_PHONENUMBER, phonenumber);
+					postData.put(Constants.JSON_PHONENUMBER, Long.parseLong(phonenumber));
 					postData.put(Constants.JSON_PASSWORD, password);
+					postData.put(Constants.JSON_GCM_KEY, AppEventsController.getInstance().getModelFacade().getResModel().getGcm_registration_key());
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 				AppEventsController.getInstance().handleEvent(
-						NetworkEvents.EVENT_ID_AUTHORIZE, eventData, view);
+						NetworkEvents.EVENT_ID_REGISTER, eventData, view);
 			}
 		}
 	}
 	
 	@Override
 	public void updateActivity(String tag) {
-		
+		if( tag.equals("Register") ){
+			switch(connModel.getConnectionStatus()){
+			case ConnectionModel.SUCCESS:{
+				
+			}
+			break;
+			}
+		}
 	}
 }

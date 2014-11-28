@@ -76,7 +76,7 @@ public class AppEventsController {
 	 */
 	private void fireEvents(int eventId, Bundle eventData, View view) {
 		switch (eventId) {
-		case NetworkEvents.EVENT_ID_AUTHORIZE: {
+		case NetworkEvents.EVENT_ID_REGISTER: {
 			try {
 				modelFacade.getRemoteModel().registerUser(eventData,
 						NetworkResponseHandler.REGISTERUSER_HANDLER, view);
@@ -86,7 +86,7 @@ public class AppEventsController {
 		}
 
 			break;
-		case NetworkEvents.EVENT_ID_AUTHENTICATE: {
+		case NetworkEvents.EVENT_ID_LOGIN: {
 			Log.d(TAG, "Creating Bundle");
 			try {
 				modelFacade.getRemoteModel().authenticateUser(eventData,
