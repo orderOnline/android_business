@@ -27,6 +27,7 @@
             android:id="@+id/imageview_restaurant"
             style="@style/H1TextViewStyle"
             android:drawableLeft="@drawable/ic_default_image"
+            android:drawableStart="@drawable/ic_default_image"
             android:text="@string/text_editprofile_taptouploadimage" />
 
         <EditText
@@ -153,7 +154,6 @@
         <TextView
             android:id="@+id/btn_next"
             style="@style/ButtonStyle"
-            android:gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
             android:text="@string/text_button_next" />
     </LinearLayout>
 

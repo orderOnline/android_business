@@ -160,7 +160,7 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				connModel.unregisterAllView();
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LoginActivity.this,
-						SignupActivity.class);
+						FillRestaurantDetailsActivity.class);
 				LoginActivity.this.startActivity(screenChangeIntent);
 			}
 		});

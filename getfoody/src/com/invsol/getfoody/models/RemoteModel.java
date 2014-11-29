@@ -50,17 +50,59 @@ public class RemoteModel {
 	
 	public void registerUser(Bundle params,Handler listener,View view) throws Exception
 	{
-		/*JSONObject obj = new JSONObject();
-		obj.put("phonenumber", "9876543210");
-		obj.put("password", "test");
-		
-		listener.sendMessage(listener.obtainMessage(
-				Constants.SUCCESSFUL_RESPONSE, obj));*/
 		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
 		if(connHandler.isOnline())
 		{
 			HttpParams httpParams = new HttpParams();
 			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_REGISTER_REQUEST);
+			httpParams.setRequestMethod(HttpParams.HTTP_POST);
+			
+			//String requestData = CommonUtils.createPostdata(params);
+			String requestData = params.getString(Constants.JSON_POST_DATA);
+			httpParams.setRequestData(requestData);
+			Log.v(TAG, "Request Data=====>" + requestData);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
+	
+	public void registerUserValidateOTP(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_VALIDATEOTP_REQUEST);
+			httpParams.setRequestMethod(HttpParams.HTTP_POST);
+			
+			//String requestData = CommonUtils.createPostdata(params);
+			String requestData = params.getString(Constants.JSON_POST_DATA);
+			httpParams.setRequestData(requestData);
+			Log.v(TAG, "Request Data=====>" + requestData);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
+	
+	public void editProfile(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_PROFILE_REQUEST + params.getString(Constants.JSON_RESTAURANT_ID) + ".json");
 			httpParams.setRequestMethod(HttpParams.HTTP_POST);
 			
 			//String requestData = CommonUtils.createPostdata(params);

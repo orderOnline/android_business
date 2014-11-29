@@ -7,10 +7,10 @@
         </shape>
    </item>
 
-   <item android:top="22dp">
+   <item android:id="@+id/borderline_bottom_normal" android:top="22dp">
       <shape 
         android:shape="line">
-            <stroke android:width="3dp"
+            <stroke android:width="4dp"
                 android:color="@color/alphabet_normal_border"/>
         </shape>
    </item>

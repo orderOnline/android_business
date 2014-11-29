@@ -231,10 +231,10 @@
 		<item name="android:paddingTop">@dimen/alphabet_vertical_padding</item>
 		<item name="android:paddingBottom">@dimen/alphabet_vertical_padding</item>
 		<item name="android:gravity">center_vertical|center_horizontal</item>
-		<item name="android:background">@drawable/alphabet_custom</item>
+		<item name="android:background">@color/alphabet_normal_background</item>
 		<item name="android:typeface">sans</item>
 		<item name="android:textSize">@dimen/h2_heading_font_size</item>
-		<item name="android:textColor">@drawable/alphabet_text_custom</item>
+		<item name="android:textColor">@color/alphabet_normal_text</item>
 	</style>
 	
     <style name="RadioButtonStyle">

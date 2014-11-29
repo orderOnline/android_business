@@ -23,6 +23,8 @@ public class NetworkResponseHandler {
 
 	public static final Handler AUTHENTICATEUSER_HANDLER = authenticateUserHandler();
 	public static final Handler REGISTERUSER_HANDLER = registerUserHandler();
+	public static final Handler REGISTERUSER_VALIDATEOTP_HANDLER = registerUserValidateOTPHandler();
+	public static final Handler EDITPROFILE_HANDLER = editProfileHandler();
 	
 	private static Handler authenticateUserHandler() {
 		return new Handler() {
@@ -60,6 +62,80 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler editProfileHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = (JSONObject)resp.getJSONObject(Constants.JSON_RESPONSE);
+						if( (restData.get(Constants.JSON_VALID_OTP_CODE)).equals(Constants.JSON_VALID_OTP_CODE) ){
+							model.setConnectionStatus(ConnectionModel.SUCCESS);
+							model.notifyView("OTPValid");
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
+	private static Handler registerUserValidateOTPHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = (JSONObject)resp.getJSONObject(Constants.JSON_RESPONSE);
+						if( (restData.get(Constants.JSON_VALID_OTP_CODE)).equals(Constants.JSON_VALID_OTP_CODE) ){
+							model.setConnectionStatus(ConnectionModel.SUCCESS);
+							model.notifyView("OTPValid");
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler registerUserHandler() {
 		return new Handler() {
 			@Override

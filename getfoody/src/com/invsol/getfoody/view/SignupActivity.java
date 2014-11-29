@@ -34,7 +34,7 @@ import com.invsol.getfoody.utils.TextValidator;
 
 public class SignupActivity extends ActionBarActivity implements ActivityUpdateListener{
 	
-	private TextView btn_signup;
+	private TextView btn_signup, btn_validateotp;
 	private String phonenumber, password;
 	private ConnectionModel connModel;
 	private EditText editText_phoneno, editText_password;
@@ -130,10 +130,27 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 			@Override
 			public void onClick(View view) {
 				requestConnection(view);
-				/*Intent screenChangeIntent = null;
-				screenChangeIntent = new Intent(SignupActivity.this,
-						FillRestaurantDetailsActivity.class);
-				SignupActivity.this.startActivity(screenChangeIntent);*/
+			}
+		});
+		
+		btn_validateotp = (TextView) findViewById(R.id.btn_validateotp);
+		btn_validateotp.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				EditText otpTextBox = (EditText) findViewById(R.id.edittext_singup_otp);
+				Bundle eventData = new Bundle();
+				JSONObject postData = new JSONObject();
+				try {
+					postData.put(Constants.JSON_RESTAURANT_ID, AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
+					postData.put(Constants.JSON_OTPCODE, otpTextBox.getText().toString());
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
+				AppEventsController.getInstance().handleEvent(
+						NetworkEvents.EVENT_ID_REGISTER_VALIDATEOTP, eventData, view);
 			}
 		});
 		
@@ -243,6 +260,19 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 			switch(connModel.getConnectionStatus()){
 			case ConnectionModel.SUCCESS:{
 				
+			}
+			break;
+			}
+		}else if (tag.equals("OTPValid")) {
+			switch(connModel.getConnectionStatus()){
+			case ConnectionModel.SUCCESS:{
+				this.unregisterReceiver(smsReceiver);
+				connModel.unregisterAllView();
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(SignupActivity.this,
+						FillRestaurantDetailsActivity.class);
+				SignupActivity.this.startActivity(screenChangeIntent);
+				SignupActivity.this.finish();
 			}
 			break;
 			}

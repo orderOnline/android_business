@@ -86,6 +86,26 @@ public class AppEventsController {
 		}
 
 			break;
+		case NetworkEvents.EVENT_ID_REGISTER_VALIDATEOTP: {
+			try {
+				modelFacade.getRemoteModel().registerUserValidateOTP(eventData,
+						NetworkResponseHandler.REGISTERUSER_VALIDATEOTP_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+
+			break;
+		case NetworkEvents.EVENT_ID_EDIT_PROFILE: {
+			try {
+				modelFacade.getRemoteModel().editProfile(eventData,
+						NetworkResponseHandler.EDITPROFILE_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+
+			break;
 		case NetworkEvents.EVENT_ID_LOGIN: {
 			Log.d(TAG, "Creating Bundle");
 			try {

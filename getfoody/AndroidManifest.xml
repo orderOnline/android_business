@@ -47,18 +47,10 @@
             android:value=".view.LoginActivity" />
         </activity>
         <activity android:name=".view.FillRestaurantDetailsActivity"
-            android:label="@string/text_title_register"
-            android:parentActivityName=".view.SignupActivity">
-            <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".view.SignupActivity" />
+            android:label="@string/text_title_register">
         </activity>
         <activity android:name=".view.LegalActivity"
-            android:label="@string/text_title_register"
-            android:parentActivityName=".view.FillRestaurantDetailsActivity">
-            <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".view.FillRestaurantDetailsActivity" />
+            android:label="@string/text_title_register">
         </activity>
         <activity android:name=".view.CuisinesActivity"
             android:label="@string/text_title_register"

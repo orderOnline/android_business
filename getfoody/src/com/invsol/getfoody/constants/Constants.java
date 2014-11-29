@@ -6,6 +6,8 @@ public class Constants {
 		public static final String BASE_URL = "http://www.medoco.in/";
 		public static final String URL_POST_REGISTER_REQUEST = "register/business.json";
 		public static final String URL_POST_LOGIN_REQUEST = "login/business.json";
+		public static final String URL_POST_VALIDATEOTP_REQUEST = "register/business/validateotp.json";
+		public static final String URL_POST_PROFILE_REQUEST = "profile/business/";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -34,5 +36,17 @@ public class Constants {
 		public static final String JSON_RESTAURANT_ID = "restaurant_id";
 		public static final String JSON_RESPONSE = "response";
 		public static final String JSON_RESULT = "result";
+		public static final String JSON_OTPCODE = "otpcode";
+		public static final String JSON_VALID_OTP_CODE = "valid otp";
+		public static final String JSON_NAME = "name";
+		public static final String JSON_EMAIL = "email";
+		public static final String JSON_STARTTIME = "service_start_time";
+		public static final String JSON_ENDTIME = "service_end_time";
+		public static final String JSON_CLOSEDON = "closedon";
+		public static final String JSON_ADDRESS = "address";
+		public static final String JSON_CITY = "city";
+		public static final String JSON_STATE = "state";
+		public static final String JSON_ZIPCODE = "zipcode";
+		public static final String JSON_CUISINES = "cuisines";
 		// ----------------------------------------------------------------------------------
 }
