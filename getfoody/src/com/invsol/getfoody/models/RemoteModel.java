@@ -18,22 +18,23 @@ import com.invsol.getfoody.utils.CommonUtils;
 public class RemoteModel {
 	public static final String TAG = "Remote Model";
 	
-	public void authenticateUser(Bundle params, Handler listener, View view)
+	public void loginUser(Bundle params, Handler listener, View view)
 			throws Exception {
-		JSONObject obj = new JSONObject();
+		/*JSONObject obj = new JSONObject();
 		obj.put("phonenumber", "9876543210");
 		
 		listener.sendMessage(listener.obtainMessage(
-				Constants.SUCCESSFUL_RESPONSE, obj));
-		/*ConnectivityHandler connHandler = new ConnectivityHandler(
+				Constants.SUCCESSFUL_RESPONSE, obj));*/
+		ConnectivityHandler connHandler = new ConnectivityHandler(
 				view.getContext());
 		if (connHandler.isOnline()) {
 			HttpParams httpParams = new HttpParams();
 			httpParams.setRequestURL(Constants.BASE_URL
-					+ Constants.URL_POST_AUTHENTICATE_REQUEST);
+					+ Constants.URL_POST_LOGIN_REQUEST);
 			httpParams.setRequestMethod(HttpParams.HTTP_POST);
 
-			String requestData = CommonUtils.createPostdata(params);
+			//String requestData = CommonUtils.createPostdata(params);
+			String requestData = params.getString(Constants.JSON_POST_DATA);
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 
@@ -44,7 +45,7 @@ public class RemoteModel {
 			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION,
 					view.getResources().getString(
 							R.string.error_no_network_connection)));
-		}*/
+		}
 	}
 	// --------------------------------------------------------------------------------------------------------
 	

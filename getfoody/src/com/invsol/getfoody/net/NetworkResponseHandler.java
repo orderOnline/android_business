@@ -4,31 +4,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.invsol.getfoody.constants.Constants;
-import com.invsol.getfoody.controllers.AppEventsController;
-import com.invsol.getfoody.exceptions.ApplicationException;
-import com.invsol.getfoody.models.ConnectionModel;
-import com.invsol.getfoody.models.LocalModel;
-import com.invsol.getfoody.models.RestaurantModel;
-import com.invsol.getfoody.models.UserModel;
-
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.TextView;
+
+import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.models.ConnectionModel;
+import com.invsol.getfoody.models.RestaurantModel;
 
 public class NetworkResponseHandler {
 	public static final String TAG = "Network Response Handler";
 
-	public static final Handler AUTHENTICATEUSER_HANDLER = authenticateUserHandler();
+	public static final Handler LOGINUSER_HANDLER = loginUserHandler();
 	public static final Handler REGISTERUSER_HANDLER = registerUserHandler();
 	public static final Handler REGISTERUSER_VALIDATEOTP_HANDLER = registerUserValidateOTPHandler();
 	public static final Handler EDITPROFILE_HANDLER = editProfileHandler();
 	public static final Handler WHIZ_STATES_HANDLER = whizStatesHandler();
 	public static final Handler WHIZ_CITIES_HANDLER = whizCitiesHandler();
 	
-	private static Handler authenticateUserHandler() {
+	private static Handler loginUserHandler() {
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -37,15 +32,6 @@ public class NetworkResponseHandler {
 				switch (msg.what) {
 				case Constants.SUCCESSFUL_RESPONSE: {
 					Log.d("response==", ((JSONObject) msg.obj).toString());
-					UserModel userModel = AppEventsController
-							.getInstance().getModelFacade()
-							.getUserModel();
-					try {
-						userModel.setAuthenticationDetails((JSONObject) msg.obj);
-					} catch (ApplicationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					model.setConnectionStatus(ConnectionModel.SUCCESS);
 					model.notifyView("Login");
 				}

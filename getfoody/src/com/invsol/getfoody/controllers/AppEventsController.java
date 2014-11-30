@@ -109,8 +109,8 @@ public class AppEventsController {
 		case NetworkEvents.EVENT_ID_LOGIN: {
 			Log.d(TAG, "Creating Bundle");
 			try {
-				modelFacade.getRemoteModel().authenticateUser(eventData,
-						NetworkResponseHandler.AUTHENTICATEUSER_HANDLER, view);
+				modelFacade.getRemoteModel().loginUser(eventData,
+						NetworkResponseHandler.LOGINUSER_HANDLER, view);
 			} catch (Exception ex) {
 				Log.d("Application Exception:", ex.getMessage());
 			}

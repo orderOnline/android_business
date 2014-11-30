@@ -1,5 +1,8 @@
 package com.invsol.getfoody.view;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -119,11 +122,11 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 
 			@Override
 			public void onClick(View view) {
-				//requestConnection(view);Log.d("LoginActivity", "Inside onConnection");
-				Intent screenChangeIntent = null;
+				requestConnection(view);
+				/*Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LoginActivity.this,
 						HomeActivity.class);
-				LoginActivity.this.startActivity(screenChangeIntent);
+				LoginActivity.this.startActivity(screenChangeIntent);*/
 			}
 		});
 
@@ -213,8 +216,15 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		}else{
 			if (isPhoneNumberValid && isPasswordValid) {
 				Bundle eventData = new Bundle();
-				eventData.putString(Constants.JSON_PHONENUMBER, phonenumber);
-				eventData.putString(Constants.JSON_PASSWORD, password);
+				JSONObject postData = new JSONObject();
+				try {
+					postData.put(Constants.JSON_PHONENUMBER, Long.parseLong(phonenumber));
+					postData.put(Constants.JSON_PASSWORD, password);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 				AppEventsController.getInstance().handleEvent(
 						NetworkEvents.EVENT_ID_LOGIN, eventData, view);
 			}

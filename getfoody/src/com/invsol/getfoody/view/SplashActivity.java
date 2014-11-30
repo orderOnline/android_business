@@ -2,8 +2,6 @@ package com.invsol.getfoody.view;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,10 +22,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
-import com.invsol.getfoody.exceptions.ApplicationException;
 import com.invsol.getfoody.gcm.GCMAsyncTask;
-import com.invsol.getfoody.models.ConnectionModel;
-import com.invsol.getfoody.models.UserModel;
 
 public class SplashActivity extends FragmentActivity{
 
