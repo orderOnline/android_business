@@ -1,55 +1,87 @@
 package com.invsol.getfoody.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class LocalModel {
-
-	private boolean retrievedMastedFilterData = false;
-	private String[] locations, brands, categories;
-	private Double currentlocation_latitude, currentlocation_longitude;
-	private String currentCity;
+	
+	private StateModel[] states;
+	private String[] statesNames;
+	private String[] citiesNames;
 
 	public LocalModel() {
 		 
 	}
 	
-	public boolean isRetrievedMastedFilterData() {
-		return retrievedMastedFilterData;
+	public void setStatesData( JSONArray statesArray ){
+		states = new StateModel[statesArray.length()];
+		statesNames = new String[statesArray.length()];
+		JSONObject tempState = null;
+		for( int i = 0; i < statesArray.length(); i++ ){
+			try {
+				tempState = statesArray.getJSONObject(i);
+				states[i] = new StateModel(tempState.getString("ID"), tempState.getString("Name"), tempState.getString("Type"));
+				statesNames[i] = tempState.getString("Name");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void setCitiesData( JSONArray citiesArray ){
+		citiesNames = new String[citiesArray.length()];
+		JSONObject tempCity = null;
+		for( int i = 0; i < citiesArray.length(); i++ ){
+			try {
+				tempCity = citiesArray.getJSONObject(i);
+				citiesNames[i] = tempCity.getString("city");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public String[] getStatesNames() {
+		return statesNames;
 	}
 
-	public String[] getLocations() {
-		return locations;
+	public StateModel[] getStates() {
+		return states;
 	}
 
-	public String[] getBrands() {
-		return brands;
+
+
+	public String[] getCitiesNames() {
+		return citiesNames;
 	}
 
-	public String[] getCategories() {
-		return categories;
-	}
 
-	public Double getCurrentlocation_latitude() {
-		return currentlocation_latitude;
-	}
 
-	public void setCurrentlocation_latitude(Double currentlocation_latitude) {
-		this.currentlocation_latitude = currentlocation_latitude;
-	}
+	private class StateModel {
+		private String id, name, type;
 
-	public Double getCurrentlocation_longitude() {
-		return currentlocation_longitude;
-	}
+		public StateModel(String id, String name, String type) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.type = type;
+		}
 
-	public void setCurrentlocation_longitude(Double currentlocation_longitude) {
-		this.currentlocation_longitude = currentlocation_longitude;
-	}
+		public String getId() {
+			return id;
+		}
 
-	public String getCurrentCity() {
-		return currentCity;
-	}
+		public String getName() {
+			return name;
+		}
 
-	public void setCurrentCity(String currentCity) {
-		this.currentCity = currentCity;
+		public String getType() {
+			return type;
+		}
+		
 	}
-
 }

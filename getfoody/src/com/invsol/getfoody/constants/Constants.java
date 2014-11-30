@@ -11,6 +11,19 @@ public class Constants {
 		// ----------------------------------------------------------------------------------
 		
 		/**
+		 * WhizAPI Details
+		 */
+		public static final String APP_KEY = "u58lckoymhdvgw5zkysli5t4";
+		public static final String WHIZ_API_BASE_URL = "https://www.WhizAPI.com/api/v2/util/ui/in/";
+		public static final String WHIZ_API_GET_STATES_URL = "indian-states-list";
+		public static final String WHIZ_API_GET_CITIES_URL = "indian-city-by-state";
+		public static final String WHIZ_JSON_STATE_ID = "stateid";
+		public static final String WHIZ_JSON_APPKEY = "appkey";
+		public static final String WHIZ_JSON_DATA = "Data";
+		public static final String WHIZ_JSON_RESPONSE_CODE = "ResponseCode";
+		// ----------------------------------------------------------------------------------
+		
+		/**
 	     * Shared Preference Name
 	     */
 	    public static final String DATABASE_PREF_NAME = "offonbLoginPrefName";

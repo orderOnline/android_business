@@ -24,7 +24,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class FillRestaurantDetailsActivity extends ActionBarActivity implements ActivityUpdateListener{
@@ -69,6 +74,25 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 		sat_btn.setOnClickListener(new ClosedOnClickListener());
 		TextView sun_btn = (TextView)findViewById(R.id.textview_profile_alphabet_sun);
 		sun_btn.setOnClickListener(new ClosedOnClickListener());
+		
+		Spinner state_spinner = (Spinner)findViewById(R.id.spinner_profile_state);
+		state_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				Bundle data = new Bundle();
+				data.putString(Constants.WHIZ_JSON_STATE_ID, ""+(position+1));
+				AppEventsController.getInstance().handleEvent(
+						NetworkEvents.EVENT_ID_GET_CITIES, data, view);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+		});
+		AppEventsController.getInstance().handleEvent(
+				NetworkEvents.EVENT_ID_GET_STATES, null, state_spinner);
 	}
 	
 	@Override
@@ -106,8 +130,29 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 
 	@Override
 	public void updateActivity(String tag) {
-		// TODO Auto-generated method stub
-		
+		if( tag.equals("States") ){
+			switch(connModel.getConnectionStatus()){
+			case ConnectionModel.SUCCESS:{
+				final Spinner spinner = (Spinner) findViewById(R.id.spinner_profile_state);
+			    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+			        android.R.layout.simple_spinner_item, AppEventsController.getInstance().getModelFacade().getLocalModel().getStatesNames());
+			    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			    spinner.setAdapter(adapter);
+			}
+			break;
+			}
+		}else if( tag.equals("Cities") ){
+			switch(connModel.getConnectionStatus()){
+			case ConnectionModel.SUCCESS:{
+				final Spinner spinner = (Spinner) findViewById(R.id.spinner_profile_city);
+			    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+			        android.R.layout.simple_spinner_item, AppEventsController.getInstance().getModelFacade().getLocalModel().getCitiesNames());
+			    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			    spinner.setAdapter(adapter);
+			}
+			break;
+			}
+		}
 	}
 	
 	private class ClosedOnClickListener implements OnClickListener{

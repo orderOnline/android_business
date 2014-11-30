@@ -116,7 +116,26 @@ public class AppEventsController {
 			}
 		}
 			break;
+		case NetworkEvents.EVENT_ID_GET_STATES:{
+			try {
+				modelFacade.getRemoteModel().getStates(eventData,
+						NetworkResponseHandler.WHIZ_STATES_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
 		}
+		break;
+		case NetworkEvents.EVENT_ID_GET_CITIES:{
+			try {
+				modelFacade.getRemoteModel().getCities(eventData,
+						NetworkResponseHandler.WHIZ_CITIES_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
+		}
+		
 	}
 
 	// ---------------------------------------------------------------------------------

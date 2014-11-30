@@ -119,4 +119,45 @@ public class RemoteModel {
 					R.string.error_no_network_connection)));
 		}		
 	}
+	
+	public void getStates(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.WHIZ_API_BASE_URL + Constants.WHIZ_API_GET_STATES_URL);
+			httpParams.setRequestHeaders(Constants.WHIZ_JSON_APPKEY, Constants.APP_KEY);
+			httpParams.setRequestMethod(HttpParams.HTTP_GET);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
+	
+	public void getCities(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.WHIZ_API_BASE_URL + Constants.WHIZ_API_GET_CITIES_URL);
+			httpParams.setRequestHeaders(Constants.WHIZ_JSON_STATE_ID, params.getString(Constants.WHIZ_JSON_STATE_ID));
+			httpParams.setRequestHeaders(Constants.WHIZ_JSON_APPKEY, Constants.APP_KEY);
+			httpParams.setRequestMethod(HttpParams.HTTP_GET);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
 }

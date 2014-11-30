@@ -25,6 +25,8 @@ public class NetworkResponseHandler {
 	public static final Handler REGISTERUSER_HANDLER = registerUserHandler();
 	public static final Handler REGISTERUSER_VALIDATEOTP_HANDLER = registerUserValidateOTPHandler();
 	public static final Handler EDITPROFILE_HANDLER = editProfileHandler();
+	public static final Handler WHIZ_STATES_HANDLER = whizStatesHandler();
+	public static final Handler WHIZ_CITIES_HANDLER = whizCitiesHandler();
 	
 	private static Handler authenticateUserHandler() {
 		return new Handler() {
@@ -62,6 +64,82 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler whizStatesHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject stateResp = ((JSONObject) msg.obj);
+						if( stateResp.getInt(Constants.WHIZ_JSON_RESPONSE_CODE) == 0 ){
+							JSONArray resp = ((JSONObject) msg.obj).getJSONArray(Constants.WHIZ_JSON_DATA);
+							AppEventsController.getInstance().getModelFacade().getLocalModel().setStatesData(resp);
+							model.setConnectionStatus(ConnectionModel.SUCCESS);
+							model.notifyView("States");
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+	
+	private static Handler whizCitiesHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject stateResp = ((JSONObject) msg.obj);
+						if( stateResp.getInt(Constants.WHIZ_JSON_RESPONSE_CODE) == 0 ){
+							JSONArray resp = ((JSONObject) msg.obj).getJSONArray(Constants.WHIZ_JSON_DATA);
+							AppEventsController.getInstance().getModelFacade().getLocalModel().setCitiesData(resp);
+							model.setConnectionStatus(ConnectionModel.SUCCESS);
+							model.notifyView("Cities");
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler editProfileHandler() {
 		return new Handler() {
 			@Override

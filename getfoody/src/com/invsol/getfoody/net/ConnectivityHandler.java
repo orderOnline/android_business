@@ -59,6 +59,7 @@ public class ConnectivityHandler {
 		Bundle bundle = params.getRequestParamsBundle();
 		String finalUrl = bundle.getString(HttpParams.REQUEST_URL) + "?"
 				+ encodeUrl(bundle.getBundle(HttpParams.REQUEST_HEADERS));
+		Log.d("final url>>", finalUrl);
 		String requestMethod = bundle.getString(HttpParams.REQUEST_METHOD);
 
 		URL url;
