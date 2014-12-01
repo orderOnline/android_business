@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.invsol.getfoody.R;
+import com.invsol.getfoody.adapters.CuisinesAdapter;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.defines.NetworkEvents;
@@ -59,6 +60,9 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 			}
 		});
 		
+		Spinner spinner = (Spinner) findViewById(R.id.spinner_profile_cuisines);
+		CuisinesAdapter cuisineAdapter = new CuisinesAdapter(this, R.layout.item_cuisine, AppEventsController.getInstance().getModelFacade().getLocalModel().getCuisines());
+	    spinner.setAdapter(cuisineAdapter);
 		
 		TextView mon_btn = (TextView)findViewById(R.id.textview_profile_alphabet_mon);
 		mon_btn.setOnClickListener(new ClosedOnClickListener());

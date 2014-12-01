@@ -4,13 +4,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.invsol.getfoody.dataobjects.CuisinesItems;
+
 
 public class LocalModel {
 	
 	private StateModel[] states;
 	private String[] statesNames;
 	private String[] citiesNames;
-	private CuisinesModel[] cuisines;
+	private CuisinesItems[] cuisines;
 	private String[] cuisineNames;
 
 	public LocalModel() {
@@ -52,13 +54,13 @@ public class LocalModel {
 	}
 	
 	public void setCuisinesData( JSONArray cuisinesArray ){
-		cuisines = new CuisinesModel[cuisinesArray.length()];
+		cuisines = new CuisinesItems[cuisinesArray.length()];
 		cuisineNames = new String[cuisinesArray.length()];
 		JSONObject tempCuisine = null;
 		for( int i = 0; i < cuisinesArray.length(); i++ ){
 			try {
 				tempCuisine = cuisinesArray.getJSONObject(i);
-				cuisines[i] = new CuisinesModel(tempCuisine.getInt("cuisine_id"), tempCuisine.getString("cuisine_name"));
+				cuisines[i] = new CuisinesItems(tempCuisine.getInt("cuisine_id"), tempCuisine.getString("cuisine_name"));
 				cuisineNames[i] = tempCuisine.getString("cuisine_name");
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -77,14 +79,14 @@ public class LocalModel {
 		return citiesNames;
 	}
 
-
-
-	public CuisinesModel[] getCuisines() {
-		return cuisines;
-	}
-
 	public String[] getCuisineNames() {
 		return cuisineNames;
+	}
+
+
+
+	public CuisinesItems[] getCuisines() {
+		return cuisines;
 	}
 
 
@@ -110,24 +112,6 @@ public class LocalModel {
 		public String getType() {
 			return type;
 		}
-		
-	}
-	
-	private class CuisinesModel{
-		private String cuisines_name;
-		private int cuisine_id;
-		public CuisinesModel(int cuisine_id, String cuisines_name) {
-			super();
-			this.cuisines_name = cuisines_name;
-			this.cuisine_id = cuisine_id;
-		}
-		public String getCuisines_name() {
-			return cuisines_name;
-		}
-		public int getCuisine_id() {
-			return cuisine_id;
-		}
-		
 		
 	}
 }

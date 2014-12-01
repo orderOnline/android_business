@@ -64,8 +64,6 @@ public class NetworkResponseHandler {
 						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
 						JSONArray restData = resp.getJSONArray(Constants.JSON_RESPONSE);
 						AppEventsController.getInstance().getModelFacade().getLocalModel().setCuisinesData(restData);
-						//model.setConnectionStatus(ConnectionModel.SUCCESS);
-						//model.notifyView("Cuisines");
 						
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block

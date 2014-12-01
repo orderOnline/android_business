@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.CuisinesAdapter;
+import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.dataobjects.CuisinesItems;
 
 public class CuisinesActivity extends ActionBarActivity{
@@ -22,13 +23,8 @@ public class CuisinesActivity extends ActionBarActivity{
 		
 		ListView listView_reviews_items = (ListView) findViewById(R.id.listview_cuisines);
 
-		CuisinesItems[] cuisinesDataItems = new CuisinesItems[10];
-		for (int i = 0; i < 10; i++) {
-			cuisinesDataItems[i] = new CuisinesItems("dummy text");
-		}
-
 		CuisinesAdapter adapter = new CuisinesAdapter(
-				this, R.layout.activity_cuisines, cuisinesDataItems);
+				this, R.layout.activity_cuisines, AppEventsController.getInstance().getModelFacade().getLocalModel().getCuisines());
 		listView_reviews_items.setAdapter(adapter);
 		
 		TextView btn_next = (TextView)findViewById(R.id.btn_next);

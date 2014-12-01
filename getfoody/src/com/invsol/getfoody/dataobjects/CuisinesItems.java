@@ -2,10 +2,12 @@ package com.invsol.getfoody.dataobjects;
 
 public class CuisinesItems {
 	
+	private int cuisineID;
 	private String cuisineName;
 
-	public CuisinesItems(String cuisineName) {
+	public CuisinesItems(int cuisineID, String cuisineName) {
 		super();
+		this.cuisineID = cuisineID;
 		this.cuisineName = cuisineName;
 	}
 
@@ -13,10 +15,9 @@ public class CuisinesItems {
 		return cuisineName;
 	}
 
-	public void setCuisineName(String cuisineName) {
-		this.cuisineName = cuisineName;
+	public int getCuisineID() {
+		return cuisineID;
 	}
 	
 	
-
 }
