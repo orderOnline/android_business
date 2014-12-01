@@ -22,6 +22,7 @@ public class NetworkResponseHandler {
 	public static final Handler EDITPROFILE_HANDLER = editProfileHandler();
 	public static final Handler WHIZ_STATES_HANDLER = whizStatesHandler();
 	public static final Handler WHIZ_CITIES_HANDLER = whizCitiesHandler();
+	public static final Handler CUISINES_HANDLER = cuisinesHandler();
 	
 	private static Handler loginUserHandler() {
 		return new Handler() {
@@ -50,6 +51,42 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler cuisinesHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONArray restData = resp.getJSONArray(Constants.JSON_RESPONSE);
+						AppEventsController.getInstance().getModelFacade().getLocalModel().setCuisinesData(restData);
+						//model.setConnectionStatus(ConnectionModel.SUCCESS);
+						//model.notifyView("Cuisines");
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler whizStatesHandler() {
 		return new Handler() {
 			@Override

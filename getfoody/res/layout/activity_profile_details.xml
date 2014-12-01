@@ -150,6 +150,15 @@
         <Spinner
             android:id="@+id/spinner_profile_city"
             style="@style/SpinnerStyle" />
+        
+        <TextView
+            android:id="@+id/textview_profile_selectcuisines"
+            style="@style/H2TextViewStyle"
+            android:text="@string/text_editprofile_cuisines" />
+
+        <Spinner
+            android:id="@+id/spinner_profile_cuisines"
+            style="@style/SpinnerStyle" />
 
         <TextView
             android:id="@+id/btn_next"

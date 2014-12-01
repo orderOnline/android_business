@@ -167,6 +167,9 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				LoginActivity.this.startActivity(screenChangeIntent);
 			}
 		});
+		
+		AppEventsController.getInstance().handleEvent(
+				NetworkEvents.EVENT_ID_GET_CUISINES, null, textview_createaccount);
 	}
 	
 	@Override

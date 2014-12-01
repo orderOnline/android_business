@@ -161,4 +161,23 @@ public class RemoteModel {
 					R.string.error_no_network_connection)));
 		}		
 	}
+	
+	public void getCuisines(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_GET_CUISINES_REQUEST);
+			httpParams.setRequestMethod(HttpParams.HTTP_GET);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
 }

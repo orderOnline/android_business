@@ -11,5 +11,5 @@ public class NetworkEvents {
 	public static final int EVENT_ID_REGISTER_VALIDATEOTP = 3;
 	public static final int EVENT_ID_GET_STATES = 4;
 	public static final int EVENT_ID_GET_CITIES = 5;
-	
+	public static final int EVENT_ID_GET_CUISINES = 6;
 }

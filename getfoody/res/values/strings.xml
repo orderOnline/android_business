@@ -81,6 +81,7 @@
     <string name="text_editprofile_alphabet_friday">F</string>
     <string name="text_editprofile_alphabet_saturday">S</string>
     <string name="text_editprofile_alphabet_sunday">S</string>
+    <string name="text_editprofile_cuisines"><i>cuisines*</i></string>
     
     <!-- Legal Specific Strings -->
     <string name="text_legaldetails">Legal Details</string>

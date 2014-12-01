@@ -93,6 +93,8 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 		});
 		AppEventsController.getInstance().handleEvent(
 				NetworkEvents.EVENT_ID_GET_STATES, null, state_spinner);
+		
+		
 	}
 	
 	@Override

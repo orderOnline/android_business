@@ -8,6 +8,7 @@ public class Constants {
 		public static final String URL_POST_LOGIN_REQUEST = "login/business.json";
 		public static final String URL_POST_VALIDATEOTP_REQUEST = "register/business/validateotp.json";
 		public static final String URL_POST_PROFILE_REQUEST = "profile/business/";
+		public static final String URL_GET_CUISINES_REQUEST = "cuisines/all.json";
 		// ----------------------------------------------------------------------------------
 		
 		/**

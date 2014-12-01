@@ -1,11 +1,14 @@
 package com.invsol.getfoody.models;
 
+import org.json.JSONObject;
+
 import android.util.Log;
 
 public class RestaurantModel {
 	private String gcm_registration_key;
-	private int restaurant_id;
+	private int restaurant_id, zipcode;
 	private long phonenumber;
+	private String name, email, address, city, state, service_starttime, service_endtime;
 	
 	public RestaurantModel(){
 		
@@ -36,5 +39,7 @@ public class RestaurantModel {
 		this.phonenumber = phonenumber;
 	}
 	
-	
+	public void setRestaurantProfileDetails(JSONObject profileDetails ){
+		
+	}
 }
