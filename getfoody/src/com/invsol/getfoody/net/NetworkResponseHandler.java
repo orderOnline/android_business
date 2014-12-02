@@ -172,10 +172,9 @@ public class NetworkResponseHandler {
 					Log.d("response==", ((JSONObject) msg.obj).toString());
 					try {
 						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
-						JSONObject restData = (JSONObject)resp.getJSONObject(Constants.JSON_RESPONSE);
-						if( (restData.get(Constants.JSON_VALID_OTP_CODE)).equals(Constants.JSON_VALID_OTP_CODE) ){
+						if( (resp.get(Constants.JSON_TYPE)).equals(Constants.JSON_SUCCESS) ){
 							model.setConnectionStatus(ConnectionModel.SUCCESS);
-							model.notifyView("OTPValid");
+							model.notifyView("EditProfile");
 						}
 						
 					} catch (JSONException e) {

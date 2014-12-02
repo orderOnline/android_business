@@ -94,6 +94,7 @@
         <item>Cuisines</item>
         <item>Menu</item>
     </string-array>
+    <string name="text_fillrestarantdetails_fields_mandatory">Please fill required fields.</string>
     
     <!-- Menu Specific Strings -->
     <string name="text_menudetails">Menu Details</string>

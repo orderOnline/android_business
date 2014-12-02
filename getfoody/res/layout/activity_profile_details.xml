@@ -37,12 +37,12 @@
             android:inputType="text" >
         </EditText>
 
-        <EditText
+        <!-- <EditText
             android:id="@+id/edittext_profile_phonenumber"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_phonenumber"
             android:inputType="phone" >
-        </EditText>
+        </EditText> -->
 
         <EditText
             android:id="@+id/edittext_profile_email"
@@ -55,14 +55,14 @@
             android:id="@+id/edittext_profile_service_starttime"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_service_start_time"
-            android:inputType="time" >
+            android:inputType="text" >
         </EditText>
 
         <EditText
             android:id="@+id/edittext_profile_service_endtime"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_service_close_time"
-            android:inputType="time" >
+            android:inputType="text" >
         </EditText>
 
         <TextView
@@ -71,6 +71,7 @@
             android:text="@string/text_editprofile_closedon" />
 
         <LinearLayout
+            android:id="@+id/closedon_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/items_h2textview_horizontal_margin"
@@ -130,7 +131,7 @@
             android:id="@+id/edittext_profile_pincode"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_pincode"
-            android:inputType="text" >
+            android:inputType="number" >
         </EditText>
 
         <TextView

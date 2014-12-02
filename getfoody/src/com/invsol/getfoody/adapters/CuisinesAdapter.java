@@ -6,9 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.invsol.getfoody.R;
+import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.dataobjects.CuisinesItems;
 
 public class CuisinesAdapter  extends ArrayAdapter<CuisinesItems> {
@@ -45,7 +49,7 @@ public class CuisinesAdapter  extends ArrayAdapter<CuisinesItems> {
 					.getLayoutInflater();
 			convertView = layout_inflator.inflate(R.layout.item_cuisine, parent, false);
 			holder.dataCell_cuisinetext = (TextView) convertView.findViewById(R.id.textview_cuisine);
-
+			holder.dataCell_isChecked = (CheckBox)convertView.findViewById(R.id.checkbox_cuisine);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -54,8 +58,13 @@ public class CuisinesAdapter  extends ArrayAdapter<CuisinesItems> {
 
 		CuisinesItems item = cuisinesItem[position];
 		holder.dataCell_cuisinetext.setText(item.getCuisineName());
+		holder.dataCell_isChecked.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
-
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				AppEventsController.getInstance().getModelFacade().getLocalModel().getCuisines()[position].setChecked(isChecked);
+			}
+		});
 		return convertView;
 	}
 
@@ -64,6 +73,7 @@ public class CuisinesAdapter  extends ArrayAdapter<CuisinesItems> {
 	 */
 	static class ViewHolder {
 		private TextView dataCell_cuisinetext;
+		private CheckBox dataCell_isChecked;
 	}
 
 }
