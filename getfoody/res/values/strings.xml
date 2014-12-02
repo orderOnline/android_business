@@ -85,6 +85,7 @@
     
     <!-- Legal Specific Strings -->
     <string name="text_legaldetails">Legal Details</string>
+    <string name="text_legal_required">Please select all.</string>
     
     <!-- Cuisines Specific Strings -->
     <string name="text_cuisinesdetails">Cusinies Details</string>
