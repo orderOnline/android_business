@@ -9,6 +9,8 @@ public class Constants {
 		public static final String URL_POST_VALIDATEOTP_REQUEST = "register/business/validateotp.json";
 		public static final String URL_POST_PROFILE_REQUEST = "profile/business/";
 		public static final String URL_GET_CUISINES_REQUEST = "cuisines/all.json";
+		public static final String URL_POST_CATEGORY_REQUEST = "category/";
+		public static final String URL_POST_MENUITEM_REQUEST = "menuitem/";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -64,5 +66,11 @@ public class Constants {
 		public static final String JSON_CUISINES = "cuisines";
 		public static final String JSON_TYPE = "type";
 		public static final String JSON_SUCCESS = "success";
+		public static final String JSON_CATEGORYID = "category_id";
+		public static final String JSON_CATEGORYNAME = "category_name";
+		public static final String JSON_ITEMID = "item_id";
+		public static final String JSON_ITEMNAME = "name";
+		public static final String JSON_ITEMPRICE = "price";
+		public static final String JSON_ITEMTYPE = "type";
 		// ----------------------------------------------------------------------------------
 }

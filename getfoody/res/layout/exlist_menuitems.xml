@@ -8,36 +8,41 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content" 
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_weight="1">
 
     <TextView
         android:id="@+id/lblListItem_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:paddingLeft="24dp" />
+        android:layout_weight="2"
+        android:paddingLeft="24dp"
+        android:textSize="20sp" />
     
     <TextView
         android:id="@+id/lblListItem_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:paddingLeft="24dp" />
+        android:layout_weight="1"
+        android:paddingLeft="24dp"
+        android:textSize="14sp" />
+
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView_menuedit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_content_edit"
-        android:contentDescription="@string/cd_img" />
+        android:clickable="true"
+        android:contentDescription="@string/cd_img"
+        android:src="@drawable/ic_editor_mode_edit" />
     
     <ImageView
         android:id="@+id/imageView_menudelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_content_discard"
-        android:contentDescription="@string/cd_img" />
+        android:clickable="true"
+        android:contentDescription="@string/cd_img"
+        android:src="@drawable/ic_action_delete" />
 
 </LinearLayout>

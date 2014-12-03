@@ -314,6 +314,7 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 		}else if( tag.equals("EditProfile") ){
 			switch(connModel.getConnectionStatus()){
 			case ConnectionModel.SUCCESS:{
+				connModel.unregisterAllView();
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(FillRestaurantDetailsActivity.this,
 						LegalActivity.class);

@@ -2,17 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingTop="8dp"
     android:paddingBottom="8dp">
 
-
     <TextView
         android:id="@+id/lblListHeader"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="16sp"
-        android:textColor="#dd4b39" />
+        android:textColor="#dd4b39"
+        android:textSize="20sp" />
+    
+    <ImageView
+        android:id="@+id/imageView_catadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/cd_img"
+        android:src="@drawable/ic_content_add" />
+    
+    <ImageView
+        android:id="@+id/imageView_catedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/cd_img"
+        android:src="@drawable/ic_editor_mode_edit" />
+    
+    <ImageView
+        android:id="@+id/imageView_catdelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/cd_img"
+        android:src="@drawable/ic_action_delete" />
 
 </LinearLayout>

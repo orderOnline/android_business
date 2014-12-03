@@ -35,7 +35,7 @@ public class LegalActivity extends ActionBarActivity{
 					chkbox4.isChecked()){
 					Intent screenChangeIntent = null;
 					screenChangeIntent = new Intent(LegalActivity.this,
-							CuisinesActivity.class);
+							MenuActivity.class);
 					LegalActivity.this.startActivity(screenChangeIntent);
 				}else{
 					AlertDialog.Builder builder = new AlertDialog.Builder(

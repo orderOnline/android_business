@@ -23,6 +23,8 @@ public class NetworkResponseHandler {
 	public static final Handler WHIZ_STATES_HANDLER = whizStatesHandler();
 	public static final Handler WHIZ_CITIES_HANDLER = whizCitiesHandler();
 	public static final Handler CUISINES_HANDLER = cuisinesHandler();
+	public static final Handler NEWCATEGORY_HANDLER = newcategoryHandler();
+	public static final Handler NEWMENUITEM_HANDLER = newMenuItemHandler();
 	
 	private static Handler loginUserHandler() {
 		return new Handler() {
@@ -51,6 +53,76 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler newMenuItemHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = resp.getJSONObject(Constants.JSON_RESPONSE);
+						AppEventsController.getInstance().getModelFacade().getLocalModel().addMenuItem(restData);
+						model.setConnectionStatus(ConnectionModel.SUCCESS);
+						model.notifyView("MenuItemAdd");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
+	private static Handler newcategoryHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = resp.getJSONObject(Constants.JSON_RESPONSE);
+						AppEventsController.getInstance().getModelFacade().getLocalModel().addCategory(restData);
+						model.setConnectionStatus(ConnectionModel.SUCCESS);
+						model.notifyView("CategoryAdd");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler cuisinesHandler() {
 		return new Handler() {
 			@Override

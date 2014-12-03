@@ -143,6 +143,24 @@ public class AppEventsController {
 			}
 		}
 		break;
+		case NetworkEvents.EVENT_ID_POST_CATEGORY:{
+			try {
+				modelFacade.getRemoteModel().postCategory(eventData,
+						NetworkResponseHandler.NEWCATEGORY_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
+		case NetworkEvents.EVENT_ID_POST_MENUITEM:{
+			try {
+				modelFacade.getRemoteModel().postMenuItem(eventData,
+						NetworkResponseHandler.NEWMENUITEM_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
 		}
 	}
 

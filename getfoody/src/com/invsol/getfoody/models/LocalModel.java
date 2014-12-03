@@ -1,10 +1,19 @@
 package com.invsol.getfoody.models;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Vector;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.SparseArray;
+
+import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.dataobjects.CategoryItem;
 import com.invsol.getfoody.dataobjects.CuisinesItems;
+import com.invsol.getfoody.dataobjects.MenuItem;
 
 
 public class LocalModel {
@@ -14,9 +23,12 @@ public class LocalModel {
 	private String[] citiesNames;
 	private CuisinesItems[] cuisines;
 	private String[] cuisineNames;
+	private SparseArray<CategoryItem> categories;
+	private HashMap<String, ArrayList<MenuItem>> menuItems;
 
 	public LocalModel() {
-		 
+		 categories = new SparseArray<CategoryItem>();
+		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
 	}
 	
 	public void setStatesData( JSONArray statesArray ){
@@ -46,6 +58,38 @@ public class LocalModel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public void addCategory(JSONObject categoryData ){
+		CategoryItem item=null;
+		try {
+			item = new CategoryItem(categoryData.getInt(Constants.JSON_CATEGORYID), categoryData.getString(Constants.JSON_CATEGORYNAME));
+			categories.put(categoryData.getInt(Constants.JSON_CATEGORYID), item);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void addMenuItem( JSONObject menuitemData ){
+		MenuItem item = null;
+		try {
+			item = new MenuItem(menuitemData.getInt(Constants.JSON_ITEMID), menuitemData.getInt(Constants.JSON_ITEMPRICE), 
+					menuitemData.getInt(Constants.JSON_CATEGORYID), menuitemData.getString(Constants.JSON_ITEMNAME), menuitemData.getString(Constants.JSON_ITEMTYPE));
+			String catName = categories.get(menuitemData.getInt(Constants.JSON_CATEGORYID)).getCategory_name();
+			if(menuItems.containsKey(catName))
+			{
+				ArrayList<MenuItem>tempItemArray = (ArrayList<MenuItem>)menuItems.get(catName);
+				tempItemArray.add(item);
+			}else{
+				ArrayList<MenuItem> itemArray = new ArrayList<MenuItem>();
+				itemArray.add(item);
+				menuItems.put(catName, itemArray);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -89,7 +133,17 @@ public class LocalModel {
 		return cuisines;
 	}
 
+	
 
+
+
+	public SparseArray<CategoryItem> getCategories() {
+		return categories;
+	}
+
+	public HashMap<String, ArrayList<MenuItem>> getMenuItems() {
+		return menuItems;
+	}
 
 	private class StateModel {
 		private String id, name, type;
