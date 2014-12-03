@@ -39,7 +39,7 @@ public class RemoteModel {
 			Log.v(TAG, "Request Data=====>" + requestData);
 
 			NetworkAsyncTask asyncTask = new NetworkAsyncTask(
-					view.getContext(), "Connecting...", listener);
+					view.getContext(), "Connecting...", listener, true);
 			asyncTask.execute(httpParams);
 		} else {
 			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION,
@@ -63,7 +63,7 @@ public class RemoteModel {
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -87,7 +87,7 @@ public class RemoteModel {
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -104,14 +104,14 @@ public class RemoteModel {
 		{
 			HttpParams httpParams = new HttpParams();
 			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_PROFILE_REQUEST + params.getString(Constants.JSON_RESTAURANT_ID) + ".json");
-			httpParams.setRequestMethod(HttpParams.HTTP_POST);
+			httpParams.setRequestMethod(HttpParams.HTTP_PUT);
 			
 			//String requestData = CommonUtils.createPostdata(params);
 			String requestData = params.getString(Constants.JSON_POST_DATA);
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -131,7 +131,7 @@ public class RemoteModel {
 			httpParams.setRequestHeaders(Constants.WHIZ_JSON_APPKEY, Constants.APP_KEY);
 			httpParams.setRequestMethod(HttpParams.HTTP_GET);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, false);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -152,7 +152,7 @@ public class RemoteModel {
 			httpParams.setRequestHeaders(Constants.WHIZ_JSON_APPKEY, Constants.APP_KEY);
 			httpParams.setRequestMethod(HttpParams.HTTP_GET);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, false);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -171,7 +171,7 @@ public class RemoteModel {
 			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_GET_CUISINES_REQUEST);
 			httpParams.setRequestMethod(HttpParams.HTTP_GET);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, false);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -194,7 +194,7 @@ public class RemoteModel {
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
 			asyncTask.execute(httpParams);
 		}
 		else
@@ -217,7 +217,7 @@ public class RemoteModel {
 			httpParams.setRequestData(requestData);
 			Log.v(TAG, "Request Data=====>" + requestData);
 			
-			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener);
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
 			asyncTask.execute(httpParams);
 		}
 		else

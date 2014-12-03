@@ -36,6 +36,8 @@ public class HttpParams {
 
 	public static final String HTTP_GET = "GET";
 	public static final String HTTP_POST = "POST";
+	public static final String HTTP_PUT = "PUT";
+	public static final String HTTP_DELETE = "DELETE";
 
 	// -----------------------------------------------------------------------------------------------------------
 
@@ -55,7 +57,7 @@ public class HttpParams {
 	public Bundle getRequestParamsBundle() {
 		requestParamsBundle.putString(REQUEST_URL, requestURL);
 		requestParamsBundle.putString(REQUEST_METHOD, requestMethod);
-		if (requestMethod.equals(HTTP_POST))
+		if (requestMethod.equals(HTTP_POST) || requestMethod.equals(HTTP_PUT))
 			requestParamsBundle.putString(REQUEST_DATA, requestData);
 		requestParamsBundle.putBundle(REQUEST_HEADERS, headersBundle);
 		return requestParamsBundle;

@@ -189,6 +189,11 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 		};
 		//registering our receiver
 		this.registerReceiver(smsReceiver, intentFilter);
+		
+		if(!AppEventsController.getInstance().getModelFacade().getLocalModel().isCuisinesDataReceived()){
+			AppEventsController.getInstance().handleEvent(
+					NetworkEvents.EVENT_ID_GET_CUISINES, null, btn_validateotp);
+		}
 	}
 	
 	@Override

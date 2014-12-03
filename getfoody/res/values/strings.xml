@@ -50,6 +50,8 @@
     <string name="text_button_next">Next</string>
     <string name="text_button_accept_order">Accept</string>
     <string name="text_button_reject_order">Reject</string>
+    <string name="text_button_done">Done</string>
+    <string name="text_button_addcategory">Add Category</string>
     
     <!-- Splash Specific Strings -->
     <string name="text_splash_version">Version </string>
@@ -99,8 +101,6 @@
     
     <!-- Menu Specific Strings -->
     <string name="text_menudetails">Menu Details</string>
-    <string name="text_menuitems_addcategory">ADD CATEGORY</string>
-    <string name="text_menuitems_additem">ADD ITEM</string>
     
     <!-- Add Categories Specific Strings -->
     <string name="text_addcategories_add">Add</string>

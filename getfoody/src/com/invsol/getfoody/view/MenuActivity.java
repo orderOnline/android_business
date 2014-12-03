@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -94,60 +95,20 @@ public class MenuActivity extends ActionBarActivity implements AddCategoryDialog
 			}
 		});
 		
-		/*TextView btn_addmenuitem = (TextView)findViewById(R.id.btn_addmenuitem);
-		btn_addmenuitem.setOnClickListener(new OnClickListener() {
+		TextView btn_done = (TextView)findViewById(R.id.btn_done);
+		btn_done.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
-				// Create an instance of the dialog fragment and show it
-		        final DialogFragment dialog = new AddMenuDialog();
-		        dialog.show(getSupportFragmentManager(), "AddMenuDialogFragment");
-		        //((AlertDialog)dialog.getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+				connModel.unregisterAllView();
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(MenuActivity.this,
+						HomeActivity.class);
+				MenuActivity.this.startActivity(screenChangeIntent);
+				MenuActivity.this.finish();
 			}
-		});*/
+		});
 	}
-	
-/*	
-	 * Preparing the list data
-	 
-	private void prepareListData() {
-		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<String>>();
-
-		// Adding child data
-		listDataHeader.add("Top 250");
-		listDataHeader.add("Now Showing");
-		listDataHeader.add("Coming Soon..");
-
-		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-		top250.add("Pulp Fiction");
-		top250.add("The Good, the Bad and the Ugly");
-		top250.add("The Dark Knight");
-		top250.add("12 Angry Men");
-
-		List<String> nowShowing = new ArrayList<String>();
-		nowShowing.add("The Conjuring");
-		nowShowing.add("Despicable Me 2");
-		nowShowing.add("Turbo");
-		nowShowing.add("Grown Ups 2");
-		nowShowing.add("Red 2");
-		nowShowing.add("The Wolverine");
-
-		List<String> comingSoon = new ArrayList<String>();
-		comingSoon.add("2 Guns");
-		comingSoon.add("The Smurfs 2");
-		comingSoon.add("The Spectacular Now");
-		comingSoon.add("The Canyons");
-		comingSoon.add("Europa Report");
-
-		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-		listDataChild.put(listDataHeader.get(1), nowShowing);
-		listDataChild.put(listDataHeader.get(2), comingSoon);
-	}*/
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {

@@ -25,10 +25,12 @@ public class LocalModel {
 	private String[] cuisineNames;
 	private SparseArray<CategoryItem> categories;
 	private HashMap<String, ArrayList<MenuItem>> menuItems;
+	private boolean isCuisinesDataReceived;
 
 	public LocalModel() {
 		 categories = new SparseArray<CategoryItem>();
 		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
+		 isCuisinesDataReceived = false;
 	}
 	
 	public void setStatesData( JSONArray statesArray ){
@@ -111,6 +113,7 @@ public class LocalModel {
 				e.printStackTrace();
 			}
 		}
+		isCuisinesDataReceived = true;
 	}
 
 	public StateModel[] getStates() {
@@ -136,6 +139,10 @@ public class LocalModel {
 	
 
 
+
+	public boolean isCuisinesDataReceived() {
+		return isCuisinesDataReceived;
+	}
 
 	public SparseArray<CategoryItem> getCategories() {
 		return categories;

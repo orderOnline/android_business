@@ -144,11 +144,11 @@ public class NetworkResponseHandler {
 				}
 					break;
 				case Constants.EXCEPTION: {
-					Exception exceptionObj = (Exception) msg.obj;
+					/*Exception exceptionObj = (Exception) msg.obj;
 					Log.d(TAG, "exception:" + exceptionObj.getMessage());
 					model.setConnectionStatus(ConnectionModel.ERROR);
 					model.setConnectionErrorMessage(exceptionObj.getMessage());
-					model.notifyView("Error");
+					model.notifyView("Error");*/
 				}
 					break;
 				}
@@ -280,8 +280,8 @@ public class NetworkResponseHandler {
 					Log.d("response==", ((JSONObject) msg.obj).toString());
 					try {
 						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
-						JSONObject restData = (JSONObject)resp.getJSONObject(Constants.JSON_RESPONSE);
-						if( (restData.get(Constants.JSON_VALID_OTP_CODE)).equals(Constants.JSON_VALID_OTP_CODE) ){
+						String restData = resp.getString(Constants.JSON_RESPONSE);
+						if( restData.equals(Constants.JSON_VALID_OTP_CODE) ){
 							model.setConnectionStatus(ConnectionModel.SUCCESS);
 							model.notifyView("OTPValid");
 						}

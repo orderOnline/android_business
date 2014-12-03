@@ -1,8 +1,11 @@
 package com.invsol.getfoody.view;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -148,21 +151,14 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 		            @Override
 		            public void onTimeSet(TimePicker view, int hourOfDay,
 		                    int minute) {
-		            	int hour;
-		            	String am_pm;
-		            	if (hourOfDay > 12)         //hourofDay =13
-		            	{
-		            	 hour = hourOfDay - 12;     //hour=1
-		            	 am_pm = "PM";                   //PM
-		            	} 
-		            	else 
-		            	{
-		            	 hour = hourOfDay;
-		            	 am_pm = "AM";
-		            	}
-		            	((EditText) getWindow().getCurrentFocus()).setText(hour + " : " + minute + " " + am_pm);
+		            	Calendar mCalendar = Calendar.getInstance();
+		                mCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+		                mCalendar.set(Calendar.MINUTE, minute);
+		                mCalendar.set(Calendar.SECOND, 0);
+		                String time = new SimpleDateFormat("HH:mm:ss").format(mCalendar.getTime());
+		            	((EditText) getWindow().getCurrentFocus()).setText(time);
 		            }
-		        }, 11, 00, false);
+		        }, 11, 00, true);
 		service_starttime.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
 			@Override
@@ -179,6 +175,11 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 					tpd.show();
 			}
 		});
+		
+		if(!AppEventsController.getInstance().getModelFacade().getLocalModel().isCuisinesDataReceived()){
+			AppEventsController.getInstance().handleEvent(
+					NetworkEvents.EVENT_ID_GET_CUISINES, null, service_endtime);
+		}
 	}
 	
 	@Override
@@ -215,28 +216,29 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 		String state = ((Spinner)findViewById(R.id.spinner_profile_state)).getSelectedItem().toString();
 		String city = ((Spinner)findViewById(R.id.spinner_profile_city)).getSelectedItem().toString();
 		LinearLayout closedonLayout = (LinearLayout)findViewById(R.id.closedon_layout);
-		int[] closedOnArray = new int[7];
-		for(int i = 0; i < closedOnArray.length; i++ ){
+		JSONArray closedOnArray = new JSONArray();
+		for(int i = 0; i < 7; i++ ){
 			Log.d("closedon>>>", ""+closedonLayout.getChildAt(i).isSelected());
 			if( closedonLayout.getChildAt(i).isSelected() )
-				closedOnArray[i] = 1;
+				closedOnArray.put(1);
 			else
-				closedOnArray[i] = 0;
+				closedOnArray.put(0);
 		}
 		
 		CuisinesItems[] items = AppEventsController.getInstance().getModelFacade().getLocalModel().getCuisines();
-		int[] cuisinesIDArray = null;
+		JSONArray cuisinesIDArray = null;
 		int cuisinesSelectedCount = 0;
-		for(int i = 0; i < cuisinesIDArray.length; i++ ){
+		for(int i = 0; i < items.length; i++ ){
 			if( items[i].isChecked() )
 				cuisinesSelectedCount++;
 		}
 		if( cuisinesSelectedCount > 0){
-			cuisinesIDArray = new int[cuisinesSelectedCount];
+			cuisinesIDArray = new JSONArray();
 			for(int i = 0; i < items.length; i++ ){
 				Log.d("cuisines>>>", ""+items[i].isChecked());
-				if( items[i].isChecked() )
-					cuisinesIDArray[i] = items[i].getCuisineID();
+				if( items[i].isChecked() ){
+					cuisinesIDArray.put(items[i].getCuisineID());
+				}
 			}
 		}
 		
@@ -271,15 +273,16 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 					postData.put(Constants.JSON_STARTTIME, start_time);
 					postData.put(Constants.JSON_ENDTIME, end_time);
 					postData.put(Constants.JSON_ADDRESS, address);
-					postData.put(Constants.JSON_CITY, city);
-					postData.put(Constants.JSON_STATE, state);
+					postData.put(Constants.JSON_CITY, city.trim());
+					postData.put(Constants.JSON_STATE, state.trim());
 					postData.put(Constants.JSON_ZIPCODE, Integer.parseInt(pincode));
 					postData.put(Constants.JSON_CUISINES, cuisinesIDArray);
 					postData.put(Constants.JSON_CLOSEDON, closedOnArray);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				eventData.putInt(Constants.JSON_RESTAURANT_ID, AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
+				//eventData.putString(Constants.JSON_RESTAURANT_ID, ""+AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
+				eventData.putString(Constants.JSON_RESTAURANT_ID, ""+19);
 				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 				AppEventsController.getInstance().handleEvent(
 						NetworkEvents.EVENT_ID_EDIT_PROFILE, eventData, view);
@@ -319,6 +322,7 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 				screenChangeIntent = new Intent(FillRestaurantDetailsActivity.this,
 						LegalActivity.class);
 				FillRestaurantDetailsActivity.this.startActivity(screenChangeIntent);
+				FillRestaurantDetailsActivity.this.finish();
 			}
 			break;
 			}

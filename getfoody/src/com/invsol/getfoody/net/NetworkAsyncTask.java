@@ -24,26 +24,30 @@ public class NetworkAsyncTask extends AsyncTask<HttpParams, String, byte[]> {
 	private ConnectivityHandler connHandler;
 	private byte[] responseData = null;
 	private boolean exceptionRaised;
+	private boolean showProgress = true;
 
 	public NetworkAsyncTask(Context context, String progressMsg,
-			Handler listener) {
+			Handler listener, boolean showProgress) {
 		super();
 		this.reqContext = context;
 		this.progressMsg = progressMsg;
 		this.responseListener = listener;
 		connHandler = new ConnectivityHandler(context);
 		exceptionRaised = false;
+		this.showProgress = showProgress;
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 
-		pDialog = new ProgressDialog(reqContext);
-		pDialog.setMessage(progressMsg);
-		pDialog.setIndeterminate(false);
-		pDialog.setCancelable(false);
-		pDialog.show();
+		if( showProgress ){
+			pDialog = new ProgressDialog(reqContext);
+			pDialog.setMessage(progressMsg);
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
 	}
 
 	@Override
@@ -73,8 +77,8 @@ public class NetworkAsyncTask extends AsyncTask<HttpParams, String, byte[]> {
 		if (!exceptionRaised) {
 			validateJsonData(responseData);
 		}
-		// dismiss the dialog after getting all products
-		pDialog.dismiss();
+		if( showProgress )
+			pDialog.dismiss();
 	}
 
 	/**

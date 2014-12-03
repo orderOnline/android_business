@@ -163,13 +163,15 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 				connModel.unregisterAllView();
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(LoginActivity.this,
-						MenuActivity.class);
+						SignupActivity.class);
 				LoginActivity.this.startActivity(screenChangeIntent);
 			}
 		});
 		
-		AppEventsController.getInstance().handleEvent(
-				NetworkEvents.EVENT_ID_GET_CUISINES, null, textview_createaccount);
+		if(!AppEventsController.getInstance().getModelFacade().getLocalModel().isCuisinesDataReceived()){
+			AppEventsController.getInstance().handleEvent(
+					NetworkEvents.EVENT_ID_GET_CUISINES, null, textview_createaccount);
+		}
 	}
 	
 	@Override

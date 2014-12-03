@@ -37,6 +37,7 @@ public class LegalActivity extends ActionBarActivity{
 					screenChangeIntent = new Intent(LegalActivity.this,
 							MenuActivity.class);
 					LegalActivity.this.startActivity(screenChangeIntent);
+					LegalActivity.this.finish();
 				}else{
 					AlertDialog.Builder builder = new AlertDialog.Builder(
 							LegalActivity.this);
