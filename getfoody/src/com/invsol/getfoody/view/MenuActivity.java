@@ -206,10 +206,10 @@ public class MenuActivity extends ActionBarActivity implements AddCategoryDialog
 			case ConnectionModel.SUCCESS:{
 				String groupHeader = (String)exlistAdapter.getGroup(groupPosition);
 				ArrayList<MenuItem> newItem = AppEventsController.getInstance().getModelFacade().getLocalModel().getMenuItems().get(groupHeader);
-				MenuItem menu = newItem.get(newItem.size() - 1);
+				//MenuItem menu = newItem.get(newItem.size() - 1);
 				if( exlistAdapter.get_listDataChild().containsKey(groupHeader) ){
-					ArrayList<MenuItem> childMenu = exlistAdapter.get_listDataChild().get(groupHeader);
-					childMenu.add(menu);
+					//ArrayList<MenuItem> childMenu = exlistAdapter.get_listDataChild().get(groupHeader);
+					//childMenu.add(menu);
 					exlistAdapter.notifyDataSetChanged();
 					exlistAdapter.notifyDataSetInvalidated();
 				}else{
