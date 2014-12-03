@@ -72,5 +72,7 @@ public class Constants {
 		public static final String JSON_ITEMNAME = "name";
 		public static final String JSON_ITEMPRICE = "price";
 		public static final String JSON_ITEMTYPE = "type";
+		public static final String JSON_MENU = "menu";
+		public static final String JSON_CATEGORY_MENUITEMS = "category_menuitems";
 		// ----------------------------------------------------------------------------------
 }

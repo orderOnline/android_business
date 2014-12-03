@@ -139,6 +139,10 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 			@Override
 			public void onClick(View view) {
 				EditText otpTextBox = (EditText) findViewById(R.id.edittext_singup_otp);
+				if(!AppEventsController.getInstance().getModelFacade().getLocalModel().isCuisinesDataReceived()){
+					AppEventsController.getInstance().handleEvent(
+							NetworkEvents.EVENT_ID_GET_CUISINES, null, btn_validateotp);
+				}
 				Bundle eventData = new Bundle();
 				JSONObject postData = new JSONObject();
 				try {

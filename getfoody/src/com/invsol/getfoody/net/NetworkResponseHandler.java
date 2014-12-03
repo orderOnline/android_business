@@ -35,8 +35,22 @@ public class NetworkResponseHandler {
 				switch (msg.what) {
 				case Constants.SUCCESSFUL_RESPONSE: {
 					Log.d("response==", ((JSONObject) msg.obj).toString());
-					model.setConnectionStatus(ConnectionModel.SUCCESS);
-					model.notifyView("Login");
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						if( (resp.get(Constants.JSON_TYPE)).equals(Constants.JSON_SUCCESS) ){
+							JSONObject restData = resp.getJSONObject(Constants.JSON_RESPONSE);
+							AppEventsController.getInstance().getModelFacade().getResModel().setRestaurantProfileDetails(restData);
+							AppEventsController.getInstance().getModelFacade().getResModel().setCuisinesData(restData.getJSONArray(Constants.JSON_CUISINES));
+							if( (restData.getJSONArray(Constants.JSON_MENU)).length() > 0 )
+								AppEventsController.getInstance().getModelFacade().getResModel().setMenuData(restData.getJSONArray(Constants.JSON_MENU));
+							model.setConnectionStatus(ConnectionModel.SUCCESS);
+							model.notifyView("Login");
+						}
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 					break;
 				case Constants.EXCEPTION: {
