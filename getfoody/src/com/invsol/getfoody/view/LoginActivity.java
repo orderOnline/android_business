@@ -241,10 +241,12 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
+			connModel.unregisterAllView();
 			Intent screenChangeIntent = null;
 			screenChangeIntent = new Intent(LoginActivity.this,
 					HomeActivity.class);
 			LoginActivity.this.startActivity(screenChangeIntent);
+			LoginActivity.this.finish();
 		}
 			break;
 		case ConnectionModel.ERROR: {

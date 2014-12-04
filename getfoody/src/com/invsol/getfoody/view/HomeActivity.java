@@ -13,19 +13,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.invsol.getfoody.R;
-import com.invsol.getfoody.adapters.CuisinesAdapter;
 import com.invsol.getfoody.adapters.DrawerAdapter;
 import com.invsol.getfoody.adapters.NewOrdersAdapter;
 import com.invsol.getfoody.controllers.AppEventsController;
-import com.invsol.getfoody.dataobjects.CuisinesItems;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
 import com.invsol.getfoody.listeners.ActivityUpdateListener;
 import com.invsol.getfoody.models.ConnectionModel;
@@ -214,5 +208,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 			break;
 		}
 	}
+	
+	
 
 }

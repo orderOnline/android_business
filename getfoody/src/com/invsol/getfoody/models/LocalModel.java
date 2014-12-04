@@ -136,10 +136,6 @@ public class LocalModel {
 		return cuisines;
 	}
 
-	
-
-
-
 	public boolean isCuisinesDataReceived() {
 		return isCuisinesDataReceived;
 	}
