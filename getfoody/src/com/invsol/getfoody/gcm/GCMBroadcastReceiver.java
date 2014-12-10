@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
@@ -32,6 +33,7 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
 	
 	private static final String TAG = "GcmBroadcastReceiver";
     private Context ctx;
+    private Notification.InboxStyle inboxStyle;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -54,16 +56,27 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
             	Log.i(TAG, "Received: " + intent.getExtras().toString());
             	 String message = intent.getExtras().getString("ORDER");
-            	 String orderMsg = new String();
+            	 //String orderMsg = new String();
             	 Log.i(TAG, "Received: " + message);
             	 try {
             		 JSONObject json = new JSONObject(message);
-            		 orderMsg = "<b>FROM : </b>" + json.getString(Constants.JSON_ADDRESS) + "<b> INR : </b>" + json.getInt(Constants.JSON_ORDERTOTAL);
+            		 //orderMsg = "FROM : " + json.getString(Constants.JSON_ADDRESS) + " INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
             		 AppEventsController.getInstance().getModelFacade().getResModel().addOrderItem(json);
+            		 
+            		 inboxStyle = new Notification.InboxStyle();
+            		 String[] events = new String[2];
+            		 events[0] = "FROM : " + json.getString(Constants.JSON_ADDRESS);
+            		 events[1] = "INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
+            		 // Sets a title for the Inbox in expanded layout
+            		 inboxStyle.setBigContentTitle("Order details:");
+            		 // Moves events into the expanded layout
+            		 for (int i=0; i < events.length; i++) {
+        			    inboxStyle.addLine(events[i]);
+            		 }
 				} catch (JSONException e) {					
 					e.printStackTrace();
 				}
-            	 sendNotification(orderMsg, true);
+            	 sendNotification("Received", true);
             }
             setResultCode(Activity.RESULT_OK);
              
@@ -82,7 +95,7 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
 			.setContentIntent(intent)
 			 .setContentTitle("New Order")
 	         .setSmallIcon(icon)
-	         .setStyle(new Notification.BigTextStyle().bigText(text))
+	         .setStyle(inboxStyle)
 	         .build();
          
         if (launchApp) {
