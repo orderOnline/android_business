@@ -1,15 +1,17 @@
 package com.invsol.getfoody.dataobjects;
 
 public class NewOrderItems {
+	private int order_id;
 	private String customer_name;
 	private String customer_address;
-	private String customer_phoneNumber;
+	private long customer_phoneNumber;
 	private String customer_extrainfo;
 	private String order_status;
 	private String order_deliverytimer;
 	private String order_acceptancetimer;
 	private OrderItems[] orderItems;
-	private String orderBillAmount;
+	private int orderBillAmount;
+	private String timestamp;
 
 	public NewOrderItems() {
 	}
@@ -30,11 +32,11 @@ public class NewOrderItems {
 		this.customer_address = customer_address;
 	}
 
-	public String getCustomer_phoneNumber() {
+	public long getCustomer_phoneNumber() {
 		return customer_phoneNumber;
 	}
 
-	public void setCustomer_phoneNumber(String customer_phoneNumber) {
+	public void setCustomer_phoneNumber(long customer_phoneNumber) {
 		this.customer_phoneNumber = customer_phoneNumber;
 	}
 
@@ -78,12 +80,30 @@ public class NewOrderItems {
 		this.orderItems = orderItems;
 	}
 
-	public String getOrderBillAmount() {
+	public int getOrderBillAmount() {
 		return orderBillAmount;
 	}
 
-	public void setOrderBillAmount(String orderBillAmount) {
+	public void setOrderBillAmount(int orderBillAmount) {
 		this.orderBillAmount = orderBillAmount;
 	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+	
+	
 
 }

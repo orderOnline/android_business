@@ -281,8 +281,7 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				//eventData.putString(Constants.JSON_RESTAURANT_ID, ""+AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
-				eventData.putString(Constants.JSON_RESTAURANT_ID, ""+19);
+				eventData.putString(Constants.JSON_RESTAURANT_ID, ""+AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
 				eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 				AppEventsController.getInstance().handleEvent(
 						NetworkEvents.EVENT_ID_EDIT_PROFILE, eventData, view);

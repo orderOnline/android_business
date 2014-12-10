@@ -23,7 +23,7 @@ public class OrdersActivity extends ActionBarActivity{
 		
 		OrderItems[] orderDataItems = new OrderItems[2];
 		for (int i = 0; i < 2; i++) {
-			orderDataItems[i] = new OrderItems("dummy text", "X2");
+			orderDataItems[i] = new OrderItems(1, 2);
 		}
 		
 		
@@ -32,7 +32,7 @@ public class OrdersActivity extends ActionBarActivity{
 		for (int current = 0; current < orderDataItems.length; current++) {
 		   View view = inflater.inflate(R.layout.item_neworder, newOrder_layout, false);
 		   TextView item_name = (TextView)view.findViewById(R.id.textview_item_name);
-		   item_name.setText(orderDataItems[current].getOrder_item_name());
+		   item_name.setText(""+orderDataItems[current].getOrder_item_id());
 		   TextView item_qty = (TextView)view.findViewById(R.id.textview_item_qty);
 		   item_qty.setText(orderDataItems[current].getOrder_item_qty());
 		   newOrder_layout.addView(view);

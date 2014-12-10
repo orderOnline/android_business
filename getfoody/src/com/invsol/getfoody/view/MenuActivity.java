@@ -123,8 +123,7 @@ public class MenuActivity extends ActionBarActivity implements AddCategoryDialog
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//eventData.putInt(Constants.JSON_RESTAURANT_ID, AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
-		eventData.putString(Constants.JSON_RESTAURANT_ID, ""+3);
+		eventData.putString(Constants.JSON_RESTAURANT_ID, ""+AppEventsController.getInstance().getModelFacade().getResModel().getRestaurant_id());
 		eventData.putString(Constants.JSON_POST_DATA, postData.toString());
 		AppEventsController.getInstance().handleEvent(
 				NetworkEvents.EVENT_ID_POST_CATEGORY, eventData, expListView);

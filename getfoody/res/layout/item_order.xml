@@ -33,7 +33,9 @@
         <TextView
             android:id="@+id/textview_offer_acceptance_status"
             style="@style/H1TextViewValueStyle"
+            android:drawableLeft="@drawable/offer_status_pending"
             android:text="@string/text_dummytext" />
+
     </LinearLayout>
 
 </LinearLayout>

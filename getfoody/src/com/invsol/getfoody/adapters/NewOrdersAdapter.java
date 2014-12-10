@@ -1,5 +1,7 @@
 package com.invsol.getfoody.adapters;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,11 +17,12 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 
 	Context context;
 	int layoutResourceId;
-	NewOrderItems[] newOrderItems = null;
+	//NewOrderItems[] newOrderItems = null;
+	ArrayList<NewOrderItems> newOrderItems = null;
 	ViewHolder holder = null;
 
 	public NewOrdersAdapter(Context context, int layoutResourceId,
-			NewOrderItems[] objects) {
+			ArrayList<NewOrderItems> objects) {
 		super(context, layoutResourceId, objects);
 		this.context = context;
 		this.layoutResourceId = layoutResourceId;
@@ -37,18 +40,18 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 			holder.dataCell_offer_location = (TextView) convertView.findViewById(R.id.textview_offer_address);
 			holder.dataCell_offer_phoneNumber = (TextView) convertView.findViewById(R.id.textview_offer_phonenumber);
 			holder.dataCell_offer_status = (TextView) convertView.findViewById(R.id.textview_offer_acceptance_status);
-			holder.dataCell_offer_timer = (TextView) convertView.findViewById(R.id.textview_offer_timer);
+			//holder.dataCell_offer_timer = (TextView) convertView.findViewById(R.id.textview_offer_timer);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 			
 		}
 
-		NewOrderItems item = newOrderItems[position];
+		NewOrderItems item = newOrderItems.get(position);
 		holder.dataCell_offer_location.setText(item.getCustomer_address());
-		holder.dataCell_offer_phoneNumber.setText(item.getCustomer_phoneNumber());
+		holder.dataCell_offer_phoneNumber.setText(""+item.getCustomer_phoneNumber());
 		holder.dataCell_offer_status.setText(item.getOrder_status());
-		holder.dataCell_offer_timer.setText(item.getOrder_acceptancetimer());
+		//holder.dataCell_offer_timer.setText(item.getOrder_acceptancetimer());
 
 		return convertView;
 	}
@@ -60,7 +63,12 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 		private TextView dataCell_offer_location;
 		private TextView dataCell_offer_phoneNumber;
 		private TextView dataCell_offer_status;
-		private TextView dataCell_offer_timer;
+		//private TextView dataCell_offer_timer;
 	}
 
+	public ArrayList<NewOrderItems> getNewOrderItems() {
+		return newOrderItems;
+	}
+
+	
 }

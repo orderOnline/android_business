@@ -120,8 +120,10 @@
         <item>Terms</item>
         <item>About</item>
         <item>Logout</item>
+        <item>Test Order</item>
     </string-array>
     <string-array name="drawer_icons_array">
+        <item>@drawable/drawer_about</item>
         <item>@drawable/drawer_about</item>
         <item>@drawable/drawer_about</item>
         <item>@drawable/drawer_about</item>

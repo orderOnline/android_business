@@ -161,6 +161,15 @@ public class AppEventsController {
 			}
 		}
 		break;
+		case NetworkEvents.EVENT_ID_POST_NEWORDER:{
+			try {
+				modelFacade.getRemoteModel().postNewOrder(eventData,
+						NetworkResponseHandler.NEWORDER_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
 		}
 	}
 

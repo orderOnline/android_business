@@ -226,4 +226,26 @@ public class RemoteModel {
 					R.string.error_no_network_connection)));
 		}		
 	}
+	
+	public void postNewOrder(Bundle params,Handler listener,View view) throws Exception
+	{
+		ConnectivityHandler connHandler = new ConnectivityHandler(view.getContext());
+		if(connHandler.isOnline())
+		{
+			HttpParams httpParams = new HttpParams();
+			httpParams.setRequestURL(Constants.BASE_URL + Constants.URL_POST_TESTORDER_REQUEST);
+			httpParams.setRequestMethod(HttpParams.HTTP_POST);
+			String requestData = params.getString(Constants.JSON_POST_DATA);
+			httpParams.setRequestData(requestData);
+			Log.v(TAG, "Request Data=====>" + requestData);
+			
+			NetworkAsyncTask asyncTask = new NetworkAsyncTask(view.getContext(), "Connecting", listener, true);
+			asyncTask.execute(httpParams);
+		}
+		else
+		{
+			listener.sendMessage(listener.obtainMessage(Constants.EXCEPTION, view.getResources().getString(
+					R.string.error_no_network_connection)));
+		}		
+	}
 }

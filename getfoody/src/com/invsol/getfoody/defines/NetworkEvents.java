@@ -14,4 +14,5 @@ public class NetworkEvents {
 	public static final int EVENT_ID_GET_CUISINES = 6;
 	public static final int EVENT_ID_POST_CATEGORY = 7;
 	public static final int EVENT_ID_POST_MENUITEM = 8;
+	public static final int EVENT_ID_POST_NEWORDER = 9;
 }

@@ -25,6 +25,7 @@ public class NetworkResponseHandler {
 	public static final Handler CUISINES_HANDLER = cuisinesHandler();
 	public static final Handler NEWCATEGORY_HANDLER = newcategoryHandler();
 	public static final Handler NEWMENUITEM_HANDLER = newMenuItemHandler();
+	public static final Handler NEWORDER_HANDLER = newOrderHandler();
 	
 	private static Handler loginUserHandler() {
 		return new Handler() {
@@ -67,6 +68,31 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler newOrderHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler newMenuItemHandler() {
 		return new Handler() {
 			@Override

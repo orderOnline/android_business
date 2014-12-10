@@ -11,6 +11,8 @@ import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.dataobjects.CategoryItem;
 import com.invsol.getfoody.dataobjects.CuisinesItems;
 import com.invsol.getfoody.dataobjects.MenuItem;
+import com.invsol.getfoody.dataobjects.NewOrderItems;
+import com.invsol.getfoody.dataobjects.OrderItems;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -22,11 +24,13 @@ public class RestaurantModel {
 	private String name, email, address, city, state, service_starttime, service_endtime;
 	private CuisinesItems[] cuisines;
 	private SparseArray<CategoryItem> categories;
+	private SparseArray<NewOrderItems> orderItems;
 	private HashMap<String, ArrayList<MenuItem>> menuItems;
 	
 	public RestaurantModel(){
 		categories = new SparseArray<CategoryItem>();
 		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
+		 orderItems = new SparseArray<NewOrderItems>();
 	}
 
 	public String getGcm_registration_key() {
@@ -96,6 +100,10 @@ public class RestaurantModel {
 
 	public HashMap<String, ArrayList<MenuItem>> getMenuItems() {
 		return menuItems;
+	}
+
+	public SparseArray<NewOrderItems> getOrderItems() {
+		return orderItems;
 	}
 
 	public void setRestaurantProfileDetails(JSONObject profileDetails ){
@@ -171,6 +179,35 @@ public class RestaurantModel {
 				itemArray.add(item);
 				menuItems.put(catName, itemArray);
 			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void addOrderItem(JSONObject orderData ){
+		NewOrderItems item=null;
+		try {
+			item = new NewOrderItems();
+			item.setOrder_id(orderData.getInt(Constants.JSON_ORDER_ID));
+			item.setCustomer_name(orderData.getString(Constants.JSON_ITEMNAME));
+			item.setCustomer_address(orderData.getString(Constants.JSON_ADDRESS));
+			item.setCustomer_extrainfo(orderData.getString(Constants.JSON_INSTRUCTIONS));
+			item.setCustomer_phoneNumber(orderData.getLong(Constants.JSON_PHONENUMBER));
+			item.setOrderBillAmount(orderData.getInt(Constants.JSON_ORDERTOTAL));
+			item.setTimestamp(orderData.getString(Constants.JSON_TIMESTAMP));
+			item.setOrder_status(Constants.JSON_ORDER_STATUS_PENDING);
+			
+			//Add Order Items
+			JSONArray itemsArray = orderData.getJSONArray(Constants.JSON_ORDER_ITEMS);
+			OrderItems[] orderIt = new OrderItems[itemsArray.length()];
+			JSONObject tempOrder = null;
+			for( int i = 0; i < itemsArray.length(); i++ ){
+				tempOrder = itemsArray.getJSONObject(i);
+				orderIt[i] = new OrderItems(tempOrder.getInt(Constants.JSON_ITEMID), tempOrder.getInt(Constants.JSON_ITEMQTY));
+			}
+			item.setOrderItems(orderIt);
+			orderItems.put(orderData.getInt(Constants.JSON_ORDER_ID), item);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

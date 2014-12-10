@@ -1,26 +1,42 @@
 package com.invsol.getfoody.view;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.DrawerAdapter;
 import com.invsol.getfoody.adapters.NewOrdersAdapter;
+import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.dataobjects.CategoryItem;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
+import com.invsol.getfoody.defines.NetworkEvents;
+import com.invsol.getfoody.gcm.WakeLocker;
 import com.invsol.getfoody.listeners.ActivityUpdateListener;
 import com.invsol.getfoody.models.ConnectionModel;
 
@@ -33,11 +49,16 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 
     private String[] mDrawerTitles;
     private int[] mDrawerIcons;
+    
+    private ArrayList<NewOrderItems> orderItems = null;
+    private NewOrdersAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
+		Log.d("HomeActivity", "I am here inside on create");
 
 		connModel = AppEventsController.getInstance().getModelFacade()
 				.getConnModel();
@@ -85,22 +106,19 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         if (savedInstanceState == null) {
             selectItem(0);
         }
-        
-        
-        //List of Orders
-        ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
-        NewOrderItems[] orderDataItems = new NewOrderItems[10];
-		for (int i = 0; i < 10; i++) {
-			orderDataItems[i] = new NewOrderItems();
-			orderDataItems[i].setCustomer_address("Sector-22, Dwarka, New-Delhi");
-			orderDataItems[i].setCustomer_phoneNumber("0987654321");
-			orderDataItems[i].setOrder_status("Pending");
-			orderDataItems[i].setOrder_acceptancetimer("10:34");
-		}
 
-		NewOrdersAdapter adapter = new NewOrdersAdapter(
-				this, R.layout.activity_home, orderDataItems);
-		list_newOrders.setAdapter(adapter);
+        ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
+        if( orderItems == null ){
+        	SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getOrderItems();
+	        orderItems = new ArrayList<NewOrderItems>();
+	        for( int i = 0; i < newItems.size(); i++){
+	        	int index = newItems.keyAt(i);
+	        	orderItems.add(newItems.get(index));
+	        }
+			adapter = new NewOrdersAdapter(
+					this, R.layout.activity_home, orderItems);
+			list_newOrders.setAdapter(adapter);
+        }
 	}
 	
 	@Override
@@ -150,11 +168,53 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 		}
 	}
 	
-	/* The click listner for ListView in the navigation drawer */
+	/* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
+        	switch(position){
+        	case Constants.HOME_TESTORDER:{
+        		Bundle eventData = new Bundle();
+    			JSONObject postData = new JSONObject();
+    			try {
+    				postData.put(Constants.JSON_RESTAURANT_ID, 20);
+    				postData.put(Constants.JSON_CONSUMER_ID, 0);
+    				postData.put(Constants.JSON_TIMESTAMP, SystemClock.currentThreadTimeMillis());
+    				postData.put(Constants.JSON_INSTRUCTIONS, "Make Less Spicy.");
+    				postData.put(Constants.JSON_ORDERTOTAL, 700);
+    				
+    				//MenuItems Details
+    				JSONArray menuItems = new JSONArray();
+    				JSONObject item = new JSONObject();
+    				item.put(Constants.JSON_ITEMID, 17);
+    				item.put(Constants.JSON_ITEMQTY, 1);
+    				menuItems.put(item);
+    				
+    				JSONObject item2 = new JSONObject();
+    				item2.put(Constants.JSON_ITEMID, 18);
+    				item2.put(Constants.JSON_ITEMQTY, 1);
+    				menuItems.put(item2);
+    				
+    				JSONObject item3 = new JSONObject();
+    				item3.put(Constants.JSON_ITEMID, 20);
+    				item3.put(Constants.JSON_ITEMQTY, 1);
+    				menuItems.put(item3);
+    				
+    				postData.put(Constants.JSON_ORDER_ITEMS, menuItems);
+    			} catch (JSONException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    			eventData.putString(Constants.JSON_POST_DATA, postData.toString());
+    			AppEventsController.getInstance().handleEvent(
+    					NetworkEvents.EVENT_ID_POST_NEWORDER, eventData, view);
+        	}
+        	break;
+        	}
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
 
@@ -167,11 +227,6 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();*/
-
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        //setTitle(mPlanetTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     /**
@@ -207,7 +262,12 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 			break;
 		}
 	}
-	
-	
 
+	@Override
+	public void onBackPressed() {
+		if(  mDrawerLayout.isDrawerOpen(mDrawerList) ){
+			mDrawerLayout.closeDrawer(mDrawerList);
+		}else
+			super.onBackPressed();
+	}
 }

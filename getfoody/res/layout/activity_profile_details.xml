@@ -131,7 +131,9 @@
             android:id="@+id/edittext_profile_pincode"
             style="@style/H2EditTextStyle"
             android:hint="@string/text_watermark_pincode"
-            android:inputType="number" >
+            android:inputType="number"
+            android:maxLength="6" >
+
         </EditText>
 
         <TextView

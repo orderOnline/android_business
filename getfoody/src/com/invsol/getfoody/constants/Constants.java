@@ -11,6 +11,7 @@ public class Constants {
 		public static final String URL_GET_CUISINES_REQUEST = "cuisines/all.json";
 		public static final String URL_POST_CATEGORY_REQUEST = "category/";
 		public static final String URL_POST_MENUITEM_REQUEST = "menuitem/";
+		public static final String URL_POST_TESTORDER_REQUEST = "orders/new.json";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -50,6 +51,7 @@ public class Constants {
 		public static final String JSON_PASSWORD = "password";
 		public static final String JSON_GCM_KEY = "gcm_key";
 		public static final String JSON_RESTAURANT_ID = "restaurant_id";
+		public static final String JSON_CONSUMER_ID = "consumer_id";
 		public static final String JSON_RESPONSE = "response";
 		public static final String JSON_RESULT = "result";
 		public static final String JSON_OTPCODE = "otpcode";
@@ -72,7 +74,24 @@ public class Constants {
 		public static final String JSON_ITEMNAME = "name";
 		public static final String JSON_ITEMPRICE = "price";
 		public static final String JSON_ITEMTYPE = "type";
+		public static final String JSON_ITEMQTY = "quantity";
 		public static final String JSON_MENU = "menu";
 		public static final String JSON_CATEGORY_MENUITEMS = "category_menuitems";
+		public static final String JSON_TIMESTAMP = "timestamp";
+		public static final String JSON_INSTRUCTIONS = "instructions";
+		public static final String JSON_ORDERTOTAL = "order_total";
+		public static final String JSON_ORDER_ITEMS = "items";
+		public static final String JSON_ORDER_ID = "order_id";
+		public static final String JSON_ORDER_STATUS_PENDING = "Pending";
+		// ----------------------------------------------------------------------------------
+		
+		/**
+		 * Home Activity Navigation Drawer Constants
+		 */
+		public static final int HOME_FEEDBACK = 0;
+		public static final int HOME_TERMS = 1;
+		public static final int HOME_ABOUT = 2;
+		public static final int HOME_LOGOUT = 3;
+		public static final int HOME_TESTORDER = 4;
 		// ----------------------------------------------------------------------------------
 }
