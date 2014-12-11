@@ -292,12 +292,14 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 	@Override
 	protected void onResume() {
 	  super.onResume();
+	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
 	}
 
 	@Override
 	protected void onPause() {
 	  super.onPause();
+	  GetFoodyApplication.clearReferences();
 	  GetFoodyApplication.activityPaused();
 	}
 }

@@ -347,12 +347,14 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 	@Override
 	protected void onResume() {
 	  super.onResume();
+	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
 	}
 
 	@Override
 	protected void onPause() {
 	  super.onPause();
+	  GetFoodyApplication.clearReferences();
 	  GetFoodyApplication.activityPaused();
 	}
 

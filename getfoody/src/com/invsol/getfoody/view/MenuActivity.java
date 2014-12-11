@@ -238,12 +238,14 @@ public class MenuActivity extends ActionBarActivity implements AddCategoryDialog
 	@Override
 	protected void onResume() {
 	  super.onResume();
+	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
 	}
 
 	@Override
 	protected void onPause() {
 	  super.onPause();
+	  GetFoodyApplication.clearReferences();
 	  GetFoodyApplication.activityPaused();
 	}
 }

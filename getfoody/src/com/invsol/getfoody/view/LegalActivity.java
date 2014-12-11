@@ -62,12 +62,14 @@ public class LegalActivity extends ActionBarActivity{
 	@Override
 	protected void onResume() {
 	  super.onResume();
+	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
 	}
 
 	@Override
 	protected void onPause() {
 	  super.onPause();
+	  GetFoodyApplication.clearReferences();
 	  GetFoodyApplication.activityPaused();
 	}
 
