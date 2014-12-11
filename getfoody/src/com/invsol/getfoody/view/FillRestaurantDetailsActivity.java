@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.CuisinesAdapter;
 import com.invsol.getfoody.constants.Constants;
@@ -341,6 +342,18 @@ public class FillRestaurantDetailsActivity extends ActionBarActivity implements 
 			}
 		}
 		
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 
 }

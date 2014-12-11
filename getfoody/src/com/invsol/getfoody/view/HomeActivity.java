@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.DrawerAdapter;
 import com.invsol.getfoody.adapters.NewOrdersAdapter;
@@ -269,5 +270,19 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 			mDrawerLayout.closeDrawer(mDrawerList);
 		}else
 			super.onBackPressed();
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.setCurrentActivity(this);
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.clearReferences();
+	  GetFoodyApplication.activityPaused();
 	}
 }

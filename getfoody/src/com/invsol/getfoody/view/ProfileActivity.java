@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 
 public class ProfileActivity extends ActionBarActivity{
@@ -43,6 +44,18 @@ public class ProfileActivity extends ActionBarActivity{
 			}
 		}
 		return ret;
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 
 	/*

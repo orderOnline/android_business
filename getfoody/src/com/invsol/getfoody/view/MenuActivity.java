@@ -28,6 +28,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.MenuExpandableListAdapter;
 import com.invsol.getfoody.adapters.MenuExpandableListAdapter.ExpandableListListener;
@@ -232,5 +233,17 @@ public class MenuActivity extends ActionBarActivity implements AddCategoryDialog
 	public void onMenuDialogNegativeClick(DialogFragment dialog) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 }

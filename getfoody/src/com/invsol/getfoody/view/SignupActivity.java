@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
@@ -286,5 +287,17 @@ public class SignupActivity extends ActionBarActivity implements ActivityUpdateL
 			break;
 			}
 		}
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 }

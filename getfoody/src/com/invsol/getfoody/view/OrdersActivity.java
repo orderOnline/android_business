@@ -2,12 +2,15 @@ package com.invsol.getfoody.view;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.SparseArray;
 import android.view.View;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
@@ -113,6 +116,23 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
         // When the back stack changes, invalidate the options menu (action bar).
         //invalidateOptionsMenu();
 	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	  GetFoodyApplication.setCurrentActivity(this);
+	// Clear all notification
+		NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		nMgr.cancelAll();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.clearReferences();
+	  GetFoodyApplication.activityPaused();
+	}
 
 	@Override
 	public void onFrontCardOrderSelected(String orderStatus, View view) {
@@ -125,6 +145,9 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 			finish();
 			startActivity(intent);*/
 		}else{
+			// Clear all notification
+			NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			nMgr.cancelAll();
 			Intent screenChangeIntent = null;
 			screenChangeIntent = new Intent(OrdersActivity.this,
 					HomeActivity.class);
@@ -144,6 +167,9 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 			finish();
 			startActivity(intent);*/
 		}else{
+			// Clear all notification
+			NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+			nMgr.cancelAll();
 			Intent screenChangeIntent = null;
 			screenChangeIntent = new Intent(OrdersActivity.this,
 					HomeActivity.class);

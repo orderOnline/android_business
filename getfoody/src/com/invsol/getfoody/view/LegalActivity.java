@@ -1,5 +1,6 @@
 package com.invsol.getfoody.view;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 
 import android.app.AlertDialog;
@@ -56,6 +57,18 @@ public class LegalActivity extends ActionBarActivity{
 				}
 			}
 		});
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 
 }

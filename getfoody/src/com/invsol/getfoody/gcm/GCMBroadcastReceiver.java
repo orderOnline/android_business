@@ -1,13 +1,19 @@
 package com.invsol.getfoody.gcm;
 
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningAppProcessInfo;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
@@ -15,11 +21,13 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.view.HomeActivity;
 import com.invsol.getfoody.view.OrdersActivity;
+import com.invsol.getfoody.view.SignupActivity;
 
 /**
  * This {@code WakefulBroadcastReceiver} takes care of creating and managing a
@@ -65,19 +73,46 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
             		 JSONObject json = new JSONObject(gcmMessage);
             		 //orderMsg = "FROM : " + json.getString(Constants.JSON_ADDRESS) + " INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
             		 AppEventsController.getInstance().getModelFacade().getResModel().addPendingOrderItem(json);
-            		 //numOfMessages += 1;
-            		 inboxStyle = new Notification.InboxStyle();
-            		 String[] events = new String[2];
-            		 events[0] = "FROM : " + json.getString(Constants.JSON_ADDRESS);
-            		 events[1] = "INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
-            		 // Sets a title for the Inbox in expanded layout
-            		 inboxStyle.setBigContentTitle("Order details:");
-            		 // Moves events into the expanded layout
-            		 for (int i=0; i < events.length; i++) {
-        			    inboxStyle.addLine(events[i]);
+            		 
+            		 //Code to check whether the app is in foreground or not
+            		 if(GetFoodyApplication.isActivityVisible() && !GetFoodyApplication.isAlertResponded()){
+            			 final Activity currentActivity = GetFoodyApplication.getCurrentActivity();
+            			 AlertDialog.Builder builder = new AlertDialog.Builder(
+            					 currentActivity);
+            				builder.setTitle(currentActivity.getResources().getString(R.string.info));
+            				builder.setMessage(currentActivity.getResources().getString(R.string.text_pending_orders));
+            				builder.setCancelable(false);
+            				builder.setPositiveButton(currentActivity.getResources().getString(R.string.OK),
+            						new DialogInterface.OnClickListener() {
+
+            							@Override
+            							public void onClick(DialogInterface dialog, int which) {
+            								GetFoodyApplication.setAlertResponded(false);
+            								Intent screenChangeIntent = null;
+            								screenChangeIntent = new Intent(currentActivity,
+            										OrdersActivity.class);
+            								screenChangeIntent.putExtra("ORDER", gcmMessage);
+            								currentActivity.startActivity(screenChangeIntent);
+            							}
+            						});
+            				AlertDialog alertDialog = builder.create();
+            				alertDialog.show();
+            				GetFoodyApplication.setAlertResponded(true);
+            		 }else if(!GetFoodyApplication.isActivityVisible()){
+	            		 //numOfMessages += 1;
+	            		 inboxStyle = new Notification.InboxStyle();
+	            		 String[] events = new String[2];
+	            		 events[0] = "FROM : " + json.getString(Constants.JSON_ADDRESS);
+	            		 events[1] = "INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
+	            		 // Sets a title for the Inbox in expanded layout
+	            		 inboxStyle.setBigContentTitle("Order details:");
+	            		 // Moves events into the expanded layout
+	            		 for (int i=0; i < events.length; i++) {
+	        			    inboxStyle.addLine(events[i]);
+	            		 }
+	            		 //inboxStyle.setSummaryText("this is sub text");
+	            		 sendNotification( json.getInt(Constants.JSON_ORDER_ID), "Received", true);
             		 }
-            		 //inboxStyle.setSummaryText("this is sub text");
-            		 sendNotification( json.getInt(Constants.JSON_ORDER_ID), "Received", true);
 				} catch (JSONException e) {					
 					e.printStackTrace();
 				}

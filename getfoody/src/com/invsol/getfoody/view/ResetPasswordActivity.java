@@ -1,5 +1,6 @@
 package com.invsol.getfoody.view;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.utils.TextValidator;
 
@@ -138,5 +139,17 @@ public class ResetPasswordActivity extends ActionBarActivity{
 						ResetPasswordActivity.this.finish();
 					}
 				});
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 }

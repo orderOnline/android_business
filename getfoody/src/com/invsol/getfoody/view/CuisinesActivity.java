@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.adapters.CuisinesAdapter;
 import com.invsol.getfoody.controllers.AppEventsController;
@@ -39,5 +40,17 @@ public class CuisinesActivity extends ActionBarActivity{
 			}
 		});
 
+	}
+	
+	@Override
+	protected void onResume() {
+	  super.onResume();
+	  GetFoodyApplication.activityResumed();
+	}
+
+	@Override
+	protected void onPause() {
+	  super.onPause();
+	  GetFoodyApplication.activityPaused();
 	}
 }
