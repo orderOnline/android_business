@@ -10,6 +10,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -174,6 +176,20 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         	switch(position){
+        	case Constants.HOME_LOGOUT:{
+        		SharedPreferences prefs = getSharedPreferences(Constants.LOGIN_DATABASE_PREF_NAME,
+    		            Context.MODE_PRIVATE);
+    			Editor editor = prefs.edit();
+    		    editor.putBoolean(Constants.LOGIN_STATUS, false);
+    		    editor.commit(); 
+    		    
+    		    Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(HomeActivity.this,
+						LoginActivity.class);
+				HomeActivity.this.startActivity(screenChangeIntent);
+				HomeActivity.this.finish();
+        	}
+        	break;
         	case Constants.HOME_TESTORDER:{
         		Bundle eventData = new Bundle();
     			JSONObject postData = new JSONObject();

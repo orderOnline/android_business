@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -239,6 +240,13 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
 			connModel.unregisterAllView();
+			
+			SharedPreferences prefs = getSharedPreferences(Constants.LOGIN_DATABASE_PREF_NAME,
+		            Context.MODE_PRIVATE);
+			Editor editor = prefs.edit();
+		    editor.putBoolean(Constants.LOGIN_STATUS, true);
+		    editor.commit(); 
+			
 			Intent screenChangeIntent = null;
 			screenChangeIntent = new Intent(LoginActivity.this,
 					HomeActivity.class);

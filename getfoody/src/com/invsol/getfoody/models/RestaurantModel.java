@@ -18,6 +18,7 @@ import android.util.Log;
 import android.util.SparseArray;
 
 public class RestaurantModel {
+	private boolean isRestaurantLoggedIn;
 	private String gcm_registration_key;
 	private int restaurant_id, zipcode;
 	private long phonenumber;
@@ -225,4 +226,14 @@ public class RestaurantModel {
 	public void addOrders(NewOrderItems order){
 		orderItems.put(order.getOrder_id(), order);
 	}
+
+	public boolean isRestaurantLoggedIn() {
+		return isRestaurantLoggedIn;
+	}
+
+	public void setRestaurantLoggedIn(boolean isRestaurantLoggedIn) {
+		this.isRestaurantLoggedIn = isRestaurantLoggedIn;
+	}
+	
+	
 }

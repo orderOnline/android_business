@@ -30,7 +30,8 @@ public class Constants {
 		/**
 	     * Shared Preference Name
 	     */
-	    public static final String DATABASE_PREF_NAME = "offonbLoginPrefName";
+	    public static final String LOGIN_DATABASE_PREF_NAME = "LoginPrefName";
+	    public static final String LOGIN_STATUS = "LoginStatus";
 	    public static final String TEXT_DATABASE_ACCESS_VALUE_DEFAULT = "DatabaseKeyDoesNotExist";
 	    //--------------------------------------------------------------------
 	    

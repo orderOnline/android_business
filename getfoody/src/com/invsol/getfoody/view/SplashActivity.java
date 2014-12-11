@@ -29,7 +29,7 @@ public class SplashActivity extends FragmentActivity{
 
 	// Time in Milliseconds
 	private int SPLASH_TIMER = 2000;
-	private String accessToken;
+	private boolean loginStatus;
 	private String TAG = "SplashActivity";
 	
 	//GCM Variables
@@ -71,26 +71,29 @@ public class SplashActivity extends FragmentActivity{
 			Log.i(TAG, "No valid Google Play Services APK found.");
 		}
 		
-		/*SharedPreferences sharedPref = getSharedPreferences(
-				Constants.DATABASE_PREF_NAME, MODE_PRIVATE);
-		accessToken = sharedPref.getString(Constants.TEXT_ACCESSTOKEN,
-				Constants.TEXT_DATABASE_ACCESS_VALUE_DEFAULT);
-		AppEventsController.getInstance().getModelFacade().getUserModel().setAccessToken(accessToken);*/
+		SharedPreferences sharedPref = getSharedPreferences(
+				Constants.LOGIN_DATABASE_PREF_NAME, MODE_PRIVATE);
+		loginStatus = sharedPref.getBoolean(Constants.LOGIN_STATUS, false);
+		AppEventsController.getInstance().getModelFacade().getResModel().setRestaurantLoggedIn(loginStatus);
 		
 		new Handler().postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				final SharedPreferences prefs = getGCMPreferences(context);
-				Editor editor = prefs.edit();
-			    editor.putString(PROPERTY_REG_ID, AppEventsController.getInstance().getModelFacade().getResModel().getGcm_registration_key());
-			    editor.putInt(PROPERTY_APP_VERSION, getAppVersion(SplashActivity.this));
-			    editor.commit(); 
-				Intent screenChangeIntent = null;
-				screenChangeIntent = new Intent(SplashActivity.this,
-						LoginActivity.class);
-				SplashActivity.this.startActivity(screenChangeIntent);
-				SplashActivity.this.finish();
+				if( loginStatus ){
+					Intent screenChangeIntent = null;
+					screenChangeIntent = new Intent(SplashActivity.this,
+							HomeActivity.class);
+					SplashActivity.this.startActivity(screenChangeIntent);
+					SplashActivity.this.finish();
+				}
+				else{
+					Intent screenChangeIntent = null;
+					screenChangeIntent = new Intent(SplashActivity.this,
+							LoginActivity.class);
+					SplashActivity.this.startActivity(screenChangeIntent);
+					SplashActivity.this.finish();
+				}
 				/*if( accessToken.equals(Constants.TEXT_DATABASE_ACCESS_VALUE_DEFAULT) ){
 					Intent screenChangeIntent = null;
 					screenChangeIntent = new Intent(SplashActivity.this,
@@ -181,13 +184,23 @@ public class SplashActivity extends FragmentActivity{
 	    }
 	}
 	
-	private static Handler gcmResponseHandler() {
+	private void storeGCMRegKey()
+	{
+		final SharedPreferences prefs = getGCMPreferences(context);
+		Editor editor = prefs.edit();
+	    editor.putString(PROPERTY_REG_ID, AppEventsController.getInstance().getModelFacade().getResModel().getGcm_registration_key());
+	    editor.putInt(PROPERTY_APP_VERSION, getAppVersion(SplashActivity.this));
+	    editor.commit();
+	}
+	
+	private Handler gcmResponseHandler() {
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
 				case Constants.SUCCESSFUL_RESPONSE: {
 					AppEventsController.getInstance().getModelFacade().getResModel().setGcm_registration_key(msg.obj.toString());
+					storeGCMRegKey();
 				}
 					break;
 				case Constants.EXCEPTION: {
