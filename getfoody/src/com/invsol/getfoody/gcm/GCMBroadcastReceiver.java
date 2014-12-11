@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
@@ -20,6 +19,7 @@ import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.view.HomeActivity;
+import com.invsol.getfoody.view.OrdersActivity;
 
 /**
  * This {@code WakefulBroadcastReceiver} takes care of creating and managing a
@@ -34,6 +34,9 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
 	private static final String TAG = "GcmBroadcastReceiver";
     private Context ctx;
     private Notification.InboxStyle inboxStyle;
+    private String gcmMessage;
+    //private int numOfMessages;
+    //final static String GROUP_KEY_ORDERS = "group_key_orders";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -47,22 +50,22 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
              
             String messageType = gcm.getMessageType(intent);
             if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
-                sendNotification("Send error", false);
+                sendNotification(0,"Send error", false);
                  
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED.equals(messageType)) {
-                sendNotification("Deleted messages on server", false);
+                sendNotification(1,"Deleted messages on server", false);
                  
             } else if (GoogleCloudMessaging.
                     MESSAGE_TYPE_MESSAGE.equals(messageType)) {
             	Log.i(TAG, "Received: " + intent.getExtras().toString());
-            	 String message = intent.getExtras().getString("ORDER");
+            	 gcmMessage = intent.getExtras().getString("ORDER");
             	 //String orderMsg = new String();
-            	 Log.i(TAG, "Received: " + message);
+            	 Log.i(TAG, "Received: " + gcmMessage);
             	 try {
-            		 JSONObject json = new JSONObject(message);
+            		 JSONObject json = new JSONObject(gcmMessage);
             		 //orderMsg = "FROM : " + json.getString(Constants.JSON_ADDRESS) + " INR : " + json.getInt(Constants.JSON_ORDERTOTAL);
-            		 AppEventsController.getInstance().getModelFacade().getResModel().addOrderItem(json);
-            		 
+            		 AppEventsController.getInstance().getModelFacade().getResModel().addPendingOrderItem(json);
+            		 //numOfMessages += 1;
             		 inboxStyle = new Notification.InboxStyle();
             		 String[] events = new String[2];
             		 events[0] = "FROM : " + json.getString(Constants.JSON_ADDRESS);
@@ -73,10 +76,12 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
             		 for (int i=0; i < events.length; i++) {
         			    inboxStyle.addLine(events[i]);
             		 }
+            		 //inboxStyle.setSummaryText("this is sub text");
+            		 sendNotification( json.getInt(Constants.JSON_ORDER_ID), "Received", true);
 				} catch (JSONException e) {					
 					e.printStackTrace();
 				}
-            	 sendNotification("Received", true);
+            	
             }
             setResultCode(Activity.RESULT_OK);
              
@@ -85,17 +90,19 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
         }
     }
     
-    private void sendNotification(String text, boolean launchApp) {
+    private void sendNotification(int id, String text, boolean launchApp) {
     	int icon = R.drawable.ic_launcher;
         NotificationManager mNotificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent notificationIntent = new Intent(ctx, HomeActivity.class);
+        Intent notificationIntent = new Intent(ctx, OrdersActivity.class);
+        notificationIntent.putExtra("ORDER", gcmMessage);
 		  PendingIntent intent = PendingIntent.getActivity(ctx, 0,
-				    notificationIntent, 0);
+				    notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		  Notification notification = new Notification.Builder(ctx)
-			.setContentIntent(intent)
+			 .setContentIntent(intent)
 			 .setContentTitle("New Order")
 	         .setSmallIcon(icon)
 	         .setStyle(inboxStyle)
+	        // .setNumber(numOfMessages)
 	         .build();
          
         if (launchApp) {
@@ -107,7 +114,7 @@ public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
         		  notification.flags |= Notification.FLAG_INSISTENT;
         		  notification.flags |= Notification.FLAG_AUTO_CANCEL;
         		  notification.flags |= Notification.FLAG_NO_CLEAR;
-        		  mNotificationManager.notify(0, notification);
+        		  mNotificationManager.notify(id, notification);
         }
     }
 	

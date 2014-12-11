@@ -83,6 +83,7 @@ public class SplashActivity extends FragmentActivity{
 				final SharedPreferences prefs = getGCMPreferences(context);
 				Editor editor = prefs.edit();
 			    editor.putString(PROPERTY_REG_ID, AppEventsController.getInstance().getModelFacade().getResModel().getGcm_registration_key());
+			    editor.putInt(PROPERTY_APP_VERSION, getAppVersion(SplashActivity.this));
 			    editor.commit(); 
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(SplashActivity.this,

@@ -12,6 +12,7 @@ public class NewOrderItems {
 	private OrderItems[] orderItems;
 	private int orderBillAmount;
 	private String timestamp;
+	private String orderJson;
 
 	public NewOrderItems() {
 	}
@@ -102,6 +103,14 @@ public class NewOrderItems {
 
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
+	}
+
+	public String getOrderJson() {
+		return orderJson;
+	}
+
+	public void setOrderJson(String orderJson) {
+		this.orderJson = orderJson;
 	}
 	
 	

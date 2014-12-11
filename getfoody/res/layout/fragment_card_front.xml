@@ -1,0 +1,110 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textview_customer_details"
+            style="@style/H1TextViewStyle"
+            android:text="@string/text_customerdetailsfront" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/items_horizontal_margin"
+            android:layout_marginRight="@dimen/items_horizontal_margin"
+            android:background="#d8d9d8" />
+
+        <TextView
+            android:id="@+id/textview_customer_name"
+            style="@style/H2TextViewStyle"
+            android:drawableLeft="@drawable/ic_user"
+            android:text="@string/text_dummytext" />
+
+        <TextView
+            android:id="@+id/textview_customer_phone"
+            style="@style/H2TextViewStyle"
+            android:drawableLeft="@drawable/ic_device_access_call_red"
+            android:text="@string/text_dummytext" />
+
+        <TextView
+            android:id="@+id/textview_customer_address"
+            style="@style/H2TextViewStyle"
+            android:drawableLeft="@drawable/ic_location_place"
+            android:text="@string/text_dummytext" />
+
+        <TextView
+            android:id="@+id/textview_customer_info"
+            style="@style/H2TextViewStyle"
+            android:drawableLeft="@drawable/ic_action_info"
+            android:text="@string/text_dummytext" />
+
+        <TextView
+            android:id="@+id/textview_order_details"
+            style="@style/H1TextViewStyle"
+            android:text="@string/text_orderdetails" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/items_horizontal_margin"
+            android:layout_marginRight="@dimen/items_horizontal_margin"
+            android:background="#d8d9d8" />
+
+        <LinearLayout
+            android:id="@id/layout_neworder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/items_vertical_margin"
+            android:layout_marginTop="@dimen/items_vertical_margin" >
+
+            <TextView
+                android:id="@+id/textview_bill_amount"
+                style="@style/H1TextViewStyle"
+                android:layout_weight="1"
+                android:text="@string/text_bill_amount" />
+
+            <TextView
+                android:id="@+id/textview_bill_amount_value"
+                style="@style/H1TextViewStyle"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:text="200.00"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/items_vertical_margin"
+            android:layout_marginTop="@dimen/items_vertical_margin" >
+
+            <TextView
+                android:id="@+id/btn_accept_order"
+                style="@style/ButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/text_button_accept_order" />
+
+            <TextView
+                android:id="@+id/btn_reject_order"
+                style="@style/ButtonStyle"
+                android:layout_weight="1"
+                android:text="@string/text_button_reject_order" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

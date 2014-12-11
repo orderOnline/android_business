@@ -143,7 +143,9 @@
     
     <!-- Order Specific Strings -->
     <string name="text_orderdetails">Order Details</string>
-    <string name="text_customerdetails">Customer Details</string>
+    <!-- <string name="text_customerdetails">Customer Details</string> -->
+    <string name="text_customerdetailsback">Customer Details Back</string>
+    <string name="text_customerdetailsfront">Customer Details Front</string>
     <string name="text_bill_amount"><b>Bill Amount</b></string>
     
     

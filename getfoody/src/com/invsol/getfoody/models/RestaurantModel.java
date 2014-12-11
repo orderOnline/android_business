@@ -24,12 +24,14 @@ public class RestaurantModel {
 	private String name, email, address, city, state, service_starttime, service_endtime;
 	private CuisinesItems[] cuisines;
 	private SparseArray<CategoryItem> categories;
+	private SparseArray<NewOrderItems> pendingorderItems;
 	private SparseArray<NewOrderItems> orderItems;
 	private HashMap<String, ArrayList<MenuItem>> menuItems;
 	
 	public RestaurantModel(){
 		categories = new SparseArray<CategoryItem>();
 		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
+		 pendingorderItems = new SparseArray<NewOrderItems>();
 		 orderItems = new SparseArray<NewOrderItems>();
 	}
 
@@ -100,6 +102,10 @@ public class RestaurantModel {
 
 	public HashMap<String, ArrayList<MenuItem>> getMenuItems() {
 		return menuItems;
+	}
+
+	public SparseArray<NewOrderItems> getPendingOrderItems() {
+		return pendingorderItems;
 	}
 
 	public SparseArray<NewOrderItems> getOrderItems() {
@@ -185,10 +191,11 @@ public class RestaurantModel {
 		}
 	}
 	
-	public void addOrderItem(JSONObject orderData ){
+	public void addPendingOrderItem(JSONObject orderData ){
 		NewOrderItems item=null;
 		try {
 			item = new NewOrderItems();
+			item.setOrderJson(orderData.toString());
 			item.setOrder_id(orderData.getInt(Constants.JSON_ORDER_ID));
 			item.setCustomer_name(orderData.getString(Constants.JSON_ITEMNAME));
 			item.setCustomer_address(orderData.getString(Constants.JSON_ADDRESS));
@@ -205,12 +212,17 @@ public class RestaurantModel {
 			for( int i = 0; i < itemsArray.length(); i++ ){
 				tempOrder = itemsArray.getJSONObject(i);
 				orderIt[i] = new OrderItems(tempOrder.getInt(Constants.JSON_ITEMID), tempOrder.getInt(Constants.JSON_ITEMQTY));
+				orderIt[i].setOrder_item_name(tempOrder.getString(Constants.JSON_ITEMNAME));
 			}
 			item.setOrderItems(orderIt);
-			orderItems.put(orderData.getInt(Constants.JSON_ORDER_ID), item);
+			pendingorderItems.put(orderData.getInt(Constants.JSON_ORDER_ID), item);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void addOrders(NewOrderItems order){
+		orderItems.put(order.getOrder_id(), order);
 	}
 }

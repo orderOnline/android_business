@@ -83,6 +83,8 @@ public class Constants {
 		public static final String JSON_ORDER_ITEMS = "items";
 		public static final String JSON_ORDER_ID = "order_id";
 		public static final String JSON_ORDER_STATUS_PENDING = "Pending";
+		public static final String JSON_ORDER_STATUS_ACCEPTED = "Accepted";
+		public static final String JSON_ORDER_STATUS_DECLINED = "Declined";
 		// ----------------------------------------------------------------------------------
 		
 		/**

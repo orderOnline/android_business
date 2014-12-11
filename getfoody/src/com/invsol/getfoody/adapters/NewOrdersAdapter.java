@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.invsol.getfoody.R;
+import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
 
 public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
@@ -50,7 +51,13 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 		NewOrderItems item = newOrderItems.get(position);
 		holder.dataCell_offer_location.setText(item.getCustomer_address());
 		holder.dataCell_offer_phoneNumber.setText(""+item.getCustomer_phoneNumber());
-		holder.dataCell_offer_status.setText(item.getOrder_status());
+		if( item.getOrder_status().equals(Constants.JSON_ORDER_STATUS_ACCEPTED) ){
+			holder.dataCell_offer_status.setText(item.getOrder_status());
+			holder.dataCell_offer_status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.order_status_accepted, 0, 0, 0);
+		}else if( item.getOrder_status().equals(Constants.JSON_ORDER_STATUS_DECLINED) ){
+			holder.dataCell_offer_status.setText(item.getOrder_status());
+			holder.dataCell_offer_status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.order_status_missed, 0, 0, 0);
+		}
 		//holder.dataCell_offer_timer.setText(item.getOrder_acceptancetimer());
 
 		return convertView;
