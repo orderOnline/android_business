@@ -28,12 +28,14 @@ public class RestaurantModel {
 	private SparseArray<NewOrderItems> pendingorderItems;
 	private SparseArray<NewOrderItems> orderItems;
 	private HashMap<String, ArrayList<MenuItem>> menuItems;
+	private SparseArray<String> menuItemNames;
 	
 	public RestaurantModel(){
 		categories = new SparseArray<CategoryItem>();
 		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
 		 pendingorderItems = new SparseArray<NewOrderItems>();
 		 orderItems = new SparseArray<NewOrderItems>();
+		 menuItemNames = new SparseArray<String>();
 	}
 
 	public String getGcm_registration_key() {
@@ -186,6 +188,7 @@ public class RestaurantModel {
 				itemArray.add(item);
 				menuItems.put(catName, itemArray);
 			}
+			menuItemNames.put(menuitemData.getInt(Constants.JSON_ITEMID), menuitemData.getString(Constants.JSON_ITEMNAME));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -233,6 +236,10 @@ public class RestaurantModel {
 
 	public void setRestaurantLoggedIn(boolean isRestaurantLoggedIn) {
 		this.isRestaurantLoggedIn = isRestaurantLoggedIn;
+	}
+
+	public SparseArray<String> getMenuItemNames() {
+		return menuItemNames;
 	}
 	
 	

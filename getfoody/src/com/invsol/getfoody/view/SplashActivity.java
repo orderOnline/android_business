@@ -24,6 +24,7 @@ import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.gcm.GCMAsyncTask;
+import com.invsol.getfoody.utils.CommonUtils;
 
 public class SplashActivity extends FragmentActivity{
 
