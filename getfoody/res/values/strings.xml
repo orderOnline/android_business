@@ -39,6 +39,7 @@
     <string name="text_watermark_category_name"><i>category name*</i></string>
     <string name="text_watermark_item_name"><i>item name*</i></string>
     <string name="text_watermark_item_price"><i>price*</i></string>
+    <string name="text_watermark_deliverytime"><i>in mins*</i></string>
     
     
     <!-- Action Button Specific Strings -->
@@ -148,7 +149,11 @@
     <string name="text_customerdetailsfront">Customer Details Front</string>
     <string name="text_bill_amount"><b>Bill Amount</b></string>
     <string name="text_pending_orders">You have orders pending for approval.</string>
-    
+    <string name="text_expected_delivery_time">Expected Delivery Time</string>
+    <string name="text_decline_reason">Reason</string>
+    <string name="text_order_done">Done</string>
+	<string name="text_order_cancel">Cancel</string>
+	<string name="text_order_set">Set</string>
     
     <string name="error_no_network_connection">Please check your network services.</string>
 
