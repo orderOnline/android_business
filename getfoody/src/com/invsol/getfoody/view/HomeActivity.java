@@ -27,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -122,6 +123,17 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 					this, R.layout.activity_home, orderItems);
 			list_newOrders.setAdapter(adapter);
         }
+        
+        list_newOrders.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(HomeActivity.this,
+						OrderDetailsActivity.class);
+				HomeActivity.this.startActivity(screenChangeIntent);
+			}
+		});
 	}
 	
 	@Override

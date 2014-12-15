@@ -19,6 +19,7 @@
     <string name="text_title_reset_pwd">Reset Password</string>
     <string name="text_title_new_order">New Order</string>
     <string name="text_title_orders">Orders</string>
+    <string name="text_title_new_order_details">Order Detail</string>
     
     <string name="text_title_menu">Menu</string>
     <string name="text_title_profile">Profile</string>
