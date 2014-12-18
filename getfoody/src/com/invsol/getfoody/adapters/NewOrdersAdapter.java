@@ -73,7 +73,9 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 				public void onTick(long millisUntilFinished) {
 					int sec  = (int)(millisUntilFinished/ 1000) % 60 ;
 					int min  = (int)((millisUntilFinished/ (1000) / 60));
-					holder.dataCell_offer_timer.setText(""+min+":"+sec);
+					String minutes = String.format("%02d", min);
+					String seconds = String.format("%02d", sec);
+					holder.dataCell_offer_timer.setText(minutes+":"+seconds);
 				}
 
 				public void onFinish() {

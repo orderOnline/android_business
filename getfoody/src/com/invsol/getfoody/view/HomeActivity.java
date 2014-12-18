@@ -132,6 +132,8 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 				Intent screenChangeIntent = null;
 				screenChangeIntent = new Intent(HomeActivity.this,
 						OrderDetailsActivity.class);
+				NewOrderItems itemSelected = adapter.getItem(position);
+				screenChangeIntent.putExtra("ORDER", itemSelected.getOrderJson());
 				HomeActivity.this.startActivity(screenChangeIntent);
 			}
 		});
