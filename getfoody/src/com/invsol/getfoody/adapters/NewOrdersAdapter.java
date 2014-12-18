@@ -77,6 +77,7 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 				}
 
 				public void onFinish() {
+					
 					holder.dataCell_offer_timer.setText("Done");
 				}
 			};
