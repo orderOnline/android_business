@@ -170,6 +170,15 @@ public class AppEventsController {
 			}
 		}
 		break;
+		case NetworkEvents.EVENT_ID_ACCEPT_ORDER:{
+			try {
+				modelFacade.getRemoteModel().putAcceptOrder(eventData,
+						NetworkResponseHandler.ACCEPTORDER_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
 		}
 	}
 

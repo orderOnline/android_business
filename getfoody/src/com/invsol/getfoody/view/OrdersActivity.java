@@ -1,6 +1,10 @@
 package com.invsol.getfoody.view;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.NotificationManager;
@@ -10,22 +14,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.EditText;
 
 import com.invsol.getfoody.GetFoodyApplication;
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
+import com.invsol.getfoody.defines.NetworkEvents;
 import com.invsol.getfoody.dialogs.DeclineOrderDialog;
 import com.invsol.getfoody.dialogs.DeclineOrderDialog.DeclineOrderDialogListener;
 import com.invsol.getfoody.dialogs.ExpectedDeliveryTimeDialog;
 import com.invsol.getfoody.dialogs.ExpectedDeliveryTimeDialog.ExpectedDeliveryDialogListener;
 import com.invsol.getfoody.fragments.CardBackFragment;
 import com.invsol.getfoody.fragments.CardFrontFragment;
+import com.invsol.getfoody.listeners.ActivityUpdateListener;
+import com.invsol.getfoody.models.ConnectionModel;
 
 public class OrdersActivity extends Activity implements FragmentManager.OnBackStackChangedListener,
 		CardFrontFragment.OnFrontCardOrderSelectedListener, CardBackFragment.OnBackCardOrderSelectedListener,
-		ExpectedDeliveryDialogListener, DeclineOrderDialogListener {
+		ExpectedDeliveryDialogListener, DeclineOrderDialogListener, ActivityUpdateListener {
 
 	/**
 	 * Whether or not we're showing the back of the card (otherwise showing the
@@ -40,12 +48,18 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 	private String orderData;
 
 	private SparseArray<NewOrderItems> newItems;
+	
+	private ConnectionModel connModel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_order);
+		
+		connModel = AppEventsController.getInstance().getModelFacade()
+				.getConnModel();
+		connModel.registerView(this);
 
 		orderData = getIntent().getStringExtra("ORDER");
 
@@ -200,18 +214,42 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 
 	@Override
 	public void onEDDialogPositiveClick(DialogFragment dialog) {
-		SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel()
-				.getPendingOrderItems();
-		if (newItems.size() > 0) {
-			flipCard();
-		} else {
-			// Clear all notification
-			NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			nMgr.cancelAll();
-			Intent screenChangeIntent = null;
-			screenChangeIntent = new Intent(OrdersActivity.this, HomeActivity.class);
-			OrdersActivity.this.startActivity(screenChangeIntent);
-			OrdersActivity.this.finish();
+		Dialog dialogView = dialog.getDialog();
+		EditText editTextDeliveryTime = (EditText)dialogView.findViewById(R.id.edittext_delivery_time);
+		String deliveryTime = editTextDeliveryTime.getText().toString();
+		
+		Bundle eventData = new Bundle();
+		JSONObject postData = new JSONObject();
+		try {
+			JSONObject order = new JSONObject(orderData);
+			postData.put(Constants.JSON_DELIVERYTIME, Integer.parseInt(deliveryTime));
+			postData.put(Constants.JSON_CONSUMER_ID, order.getInt(Constants.JSON_CONSUMER_ID));
+			eventData.putString(Constants.JSON_POST_DATA, postData.toString());
+			eventData.putString(Constants.JSON_ORDER_ID, ""+order.getInt(Constants.JSON_ORDER_ID));
+			AppEventsController.getInstance().handleEvent(
+					NetworkEvents.EVENT_ID_ACCEPT_ORDER, eventData, editTextDeliveryTime);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateActivity(String tag) {
+		if( tag.equals("AcceptOrder") ){
+			SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel()
+					.getPendingOrderItems();
+			if (newItems.size() > 0) {
+				flipCard();
+			} else {
+				// Clear all notification
+				NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+				nMgr.cancelAll();
+				Intent screenChangeIntent = null;
+				screenChangeIntent = new Intent(OrdersActivity.this, HomeActivity.class);
+				OrdersActivity.this.startActivity(screenChangeIntent);
+				OrdersActivity.this.finish();
+			}
 		}
 	}
 }

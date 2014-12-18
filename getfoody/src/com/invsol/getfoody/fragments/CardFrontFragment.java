@@ -94,9 +94,6 @@ public class CardFrontFragment  extends Fragment {
 			
 			@Override
 			public void onClick(View view) {
-				AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().remove(order_id);
-				currentItem.setOrder_status(Constants.JSON_ORDER_STATUS_ACCEPTED);
-				AppEventsController.getInstance().getModelFacade().getResModel().addOrders(currentItem);
 				mListener.onFrontCardOrderSelected(Constants.JSON_ORDER_STATUS_ACCEPTED, view);
 				/*AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().remove(order_id);
 				currentItem.setOrder_status(Constants.JSON_ORDER_STATUS_ACCEPTED);

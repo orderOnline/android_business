@@ -56,6 +56,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
     
     private ArrayList<NewOrderItems> orderItems = null;
     private NewOrdersAdapter adapter;
+    private ListView list_newOrders;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
             selectItem(0);
         }
 
-        ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
+        list_newOrders = (ListView)findViewById(R.id.listview_orders);
         if( orderItems == null ){
         	SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getOrderItems();
 	        orderItems = new ArrayList<NewOrderItems>();
@@ -135,6 +136,8 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 			}
 		});
 	}
+	
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -302,9 +305,19 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 	
 	@Override
 	protected void onResume() {
+		Log.d("HomeActivity", "Inside onResume");
 	  super.onResume();
 	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
+	  
+	  SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems();
+      for( int i = 0; i < newItems.size(); i++){
+      	int index = newItems.keyAt(i);
+      	adapter.getNewOrderItems().add(newItems.get(index));
+      }
+      adapter.notifyDataSetChanged();
+      
+      AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems().clear();
 	}
 
 	@Override

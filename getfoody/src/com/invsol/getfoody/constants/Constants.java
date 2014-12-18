@@ -4,6 +4,7 @@ public class Constants {
 	
 	// Required URLs
 		public static final String BASE_URL = "http://www.medoco.in/";
+		//public static final String BASE_URL = "http://localhost:8080/jax-rs-heroku/";
 		public static final String URL_POST_REGISTER_REQUEST = "register/business.json";
 		public static final String URL_POST_LOGIN_REQUEST = "login/business.json";
 		public static final String URL_POST_VALIDATEOTP_REQUEST = "register/business/validateotp.json";
@@ -12,6 +13,8 @@ public class Constants {
 		public static final String URL_POST_CATEGORY_REQUEST = "category/";
 		public static final String URL_POST_MENUITEM_REQUEST = "menuitem/";
 		public static final String URL_POST_TESTORDER_REQUEST = "orders/new.json";
+		public static final String URL_PUT_ORDER_ACCEPT = "orders/acceptorder/";
+		public static final String URL_PUT_ORDER_DECLINE = "orders/declineorder/";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -86,6 +89,7 @@ public class Constants {
 		public static final String JSON_ORDER_STATUS_PENDING = "Pending";
 		public static final String JSON_ORDER_STATUS_ACCEPTED = "Accepted";
 		public static final String JSON_ORDER_STATUS_DECLINED = "Declined";
+		public static final String JSON_DELIVERYTIME = "delivery_time";
 		// ----------------------------------------------------------------------------------
 		
 		/**

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.invsol.getfoody.constants.Constants;
 import com.invsol.getfoody.controllers.AppEventsController;
+import com.invsol.getfoody.dataobjects.NewOrderItems;
 import com.invsol.getfoody.models.ConnectionModel;
 import com.invsol.getfoody.models.RestaurantModel;
 
@@ -26,6 +27,7 @@ public class NetworkResponseHandler {
 	public static final Handler NEWCATEGORY_HANDLER = newcategoryHandler();
 	public static final Handler NEWMENUITEM_HANDLER = newMenuItemHandler();
 	public static final Handler NEWORDER_HANDLER = newOrderHandler();
+	public static final Handler ACCEPTORDER_HANDLER = acceptOrderHandler();
 	
 	private static Handler loginUserHandler() {
 		return new Handler() {
@@ -49,7 +51,6 @@ public class NetworkResponseHandler {
 						}
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -68,6 +69,45 @@ public class NetworkResponseHandler {
 		};
 	}
 	
+	private static Handler acceptOrderHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = resp.getJSONObject(Constants.JSON_RESPONSE);
+						NewOrderItems currentItem = AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().get(restData.getInt(Constants.JSON_ORDER_ID));
+						AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().remove(restData.getInt(Constants.JSON_ORDER_ID));
+						currentItem.setOrder_status(Constants.JSON_ORDER_STATUS_ACCEPTED);
+						currentItem.setDeliveryTime(restData.getInt(Constants.JSON_DELIVERYTIME));
+						AppEventsController.getInstance().getModelFacade().getResModel().addOrders(currentItem);
+						model.setConnectionStatus(ConnectionModel.SUCCESS);
+						model.notifyView("AcceptOrder");
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+
 	private static Handler newOrderHandler() {
 		return new Handler() {
 			@Override
@@ -109,7 +149,6 @@ public class NetworkResponseHandler {
 						model.setConnectionStatus(ConnectionModel.SUCCESS);
 						model.notifyView("MenuItemAdd");
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -144,7 +183,6 @@ public class NetworkResponseHandler {
 						model.setConnectionStatus(ConnectionModel.SUCCESS);
 						model.notifyView("CategoryAdd");
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -178,7 +216,6 @@ public class NetworkResponseHandler {
 						AppEventsController.getInstance().getModelFacade().getLocalModel().setCuisinesData(restData);
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -216,7 +253,6 @@ public class NetworkResponseHandler {
 						}
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -254,7 +290,6 @@ public class NetworkResponseHandler {
 						}
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -290,7 +325,6 @@ public class NetworkResponseHandler {
 						}
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -327,7 +361,6 @@ public class NetworkResponseHandler {
 						}
 						
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -364,7 +397,6 @@ public class NetworkResponseHandler {
 						restModel.setPhonenumber(restData.getLong(Constants.JSON_PHONENUMBER));
 						restModel.setRestaurant_id(restData.getInt(Constants.JSON_RESTAURANT_ID));
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					model.setConnectionStatus(ConnectionModel.SUCCESS);

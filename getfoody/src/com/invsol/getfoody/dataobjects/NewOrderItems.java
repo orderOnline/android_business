@@ -13,6 +13,7 @@ public class NewOrderItems {
 	private int orderBillAmount;
 	private String timestamp;
 	private String orderJson;
+	private int deliveryTime;
 
 	public NewOrderItems() {
 	}
@@ -112,7 +113,14 @@ public class NewOrderItems {
 	public void setOrderJson(String orderJson) {
 		this.orderJson = orderJson;
 	}
-	
-	
 
+	public int getDeliveryTime() {
+		return deliveryTime;
+	}
+
+	public void setDeliveryTime(int deliveryTime) {
+		this.deliveryTime = deliveryTime;
+	}
+	
+	
 }

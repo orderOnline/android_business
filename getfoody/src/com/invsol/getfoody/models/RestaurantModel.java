@@ -27,6 +27,7 @@ public class RestaurantModel {
 	private SparseArray<CategoryItem> categories;
 	private SparseArray<NewOrderItems> pendingorderItems;
 	private SparseArray<NewOrderItems> orderItems;
+	private SparseArray<NewOrderItems> recentorderItems;
 	private HashMap<String, ArrayList<MenuItem>> menuItems;
 	private SparseArray<String> menuItemNames;
 	
@@ -35,6 +36,7 @@ public class RestaurantModel {
 		 menuItems = new HashMap<String, ArrayList<MenuItem>>();
 		 pendingorderItems = new SparseArray<NewOrderItems>();
 		 orderItems = new SparseArray<NewOrderItems>();
+		 recentorderItems = new SparseArray<NewOrderItems>();
 		 menuItemNames = new SparseArray<String>();
 	}
 
@@ -113,6 +115,10 @@ public class RestaurantModel {
 
 	public SparseArray<NewOrderItems> getOrderItems() {
 		return orderItems;
+	}
+
+	public SparseArray<NewOrderItems> getRecentorderItems() {
+		return recentorderItems;
 	}
 
 	public void setRestaurantProfileDetails(JSONObject profileDetails ){
@@ -228,6 +234,7 @@ public class RestaurantModel {
 	
 	public void addOrders(NewOrderItems order){
 		orderItems.put(order.getOrder_id(), order);
+		recentorderItems.put(order.getOrder_id(), order);
 	}
 
 	public boolean isRestaurantLoggedIn() {

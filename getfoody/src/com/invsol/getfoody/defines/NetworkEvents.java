@@ -15,4 +15,6 @@ public class NetworkEvents {
 	public static final int EVENT_ID_POST_CATEGORY = 7;
 	public static final int EVENT_ID_POST_MENUITEM = 8;
 	public static final int EVENT_ID_POST_NEWORDER = 9;
+	public static final int EVENT_ID_ACCEPT_ORDER = 10;
+	public static final int EVENT_ID_DECLINE_ORDER = 11;
 }
