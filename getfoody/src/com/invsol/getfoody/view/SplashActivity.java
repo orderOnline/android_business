@@ -145,6 +145,7 @@ public class SplashActivity extends FragmentActivity{
 	private String getRegistrationId(Context context) {
 	    final SharedPreferences prefs = getGCMPreferences(context);
 	    String registrationId = prefs.getString(PROPERTY_REG_ID, "");
+	    Log.i(TAG, "Registration key found.=="+registrationId);
 	    if (registrationId.isEmpty()) {
 	        Log.i(TAG, "Registration not found.");
 	        return "";

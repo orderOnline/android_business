@@ -2,6 +2,10 @@ package com.invsol.getfoody.adapters;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
@@ -53,20 +57,21 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 			
 		}
 		
+		NewOrderItems item = newOrderItems.get(position);
+		
+		final TextView tvTimer = holder.dataCell_offer_timer;
 		CountDownTimer cdt = counters.get(holder.dataCell_offer_timer);
-        if(cdt!=null)
+        if( cdt != null )
         {
             cdt.cancel();
-            cdt=null;
+            cdt = null;
         }
-
-		NewOrderItems item = newOrderItems.get(position);
+		
 		holder.dataCell_offer_location.setText(item.getCustomer_address());
 		holder.dataCell_offer_phoneNumber.setText(""+item.getCustomer_phoneNumber());
 		if( item.getOrder_status().equals(Constants.JSON_ORDER_STATUS_ACCEPTED) ){
 			holder.dataCell_offer_status.setText(item.getOrder_status());
 			holder.dataCell_offer_status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.order_status_accepted, 0, 0, 0);
-			
 			long millis = (item.getDeliveryTime() * 60L);
 			long result = TimeUnit.SECONDS.toMillis(millis);
 			cdt = new CountDownTimer(result, 1000) {
@@ -75,15 +80,15 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 					int min  = (int)((millisUntilFinished/ (1000) / 60));
 					String minutes = String.format("%02d", min);
 					String seconds = String.format("%02d", sec);
-					holder.dataCell_offer_timer.setText(minutes+":"+seconds);
+					tvTimer.setText(minutes+":"+seconds);
 				}
 
 				public void onFinish() {
 					
-					holder.dataCell_offer_timer.setText("Done");
+					tvTimer.setText("Done");
 				}
 			};
-			counters.put(holder.dataCell_offer_timer, cdt);
+			counters.put(tvTimer, cdt);
 	        cdt.start();
 				
 		}else if( item.getOrder_status().equals(Constants.JSON_ORDER_STATUS_DECLINED) ){
@@ -93,6 +98,28 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 
 		return convertView;
 	}
+	
+	public void cancelAllTimers()
+    {
+        Set<Entry<TextView, CountDownTimer>> s = counters.entrySet();
+        Iterator it = s.iterator();
+        while(it.hasNext())
+        {
+            try
+            {
+                Map.Entry pairs = (Map.Entry)it.next();
+                CountDownTimer cdt = (CountDownTimer)pairs.getValue();
+
+                cdt.cancel();
+                cdt = null;
+            }
+            catch(Exception e){}
+        }
+
+        it=null;
+        s=null;
+        counters.clear();
+    }
 
 	/**
 	 * A class defining the view holder

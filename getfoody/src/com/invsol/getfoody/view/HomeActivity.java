@@ -111,8 +111,25 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
         if (savedInstanceState == null) {
             selectItem(0);
         }
+        
+      //List of Orders
+        ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
+               NewOrderItems orderDataItems = null;
+               ArrayList<NewOrderItems> orderItems = new ArrayList<NewOrderItems>();
+        		for (int i = 0; i < 10; i++) {
+        			orderDataItems = new NewOrderItems();
+        			orderDataItems.setCustomer_address("Sector-22, Dwarka, New-Delhi");
+        			orderDataItems.setCustomer_phoneNumber(Long.parseLong("0987654321"));
+        			orderDataItems.setOrder_status("Accepted");
+        			orderDataItems.setDeliveryTime(20+i);
+        			orderItems.add(orderDataItems);
+        		}
+         
+        		NewOrdersAdapter adapter = new NewOrdersAdapter(
+        				this, R.layout.activity_home, orderItems);
+       		list_newOrders.setAdapter(adapter);
 
-        list_newOrders = (ListView)findViewById(R.id.listview_orders);
+        /*list_newOrders = (ListView)findViewById(R.id.listview_orders);
         if( orderItems == null ){
         	SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getOrderItems();
 	        orderItems = new ArrayList<NewOrderItems>();
@@ -136,7 +153,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 				screenChangeIntent.putExtra("ORDER", itemSelected.getOrderJson());
 				HomeActivity.this.startActivity(screenChangeIntent);
 			}
-		});
+		});*/
 	}
 	
 	
@@ -312,14 +329,14 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 	  GetFoodyApplication.setCurrentActivity(this);
 	  GetFoodyApplication.activityResumed();
 	  
-	  SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems();
+	  /*SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems();
       for( int i = 0; i < newItems.size(); i++){
       	int index = newItems.keyAt(i);
       	adapter.getNewOrderItems().add(newItems.get(index));
       }
       adapter.notifyDataSetChanged();
       
-      AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems().clear();
+      AppEventsController.getInstance().getModelFacade().getResModel().getRecentorderItems().clear();*/
 	}
 
 	@Override
