@@ -135,12 +135,14 @@
                 <category android:name="com.invsol.getfoody" />
             </intent-filter>
         </receiver>
-
-        <provider
-            android:name=".contentprovider.DataProvider"
-            android:authorities="com.invsol.getfoody.contentprovider"
-            android:exported="false" >
-        </provider>
+        <activity android:name=".view.ChatActivity"
+            android:label="@string/text_title_chat"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".view.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

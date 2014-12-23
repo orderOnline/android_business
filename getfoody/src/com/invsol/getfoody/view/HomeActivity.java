@@ -118,16 +118,31 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
                ArrayList<NewOrderItems> orderItems = new ArrayList<NewOrderItems>();
         		for (int i = 0; i < 10; i++) {
         			orderDataItems = new NewOrderItems();
+        			orderDataItems.setOrder_id(i);
         			orderDataItems.setCustomer_address("Sector-22, Dwarka, New-Delhi");
         			orderDataItems.setCustomer_phoneNumber(Long.parseLong("0987654321"));
         			orderDataItems.setOrder_status("Accepted");
         			orderDataItems.setDeliveryTime(20+i);
+        			orderDataItems.setNewMessageArrival(true);
         			orderItems.add(orderDataItems);
         		}
          
-        		NewOrdersAdapter adapter = new NewOrdersAdapter(
+        		 adapter = new NewOrdersAdapter(
         				this, R.layout.activity_home, orderItems);
        		list_newOrders.setAdapter(adapter);
+       		
+       		list_newOrders.setOnItemClickListener(new OnItemClickListener() {
+
+    			@Override
+    			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    				Intent screenChangeIntent = null;
+    				screenChangeIntent = new Intent(HomeActivity.this,
+    						OrderDetailsActivity.class);
+    				NewOrderItems itemSelected = adapter.getItem(position);
+    				screenChangeIntent.putExtra("ORDER", itemSelected.getOrderJson());
+    				HomeActivity.this.startActivity(screenChangeIntent);
+    			}
+    		});
 
         /*list_newOrders = (ListView)findViewById(R.id.listview_orders);
         if( orderItems == null ){
@@ -304,7 +319,18 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 		switch (connModel.getConnectionStatus()) {
 		case ConnectionModel.SUCCESS: {
 			Log.d("LoginActivity", "Inside onConnection");
-			
+			if( tag.equals("Chat") ){
+				try {
+					JSONObject chatMsg = AppEventsController.getInstance().getModelFacade().getChatModel().getNewChatMessage();
+					int order_id = chatMsg.getInt(Constants.JSON_CHAT_ORDER_ID);
+					NewOrderItems item = adapter.getNewOrderItems().get(order_id);
+					item.setNewMessageArrival(true);
+					adapter.notifyDataSetChanged();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 			break;
 		case ConnectionModel.ERROR: {

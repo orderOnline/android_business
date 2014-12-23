@@ -14,6 +14,7 @@ public class NewOrderItems {
 	private String timestamp;
 	private String orderJson;
 	private int deliveryTime;
+	private boolean newMessageArrival;
 
 	public NewOrderItems() {
 	}
@@ -120,6 +121,14 @@ public class NewOrderItems {
 
 	public void setDeliveryTime(int deliveryTime) {
 		this.deliveryTime = deliveryTime;
+	}
+
+	public boolean isNewMessageArrival() {
+		return newMessageArrival;
+	}
+
+	public void setNewMessageArrival(boolean newMessageArrival) {
+		this.newMessageArrival = newMessageArrival;
 	}
 	
 	

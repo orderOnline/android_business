@@ -20,6 +20,7 @@
     <string name="text_title_new_order">New Order</string>
     <string name="text_title_orders">Orders</string>
     <string name="text_title_new_order_details">Order Detail</string>
+    <string name="text_title_chat">Chat</string>
     
     <string name="text_title_menu">Menu</string>
     <string name="text_title_profile">Profile</string>
@@ -41,6 +42,7 @@
     <string name="text_watermark_item_name"><i>item name*</i></string>
     <string name="text_watermark_item_price"><i>price*</i></string>
     <string name="text_watermark_deliverytime"><i>in mins*</i></string>
+    <string name="text_watermark_write_here"><i>write here*</i></string>
     
     
     <!-- Action Button Specific Strings -->
@@ -54,6 +56,7 @@
     <string name="text_button_reject_order">Reject</string>
     <string name="text_button_done">Done</string>
     <string name="text_button_addcategory">Add Category</string>
+    <string name="text_button_send">Send</string>
     
     <!-- Splash Specific Strings -->
     <string name="text_splash_version">Version </string>

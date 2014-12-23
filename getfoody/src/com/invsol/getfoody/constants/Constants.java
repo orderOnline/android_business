@@ -15,6 +15,7 @@ public class Constants {
 		public static final String URL_POST_TESTORDER_REQUEST = "orders/new.json";
 		public static final String URL_PUT_ORDER_ACCEPT = "orders/acceptorder/";
 		public static final String URL_PUT_ORDER_DECLINE = "orders/declineorder/";
+		public static final String URL_POST_CHAT_ORDER = "chat/";
 		// ----------------------------------------------------------------------------------
 		
 		/**
@@ -90,6 +91,12 @@ public class Constants {
 		public static final String JSON_ORDER_STATUS_ACCEPTED = "Accepted";
 		public static final String JSON_ORDER_STATUS_DECLINED = "Declined";
 		public static final String JSON_DELIVERYTIME = "delivery_time";
+		public static final String JSON_CONSUMER_MESSAGE = "consumer_message";
+		public static final String JSON_RESTAURANT_MESSAGE = "restaurant_message";
+		public static final String JSON_CHAT_ORDER_ID = "order_id";
+		public static final String JSON_CHAT_OWNER_ID = "owner_id";
+		public static final String JSON_CHAT_MESSAGE = "message";
+		public static final String JSON_CHAT_OWNER_TYPE = "owner_type";
 		// ----------------------------------------------------------------------------------
 		
 		/**

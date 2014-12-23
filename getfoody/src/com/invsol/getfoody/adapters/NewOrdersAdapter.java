@@ -8,18 +8,28 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.invsol.getfoody.R;
 import com.invsol.getfoody.constants.Constants;
+import com.invsol.getfoody.controllers.AppEventsController;
 import com.invsol.getfoody.dataobjects.NewOrderItems;
+import com.invsol.getfoody.view.ChatActivity;
+import com.invsol.getfoody.view.HomeActivity;
 
 public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 
@@ -51,13 +61,14 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 			holder.dataCell_offer_phoneNumber = (TextView) convertView.findViewById(R.id.textview_offer_phonenumber);
 			holder.dataCell_offer_status = (TextView) convertView.findViewById(R.id.textview_offer_acceptance_status);
 			holder.dataCell_offer_timer = (TextView) convertView.findViewById(R.id.textview_offer_timer);
+			holder.dataCell_offer_newmessage = (ImageView) convertView.findViewById(R.id.imageView_newmessage);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 			
 		}
 		
-		NewOrderItems item = newOrderItems.get(position);
+		final NewOrderItems item = newOrderItems.get(position);
 		
 		final TextView tvTimer = holder.dataCell_offer_timer;
 		CountDownTimer cdt = counters.get(holder.dataCell_offer_timer);
@@ -95,6 +106,40 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 			holder.dataCell_offer_status.setText(item.getOrder_status());
 			holder.dataCell_offer_status.setCompoundDrawablesWithIntrinsicBounds(R.drawable.order_status_missed, 0, 0, 0);
 		}		
+		
+		if( item.isNewMessageArrival() ){
+			ImageView imv_newmessage = holder.dataCell_offer_newmessage;
+			imv_newmessage.setBackgroundResource(R.drawable.chatmessage_animator);
+			// Get the background, which has been compiled to an AnimationDrawable object.
+			final AnimationDrawable frameAnimation = (AnimationDrawable) imv_newmessage.getBackground();
+
+			// Start the animation (looped playback by default).
+			frameAnimation.start();
+			
+			imv_newmessage.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View view) {
+					frameAnimation.stop();
+					Intent screenChangeIntent = null;
+    				screenChangeIntent = new Intent(context,
+    						ChatActivity.class);
+    				try {
+    					JSONObject chatJson = new JSONObject();
+						chatJson.put(Constants.JSON_CHAT_ORDER_ID, item.getOrder_id());
+						chatJson.put(Constants.JSON_CHAT_OWNER_ID, 0);
+						chatJson.put(Constants.JSON_CHAT_MESSAGE, "Please update my order.");
+						chatJson.put(Constants.JSON_CHAT_OWNER_TYPE, "CUSTOMER");
+						screenChangeIntent.putExtra("CHAT", chatJson.toString());
+    				//screenChangeIntent.putExtra("CHAT", AppEventsController.getInstance().getModelFacade().getChatModel().getNewChatMessage().toString());
+    				context.startActivity(screenChangeIntent);
+    				} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+		}
 
 		return convertView;
 	}
@@ -129,6 +174,7 @@ public class NewOrdersAdapter extends ArrayAdapter<NewOrderItems> {
 		private TextView dataCell_offer_phoneNumber;
 		private TextView dataCell_offer_status;
 		private TextView dataCell_offer_timer;
+		private ImageView dataCell_offer_newmessage;
 	}
 
 	public ArrayList<NewOrderItems> getNewOrderItems() {
