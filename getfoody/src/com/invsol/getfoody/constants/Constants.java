@@ -3,8 +3,8 @@ package com.invsol.getfoody.constants;
 public class Constants {
 	
 	// Required URLs
-		public static final String BASE_URL = "http://www.medoco.in/";
-		//public static final String BASE_URL = "http://localhost:8080/jax-rs-heroku/";
+		//public static final String BASE_URL = "http://www.medoco.in/";
+		public static final String BASE_URL = "http://192.168.43.241:8080/jax-rs-heroku/";
 		public static final String URL_POST_REGISTER_REQUEST = "register/business.json";
 		public static final String URL_POST_LOGIN_REQUEST = "login/business.json";
 		public static final String URL_POST_VALIDATEOTP_REQUEST = "register/business/validateotp.json";

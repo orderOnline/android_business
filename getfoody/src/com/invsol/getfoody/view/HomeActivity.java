@@ -112,7 +112,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
             selectItem(0);
         }
         
-      //List of Orders
+      /*//List of Orders
         ListView list_newOrders = (ListView)findViewById(R.id.listview_orders);
                NewOrderItems orderDataItems = null;
                ArrayList<NewOrderItems> orderItems = new ArrayList<NewOrderItems>();
@@ -142,9 +142,9 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
     				screenChangeIntent.putExtra("ORDER", itemSelected.getOrderJson());
     				HomeActivity.this.startActivity(screenChangeIntent);
     			}
-    		});
+    		});*/
 
-        /*list_newOrders = (ListView)findViewById(R.id.listview_orders);
+        list_newOrders = (ListView)findViewById(R.id.listview_orders);
         if( orderItems == null ){
         	SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel().getOrderItems();
 	        orderItems = new ArrayList<NewOrderItems>();
@@ -168,7 +168,7 @@ public class HomeActivity extends ActionBarActivity implements ActivityUpdateLis
 				screenChangeIntent.putExtra("ORDER", itemSelected.getOrderJson());
 				HomeActivity.this.startActivity(screenChangeIntent);
 			}
-		});*/
+		});
 	}
 	
 	
