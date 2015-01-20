@@ -205,8 +205,6 @@ public class NetworkResponseHandler {
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
-				ConnectionModel model = AppEventsController.getInstance()
-						.getModelFacade().getConnModel();
 				switch (msg.what) {
 				case Constants.SUCCESSFUL_RESPONSE: {
 					Log.d("response==", ((JSONObject) msg.obj).toString());

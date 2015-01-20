@@ -207,7 +207,7 @@ public class RestaurantModel {
 			item = new NewOrderItems();
 			item.setOrderJson(orderData.toString());
 			item.setOrder_id(orderData.getInt(Constants.JSON_ORDER_ID));
-			item.setCustomer_name(orderData.getString(Constants.JSON_ITEMNAME));
+			item.setCustomer_name(orderData.getString(Constants.JSON_NAME));
 			item.setCustomer_address(orderData.getString(Constants.JSON_ADDRESS));
 			item.setCustomer_extrainfo(orderData.getString(Constants.JSON_INSTRUCTIONS));
 			item.setCustomer_phoneNumber(orderData.getLong(Constants.JSON_PHONENUMBER));

@@ -47,6 +47,10 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+		connModel = AppEventsController.getInstance().getModelFacade()
+				.getConnModel();
+		connModel.registerView(this);
+		
 		editText_phoneno = (EditText) findViewById(R.id.edittext_contactno);
 		editText_password = (EditText) findViewById(R.id.edittext_password);
 		editText_password.setTypeface(Typeface.SANS_SERIF);
@@ -114,10 +118,6 @@ public class LoginActivity extends ActionBarActivity implements ActivityUpdateLi
 						}
 					}
 				});
-		
-		connModel = AppEventsController.getInstance().getModelFacade()
-				.getConnModel();
-		connModel.registerView(this);
 		
 		btn_signin = (TextView) findViewById(R.id.btn_login);
 		btn_signin.setOnClickListener(new OnClickListener() {
