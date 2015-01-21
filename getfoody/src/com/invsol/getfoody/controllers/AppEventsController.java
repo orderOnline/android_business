@@ -179,6 +179,15 @@ public class AppEventsController {
 			}
 		}
 		break;
+		case NetworkEvents.EVENT_ID_DECLINE_ORDER:{
+			try {
+				modelFacade.getRemoteModel().putDeclineOrder(eventData,
+						NetworkResponseHandler.DECLINEORDER_HANDLER, view);
+			} catch (Exception ex) {
+				Log.d("Application Exception:", ex.getMessage());
+			}
+		}
+		break;
 		}
 	}
 

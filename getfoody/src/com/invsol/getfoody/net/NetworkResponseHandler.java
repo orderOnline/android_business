@@ -28,6 +28,7 @@ public class NetworkResponseHandler {
 	public static final Handler NEWMENUITEM_HANDLER = newMenuItemHandler();
 	public static final Handler NEWORDER_HANDLER = newOrderHandler();
 	public static final Handler ACCEPTORDER_HANDLER = acceptOrderHandler();
+	public static final Handler DECLINEORDER_HANDLER = declineOrderHandler();
 	
 	private static Handler loginUserHandler() {
 		return new Handler() {
@@ -89,6 +90,45 @@ public class NetworkResponseHandler {
 						AppEventsController.getInstance().getModelFacade().getResModel().addOrders(currentItem);
 						model.setConnectionStatus(ConnectionModel.SUCCESS);
 						model.notifyView("AcceptOrder");
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+					break;
+				case Constants.EXCEPTION: {
+					Exception exceptionObj = (Exception) msg.obj;
+					Log.d(TAG, "exception:" + exceptionObj.getMessage());
+					model.setConnectionStatus(ConnectionModel.ERROR);
+					model.setConnectionErrorMessage(exceptionObj.getMessage());
+					model.notifyView("Error");
+				}
+					break;
+				}
+			}
+
+		};
+	}
+	
+	private static Handler declineOrderHandler() {
+		return new Handler() {
+			@Override
+			public void handleMessage(Message msg) {
+				ConnectionModel model = AppEventsController.getInstance()
+						.getModelFacade().getConnModel();
+				switch (msg.what) {
+				case Constants.SUCCESSFUL_RESPONSE: {
+					Log.d("response==", ((JSONObject) msg.obj).toString());
+					
+					try {
+						JSONObject resp = ((JSONObject) msg.obj).getJSONObject(Constants.JSON_RESULT);
+						JSONObject restData = resp.getJSONObject(Constants.JSON_RESPONSE);
+						NewOrderItems currentItem = AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().get(restData.getInt(Constants.JSON_ORDER_ID));
+						AppEventsController.getInstance().getModelFacade().getResModel().getPendingOrderItems().remove(restData.getInt(Constants.JSON_ORDER_ID));
+						currentItem.setOrder_status(Constants.JSON_ORDER_STATUS_DECLINED);
+						//currentItem.setDeliveryTime(restData.getInt(Constants.JSON_DELIVERYTIME));
+						AppEventsController.getInstance().getModelFacade().getResModel().addOrders(currentItem);
+						model.setConnectionStatus(ConnectionModel.SUCCESS);
+						model.notifyView("DeclineOrder");
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}

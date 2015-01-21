@@ -91,6 +91,7 @@ public class Constants {
 		public static final String JSON_ORDER_STATUS_ACCEPTED = "Accepted";
 		public static final String JSON_ORDER_STATUS_DECLINED = "Declined";
 		public static final String JSON_DELIVERYTIME = "delivery_time";
+		public static final String JSON_ORDER_MESSAGE = "order_message";
 		public static final String JSON_CONSUMER_MESSAGE = "consumer_message";
 		public static final String JSON_RESTAURANT_MESSAGE = "restaurant_message";
 		public static final String JSON_CHAT_ORDER_ID = "order_id";

@@ -197,18 +197,23 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 
 	@Override
 	public void onDODialogPositiveClick(DialogFragment dialog) {
-		SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel()
-				.getPendingOrderItems();
-		if (newItems.size() > 0) {
-			flipCard();
-		} else {
-			// Clear all notification
-			NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-			nMgr.cancelAll();
-			Intent screenChangeIntent = null;
-			screenChangeIntent = new Intent(OrdersActivity.this, HomeActivity.class);
-			OrdersActivity.this.startActivity(screenChangeIntent);
-			OrdersActivity.this.finish();
+		Dialog dialogView = dialog.getDialog();
+		EditText editTextDeliveryReason = (EditText)dialogView.findViewById(R.id.edittext_reason);
+		String deliveryReason = editTextDeliveryReason.getText().toString();
+		
+		Bundle eventData = new Bundle();
+		JSONObject postData = new JSONObject();
+		try {
+			JSONObject order = new JSONObject(orderData);
+			postData.put(Constants.JSON_ORDER_MESSAGE, deliveryReason);
+			postData.put(Constants.JSON_CONSUMER_ID, order.getInt(Constants.JSON_CONSUMER_ID));
+			eventData.putString(Constants.JSON_POST_DATA, postData.toString());
+			eventData.putString(Constants.JSON_ORDER_ID, ""+order.getInt(Constants.JSON_ORDER_ID));
+			AppEventsController.getInstance().handleEvent(
+					NetworkEvents.EVENT_ID_DECLINE_ORDER, eventData, editTextDeliveryReason);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -236,7 +241,7 @@ public class OrdersActivity extends Activity implements FragmentManager.OnBackSt
 
 	@Override
 	public void updateActivity(String tag) {
-		if( tag.equals("AcceptOrder") ){
+		if( tag.equals("AcceptOrder") || tag.equals("DeclineOrder")){
 			SparseArray<NewOrderItems> newItems = AppEventsController.getInstance().getModelFacade().getResModel()
 					.getPendingOrderItems();
 			if (newItems.size() > 0) {
